@@ -11,7 +11,7 @@ Public Class Dashboard
 
     Private Sub Clock_Tick(sender As Object, e As EventArgs) Handles Clock.Tick
         Dim time As DateTime = DateTime.Now
-        Dim Format As String = "ddd d-MM-yyyy - h:mm:ss tt"
+        Dim Format As String = "ddd d-MM-yyyy  h:mm:ss tt"
         Me.txtClock.Text = time.ToString(Format)
     End Sub
 
