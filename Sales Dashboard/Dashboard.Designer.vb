@@ -159,7 +159,7 @@ Partial Class Dashboard
         Me.SalesActualCurrent.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.SalesActualCurrent.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SalesActualCurrent.ForeColor = System.Drawing.Color.Yellow
-        Me.SalesActualCurrent.Location = New System.Drawing.Point(679, 220)
+        Me.SalesActualCurrent.Location = New System.Drawing.Point(765, 220)
         Me.SalesActualCurrent.Name = "SalesActualCurrent"
         Me.SalesActualCurrent.Size = New System.Drawing.Size(80, 34)
         Me.SalesActualCurrent.TabIndex = 2
@@ -172,7 +172,7 @@ Partial Class Dashboard
         Me.SalesProjectedCurrent.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.SalesProjectedCurrent.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SalesProjectedCurrent.ForeColor = System.Drawing.Color.Yellow
-        Me.SalesProjectedCurrent.Location = New System.Drawing.Point(679, 267)
+        Me.SalesProjectedCurrent.Location = New System.Drawing.Point(765, 267)
         Me.SalesProjectedCurrent.Name = "SalesProjectedCurrent"
         Me.SalesProjectedCurrent.Size = New System.Drawing.Size(80, 34)
         Me.SalesProjectedCurrent.TabIndex = 3
@@ -185,7 +185,7 @@ Partial Class Dashboard
         Me.SalesVarianceCurrent.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.SalesVarianceCurrent.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SalesVarianceCurrent.ForeColor = System.Drawing.Color.Yellow
-        Me.SalesVarianceCurrent.Location = New System.Drawing.Point(679, 314)
+        Me.SalesVarianceCurrent.Location = New System.Drawing.Point(765, 314)
         Me.SalesVarianceCurrent.Name = "SalesVarianceCurrent"
         Me.SalesVarianceCurrent.Size = New System.Drawing.Size(80, 34)
         Me.SalesVarianceCurrent.TabIndex = 4
@@ -198,7 +198,7 @@ Partial Class Dashboard
         Me.SalesVariancePrevious.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.SalesVariancePrevious.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SalesVariancePrevious.ForeColor = System.Drawing.Color.Yellow
-        Me.SalesVariancePrevious.Location = New System.Drawing.Point(765, 314)
+        Me.SalesVariancePrevious.Location = New System.Drawing.Point(851, 314)
         Me.SalesVariancePrevious.Name = "SalesVariancePrevious"
         Me.SalesVariancePrevious.Size = New System.Drawing.Size(80, 34)
         Me.SalesVariancePrevious.TabIndex = 7
@@ -211,7 +211,7 @@ Partial Class Dashboard
         Me.SalesProjectedPrevious.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.SalesProjectedPrevious.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SalesProjectedPrevious.ForeColor = System.Drawing.Color.Yellow
-        Me.SalesProjectedPrevious.Location = New System.Drawing.Point(765, 267)
+        Me.SalesProjectedPrevious.Location = New System.Drawing.Point(851, 267)
         Me.SalesProjectedPrevious.Name = "SalesProjectedPrevious"
         Me.SalesProjectedPrevious.Size = New System.Drawing.Size(80, 34)
         Me.SalesProjectedPrevious.TabIndex = 6
@@ -224,7 +224,7 @@ Partial Class Dashboard
         Me.SalesActualPrevious.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.SalesActualPrevious.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SalesActualPrevious.ForeColor = System.Drawing.Color.Yellow
-        Me.SalesActualPrevious.Location = New System.Drawing.Point(765, 220)
+        Me.SalesActualPrevious.Location = New System.Drawing.Point(851, 220)
         Me.SalesActualPrevious.Name = "SalesActualPrevious"
         Me.SalesActualPrevious.Size = New System.Drawing.Size(80, 34)
         Me.SalesActualPrevious.TabIndex = 5
@@ -237,7 +237,7 @@ Partial Class Dashboard
         Me.SalesVarianceDaily.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.SalesVarianceDaily.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SalesVarianceDaily.ForeColor = System.Drawing.Color.Yellow
-        Me.SalesVarianceDaily.Location = New System.Drawing.Point(706, 545)
+        Me.SalesVarianceDaily.Location = New System.Drawing.Point(792, 545)
         Me.SalesVarianceDaily.Name = "SalesVarianceDaily"
         Me.SalesVarianceDaily.Size = New System.Drawing.Size(119, 34)
         Me.SalesVarianceDaily.TabIndex = 10
@@ -250,7 +250,7 @@ Partial Class Dashboard
         Me.SalesProjectedDaily.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.SalesProjectedDaily.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SalesProjectedDaily.ForeColor = System.Drawing.Color.Yellow
-        Me.SalesProjectedDaily.Location = New System.Drawing.Point(706, 498)
+        Me.SalesProjectedDaily.Location = New System.Drawing.Point(792, 498)
         Me.SalesProjectedDaily.Name = "SalesProjectedDaily"
         Me.SalesProjectedDaily.Size = New System.Drawing.Size(119, 34)
         Me.SalesProjectedDaily.TabIndex = 9
@@ -263,7 +263,7 @@ Partial Class Dashboard
         Me.SalesActualDaily.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.SalesActualDaily.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SalesActualDaily.ForeColor = System.Drawing.Color.Yellow
-        Me.SalesActualDaily.Location = New System.Drawing.Point(706, 451)
+        Me.SalesActualDaily.Location = New System.Drawing.Point(792, 451)
         Me.SalesActualDaily.Name = "SalesActualDaily"
         Me.SalesActualDaily.Size = New System.Drawing.Size(119, 34)
         Me.SalesActualDaily.TabIndex = 8
@@ -276,7 +276,7 @@ Partial Class Dashboard
         Me.LabourVarianceDaily.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.LabourVarianceDaily.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabourVarianceDaily.ForeColor = System.Drawing.Color.Yellow
-        Me.LabourVarianceDaily.Location = New System.Drawing.Point(971, 545)
+        Me.LabourVarianceDaily.Location = New System.Drawing.Point(1057, 545)
         Me.LabourVarianceDaily.Name = "LabourVarianceDaily"
         Me.LabourVarianceDaily.Size = New System.Drawing.Size(100, 34)
         Me.LabourVarianceDaily.TabIndex = 19
@@ -289,7 +289,7 @@ Partial Class Dashboard
         Me.LabourSchedDaily.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.LabourSchedDaily.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabourSchedDaily.ForeColor = System.Drawing.Color.Yellow
-        Me.LabourSchedDaily.Location = New System.Drawing.Point(971, 498)
+        Me.LabourSchedDaily.Location = New System.Drawing.Point(1057, 498)
         Me.LabourSchedDaily.Name = "LabourSchedDaily"
         Me.LabourSchedDaily.Size = New System.Drawing.Size(100, 34)
         Me.LabourSchedDaily.TabIndex = 18
@@ -302,7 +302,7 @@ Partial Class Dashboard
         Me.LabourAllowedDaily.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.LabourAllowedDaily.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabourAllowedDaily.ForeColor = System.Drawing.Color.Yellow
-        Me.LabourAllowedDaily.Location = New System.Drawing.Point(971, 451)
+        Me.LabourAllowedDaily.Location = New System.Drawing.Point(1057, 451)
         Me.LabourAllowedDaily.Name = "LabourAllowedDaily"
         Me.LabourAllowedDaily.Size = New System.Drawing.Size(100, 34)
         Me.LabourAllowedDaily.TabIndex = 17
@@ -315,7 +315,7 @@ Partial Class Dashboard
         Me.LabourVariancePrevious.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.LabourVariancePrevious.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabourVariancePrevious.ForeColor = System.Drawing.Color.Yellow
-        Me.LabourVariancePrevious.Location = New System.Drawing.Point(1033, 314)
+        Me.LabourVariancePrevious.Location = New System.Drawing.Point(1119, 314)
         Me.LabourVariancePrevious.Name = "LabourVariancePrevious"
         Me.LabourVariancePrevious.Size = New System.Drawing.Size(60, 34)
         Me.LabourVariancePrevious.TabIndex = 16
@@ -328,7 +328,7 @@ Partial Class Dashboard
         Me.LabourSchedPrevious.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.LabourSchedPrevious.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabourSchedPrevious.ForeColor = System.Drawing.Color.Yellow
-        Me.LabourSchedPrevious.Location = New System.Drawing.Point(1033, 267)
+        Me.LabourSchedPrevious.Location = New System.Drawing.Point(1119, 267)
         Me.LabourSchedPrevious.Name = "LabourSchedPrevious"
         Me.LabourSchedPrevious.Size = New System.Drawing.Size(60, 34)
         Me.LabourSchedPrevious.TabIndex = 15
@@ -341,7 +341,7 @@ Partial Class Dashboard
         Me.LabourAllowedPrevious.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.LabourAllowedPrevious.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabourAllowedPrevious.ForeColor = System.Drawing.Color.Yellow
-        Me.LabourAllowedPrevious.Location = New System.Drawing.Point(1033, 220)
+        Me.LabourAllowedPrevious.Location = New System.Drawing.Point(1119, 220)
         Me.LabourAllowedPrevious.Name = "LabourAllowedPrevious"
         Me.LabourAllowedPrevious.Size = New System.Drawing.Size(60, 34)
         Me.LabourAllowedPrevious.TabIndex = 14
@@ -354,7 +354,7 @@ Partial Class Dashboard
         Me.LabourVarianceCurrent.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.LabourVarianceCurrent.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabourVarianceCurrent.ForeColor = System.Drawing.Color.Yellow
-        Me.LabourVarianceCurrent.Location = New System.Drawing.Point(967, 314)
+        Me.LabourVarianceCurrent.Location = New System.Drawing.Point(1053, 314)
         Me.LabourVarianceCurrent.Name = "LabourVarianceCurrent"
         Me.LabourVarianceCurrent.Size = New System.Drawing.Size(60, 34)
         Me.LabourVarianceCurrent.TabIndex = 13
@@ -367,7 +367,7 @@ Partial Class Dashboard
         Me.LabourSchedCurrent.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.LabourSchedCurrent.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabourSchedCurrent.ForeColor = System.Drawing.Color.Yellow
-        Me.LabourSchedCurrent.Location = New System.Drawing.Point(967, 267)
+        Me.LabourSchedCurrent.Location = New System.Drawing.Point(1053, 267)
         Me.LabourSchedCurrent.Name = "LabourSchedCurrent"
         Me.LabourSchedCurrent.Size = New System.Drawing.Size(60, 34)
         Me.LabourSchedCurrent.TabIndex = 12
@@ -380,7 +380,7 @@ Partial Class Dashboard
         Me.LabourAllowedCurrent.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.LabourAllowedCurrent.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabourAllowedCurrent.ForeColor = System.Drawing.Color.Yellow
-        Me.LabourAllowedCurrent.Location = New System.Drawing.Point(967, 220)
+        Me.LabourAllowedCurrent.Location = New System.Drawing.Point(1053, 220)
         Me.LabourAllowedCurrent.Name = "LabourAllowedCurrent"
         Me.LabourAllowedCurrent.Size = New System.Drawing.Size(60, 34)
         Me.LabourAllowedCurrent.TabIndex = 11
@@ -393,7 +393,7 @@ Partial Class Dashboard
         Me.ActualSalesLabel.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ActualSalesLabel.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ActualSalesLabel.ForeColor = System.Drawing.Color.White
-        Me.ActualSalesLabel.Location = New System.Drawing.Point(573, 232)
+        Me.ActualSalesLabel.Location = New System.Drawing.Point(659, 232)
         Me.ActualSalesLabel.Name = "ActualSalesLabel"
         Me.ActualSalesLabel.Size = New System.Drawing.Size(100, 19)
         Me.ActualSalesLabel.TabIndex = 20
@@ -407,7 +407,7 @@ Partial Class Dashboard
         Me.ProjectedSalesLabel.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ProjectedSalesLabel.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ProjectedSalesLabel.ForeColor = System.Drawing.Color.White
-        Me.ProjectedSalesLabel.Location = New System.Drawing.Point(573, 279)
+        Me.ProjectedSalesLabel.Location = New System.Drawing.Point(659, 279)
         Me.ProjectedSalesLabel.Name = "ProjectedSalesLabel"
         Me.ProjectedSalesLabel.Size = New System.Drawing.Size(100, 19)
         Me.ProjectedSalesLabel.TabIndex = 21
@@ -421,7 +421,7 @@ Partial Class Dashboard
         Me.SalesVarianceLabel.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.SalesVarianceLabel.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SalesVarianceLabel.ForeColor = System.Drawing.Color.White
-        Me.SalesVarianceLabel.Location = New System.Drawing.Point(573, 326)
+        Me.SalesVarianceLabel.Location = New System.Drawing.Point(659, 326)
         Me.SalesVarianceLabel.Name = "SalesVarianceLabel"
         Me.SalesVarianceLabel.Size = New System.Drawing.Size(100, 19)
         Me.SalesVarianceLabel.TabIndex = 22
@@ -435,7 +435,7 @@ Partial Class Dashboard
         Me.CurrentSalesLabel.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.CurrentSalesLabel.Font = New System.Drawing.Font("Arial Rounded MT Bold", 18.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CurrentSalesLabel.ForeColor = System.Drawing.Color.White
-        Me.CurrentSalesLabel.Location = New System.Drawing.Point(679, 179)
+        Me.CurrentSalesLabel.Location = New System.Drawing.Point(765, 179)
         Me.CurrentSalesLabel.Name = "CurrentSalesLabel"
         Me.CurrentSalesLabel.Size = New System.Drawing.Size(80, 28)
         Me.CurrentSalesLabel.TabIndex = 23
@@ -449,7 +449,7 @@ Partial Class Dashboard
         Me.PreviousSalesLabel.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.PreviousSalesLabel.Font = New System.Drawing.Font("Arial Rounded MT Bold", 18.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PreviousSalesLabel.ForeColor = System.Drawing.Color.White
-        Me.PreviousSalesLabel.Location = New System.Drawing.Point(765, 179)
+        Me.PreviousSalesLabel.Location = New System.Drawing.Point(851, 179)
         Me.PreviousSalesLabel.Name = "PreviousSalesLabel"
         Me.PreviousSalesLabel.Size = New System.Drawing.Size(80, 28)
         Me.PreviousSalesLabel.TabIndex = 24
@@ -463,7 +463,7 @@ Partial Class Dashboard
         Me.DailySalesLabel.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DailySalesLabel.Font = New System.Drawing.Font("Arial Rounded MT Bold", 18.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DailySalesLabel.ForeColor = System.Drawing.Color.White
-        Me.DailySalesLabel.Location = New System.Drawing.Point(715, 402)
+        Me.DailySalesLabel.Location = New System.Drawing.Point(801, 402)
         Me.DailySalesLabel.Name = "DailySalesLabel"
         Me.DailySalesLabel.Size = New System.Drawing.Size(257, 28)
         Me.DailySalesLabel.TabIndex = 25
@@ -477,7 +477,7 @@ Partial Class Dashboard
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox1.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.ForeColor = System.Drawing.Color.White
-        Me.TextBox1.Location = New System.Drawing.Point(865, 326)
+        Me.TextBox1.Location = New System.Drawing.Point(951, 326)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(100, 19)
         Me.TextBox1.TabIndex = 28
@@ -491,7 +491,7 @@ Partial Class Dashboard
         Me.ScheduledLabourLabel.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ScheduledLabourLabel.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ScheduledLabourLabel.ForeColor = System.Drawing.Color.White
-        Me.ScheduledLabourLabel.Location = New System.Drawing.Point(865, 279)
+        Me.ScheduledLabourLabel.Location = New System.Drawing.Point(951, 279)
         Me.ScheduledLabourLabel.Name = "ScheduledLabourLabel"
         Me.ScheduledLabourLabel.Size = New System.Drawing.Size(100, 19)
         Me.ScheduledLabourLabel.TabIndex = 27
@@ -505,7 +505,7 @@ Partial Class Dashboard
         Me.AllowedLabourLabel.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.AllowedLabourLabel.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AllowedLabourLabel.ForeColor = System.Drawing.Color.White
-        Me.AllowedLabourLabel.Location = New System.Drawing.Point(865, 232)
+        Me.AllowedLabourLabel.Location = New System.Drawing.Point(951, 232)
         Me.AllowedLabourLabel.Name = "AllowedLabourLabel"
         Me.AllowedLabourLabel.Size = New System.Drawing.Size(100, 19)
         Me.AllowedLabourLabel.TabIndex = 26
@@ -519,7 +519,7 @@ Partial Class Dashboard
         Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox3.Font = New System.Drawing.Font("Arial Rounded MT Bold", 18.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox3.ForeColor = System.Drawing.Color.White
-        Me.TextBox3.Location = New System.Drawing.Point(1033, 179)
+        Me.TextBox3.Location = New System.Drawing.Point(1119, 179)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(60, 28)
         Me.TextBox3.TabIndex = 30
@@ -533,7 +533,7 @@ Partial Class Dashboard
         Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox4.Font = New System.Drawing.Font("Arial Rounded MT Bold", 18.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox4.ForeColor = System.Drawing.Color.White
-        Me.TextBox4.Location = New System.Drawing.Point(967, 179)
+        Me.TextBox4.Location = New System.Drawing.Point(1053, 179)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(60, 28)
         Me.TextBox4.TabIndex = 29
@@ -547,7 +547,7 @@ Partial Class Dashboard
         Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox5.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox5.ForeColor = System.Drawing.Color.White
-        Me.TextBox5.Location = New System.Drawing.Point(600, 557)
+        Me.TextBox5.Location = New System.Drawing.Point(686, 557)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(100, 19)
         Me.TextBox5.TabIndex = 34
@@ -561,7 +561,7 @@ Partial Class Dashboard
         Me.TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox6.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox6.ForeColor = System.Drawing.Color.White
-        Me.TextBox6.Location = New System.Drawing.Point(600, 510)
+        Me.TextBox6.Location = New System.Drawing.Point(686, 510)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(100, 19)
         Me.TextBox6.TabIndex = 33
@@ -575,7 +575,7 @@ Partial Class Dashboard
         Me.TextBox7.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox7.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox7.ForeColor = System.Drawing.Color.White
-        Me.TextBox7.Location = New System.Drawing.Point(600, 463)
+        Me.TextBox7.Location = New System.Drawing.Point(686, 463)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.Size = New System.Drawing.Size(100, 19)
         Me.TextBox7.TabIndex = 32
@@ -589,7 +589,7 @@ Partial Class Dashboard
         Me.TextBox8.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox8.Font = New System.Drawing.Font("Arial Rounded MT Bold", 18.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox8.ForeColor = System.Drawing.Color.White
-        Me.TextBox8.Location = New System.Drawing.Point(704, 134)
+        Me.TextBox8.Location = New System.Drawing.Point(790, 134)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.Size = New System.Drawing.Size(257, 28)
         Me.TextBox8.TabIndex = 35
@@ -603,7 +603,7 @@ Partial Class Dashboard
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox2.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox2.ForeColor = System.Drawing.Color.White
-        Me.TextBox2.Location = New System.Drawing.Point(865, 557)
+        Me.TextBox2.Location = New System.Drawing.Point(951, 557)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(100, 19)
         Me.TextBox2.TabIndex = 38
@@ -617,7 +617,7 @@ Partial Class Dashboard
         Me.TextBox9.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox9.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox9.ForeColor = System.Drawing.Color.White
-        Me.TextBox9.Location = New System.Drawing.Point(865, 510)
+        Me.TextBox9.Location = New System.Drawing.Point(951, 510)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.Size = New System.Drawing.Size(100, 19)
         Me.TextBox9.TabIndex = 37
@@ -631,7 +631,7 @@ Partial Class Dashboard
         Me.TextBox10.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox10.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox10.ForeColor = System.Drawing.Color.White
-        Me.TextBox10.Location = New System.Drawing.Point(865, 463)
+        Me.TextBox10.Location = New System.Drawing.Point(951, 463)
         Me.TextBox10.Name = "TextBox10"
         Me.TextBox10.Size = New System.Drawing.Size(100, 19)
         Me.TextBox10.TabIndex = 36
@@ -645,7 +645,7 @@ Partial Class Dashboard
         Me.TextBox11.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox11.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox11.ForeColor = System.Drawing.Color.White
-        Me.TextBox11.Location = New System.Drawing.Point(600, 604)
+        Me.TextBox11.Location = New System.Drawing.Point(686, 604)
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.Size = New System.Drawing.Size(100, 19)
         Me.TextBox11.TabIndex = 40
@@ -659,7 +659,7 @@ Partial Class Dashboard
         Me.txtSalesVariancePercentDaily.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtSalesVariancePercentDaily.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSalesVariancePercentDaily.ForeColor = System.Drawing.Color.Yellow
-        Me.txtSalesVariancePercentDaily.Location = New System.Drawing.Point(706, 592)
+        Me.txtSalesVariancePercentDaily.Location = New System.Drawing.Point(792, 592)
         Me.txtSalesVariancePercentDaily.Name = "txtSalesVariancePercentDaily"
         Me.txtSalesVariancePercentDaily.Size = New System.Drawing.Size(139, 34)
         Me.txtSalesVariancePercentDaily.TabIndex = 39
@@ -672,7 +672,7 @@ Partial Class Dashboard
         Me.TextBox12.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox12.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox12.ForeColor = System.Drawing.Color.White
-        Me.TextBox12.Location = New System.Drawing.Point(609, 681)
+        Me.TextBox12.Location = New System.Drawing.Point(695, 681)
         Me.TextBox12.Name = "TextBox12"
         Me.TextBox12.Size = New System.Drawing.Size(100, 19)
         Me.TextBox12.TabIndex = 42
@@ -686,7 +686,7 @@ Partial Class Dashboard
         Me.txtFullDaySalesProjection.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtFullDaySalesProjection.Font = New System.Drawing.Font("Arial Rounded MT Bold", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFullDaySalesProjection.ForeColor = System.Drawing.Color.Yellow
-        Me.txtFullDaySalesProjection.Location = New System.Drawing.Point(715, 669)
+        Me.txtFullDaySalesProjection.Location = New System.Drawing.Point(801, 669)
         Me.txtFullDaySalesProjection.Name = "txtFullDaySalesProjection"
         Me.txtFullDaySalesProjection.Size = New System.Drawing.Size(110, 34)
         Me.txtFullDaySalesProjection.TabIndex = 41
@@ -696,16 +696,16 @@ Partial Class Dashboard
         'PictureBox2
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.PictureBox2.Location = New System.Drawing.Point(-1, 102)
+        Me.PictureBox2.Location = New System.Drawing.Point(0, 102)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(1280, 667)
+        Me.PictureBox2.Size = New System.Drawing.Size(1366, 667)
         Me.PictureBox2.TabIndex = 43
         Me.PictureBox2.TabStop = False
         '
         'PictureBox3
         '
         Me.PictureBox3.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox3.Location = New System.Drawing.Point(558, 154)
+        Me.PictureBox3.Location = New System.Drawing.Point(644, 154)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(553, 216)
         Me.PictureBox3.TabIndex = 44
@@ -713,7 +713,7 @@ Partial Class Dashboard
         '
         'PictureBox4
         '
-        Me.PictureBox4.Location = New System.Drawing.Point(570, 168)
+        Me.PictureBox4.Location = New System.Drawing.Point(656, 168)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(283, 192)
         Me.PictureBox4.TabIndex = 45
@@ -721,7 +721,7 @@ Partial Class Dashboard
         '
         'PictureBox5
         '
-        Me.PictureBox5.Location = New System.Drawing.Point(859, 168)
+        Me.PictureBox5.Location = New System.Drawing.Point(945, 168)
         Me.PictureBox5.Name = "PictureBox5"
         Me.PictureBox5.Size = New System.Drawing.Size(243, 192)
         Me.PictureBox5.TabIndex = 46
@@ -730,7 +730,7 @@ Partial Class Dashboard
         'PictureBox6
         '
         Me.PictureBox6.BackColor = System.Drawing.Color.Gray
-        Me.PictureBox6.Location = New System.Drawing.Point(558, 423)
+        Me.PictureBox6.Location = New System.Drawing.Point(644, 423)
         Me.PictureBox6.Name = "PictureBox6"
         Me.PictureBox6.Size = New System.Drawing.Size(553, 333)
         Me.PictureBox6.TabIndex = 47
@@ -738,7 +738,7 @@ Partial Class Dashboard
         '
         'PictureBox7
         '
-        Me.PictureBox7.Location = New System.Drawing.Point(570, 436)
+        Me.PictureBox7.Location = New System.Drawing.Point(656, 436)
         Me.PictureBox7.Name = "PictureBox7"
         Me.PictureBox7.Size = New System.Drawing.Size(283, 309)
         Me.PictureBox7.TabIndex = 48
@@ -746,7 +746,7 @@ Partial Class Dashboard
         '
         'PictureBox8
         '
-        Me.PictureBox8.Location = New System.Drawing.Point(859, 436)
+        Me.PictureBox8.Location = New System.Drawing.Point(945, 436)
         Me.PictureBox8.Name = "PictureBox8"
         Me.PictureBox8.Size = New System.Drawing.Size(243, 169)
         Me.PictureBox8.TabIndex = 49
@@ -754,7 +754,7 @@ Partial Class Dashboard
         '
         'PictureBox9
         '
-        Me.PictureBox9.Location = New System.Drawing.Point(859, 611)
+        Me.PictureBox9.Location = New System.Drawing.Point(945, 611)
         Me.PictureBox9.Name = "PictureBox9"
         Me.PictureBox9.Size = New System.Drawing.Size(243, 134)
         Me.PictureBox9.TabIndex = 50
@@ -762,7 +762,7 @@ Partial Class Dashboard
         '
         'PictureBox10
         '
-        Me.PictureBox10.Location = New System.Drawing.Point(1117, 154)
+        Me.PictureBox10.Location = New System.Drawing.Point(1203, 154)
         Me.PictureBox10.Name = "PictureBox10"
         Me.PictureBox10.Size = New System.Drawing.Size(151, 602)
         Me.PictureBox10.TabIndex = 51
@@ -774,7 +774,7 @@ Partial Class Dashboard
         Me.TextBox13.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox13.Font = New System.Drawing.Font("Arial Rounded MT Bold", 18.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox13.ForeColor = System.Drawing.Color.White
-        Me.TextBox13.Location = New System.Drawing.Point(1147, 129)
+        Me.TextBox13.Location = New System.Drawing.Point(1233, 129)
         Me.TextBox13.Name = "TextBox13"
         Me.TextBox13.Size = New System.Drawing.Size(87, 28)
         Me.TextBox13.TabIndex = 52
@@ -785,7 +785,7 @@ Partial Class Dashboard
         'PictureBox11
         '
         Me.PictureBox11.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.PictureBox11.Location = New System.Drawing.Point(1129, 179)
+        Me.PictureBox11.Location = New System.Drawing.Point(1215, 179)
         Me.PictureBox11.Name = "PictureBox11"
         Me.PictureBox11.Size = New System.Drawing.Size(127, 173)
         Me.PictureBox11.TabIndex = 53
@@ -796,7 +796,7 @@ Partial Class Dashboard
         Me.PictureBox12.BackColor = System.Drawing.Color.Gray
         Me.PictureBox12.Location = New System.Drawing.Point(12, 154)
         Me.PictureBox12.Name = "PictureBox12"
-        Me.PictureBox12.Size = New System.Drawing.Size(540, 216)
+        Me.PictureBox12.Size = New System.Drawing.Size(626, 216)
         Me.PictureBox12.TabIndex = 54
         Me.PictureBox12.TabStop = False
         '
@@ -805,7 +805,7 @@ Partial Class Dashboard
         Me.PictureBox13.BackColor = System.Drawing.Color.Gray
         Me.PictureBox13.Location = New System.Drawing.Point(12, 423)
         Me.PictureBox13.Name = "PictureBox13"
-        Me.PictureBox13.Size = New System.Drawing.Size(540, 333)
+        Me.PictureBox13.Size = New System.Drawing.Size(626, 333)
         Me.PictureBox13.TabIndex = 55
         Me.PictureBox13.TabStop = False
         '
@@ -928,7 +928,7 @@ Partial Class Dashboard
         Me.TextBox18.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox18.Font = New System.Drawing.Font("Arial Rounded MT Bold", 18.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox18.ForeColor = System.Drawing.Color.White
-        Me.TextBox18.Location = New System.Drawing.Point(1147, 179)
+        Me.TextBox18.Location = New System.Drawing.Point(1233, 179)
         Me.TextBox18.Name = "TextBox18"
         Me.TextBox18.Size = New System.Drawing.Size(87, 28)
         Me.TextBox18.TabIndex = 64
@@ -942,7 +942,7 @@ Partial Class Dashboard
         Me.TextBox19.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox19.Font = New System.Drawing.Font("Arial Rounded MT Bold", 18.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox19.ForeColor = System.Drawing.Color.White
-        Me.TextBox19.Location = New System.Drawing.Point(1147, 263)
+        Me.TextBox19.Location = New System.Drawing.Point(1233, 263)
         Me.TextBox19.Name = "TextBox19"
         Me.TextBox19.Size = New System.Drawing.Size(87, 28)
         Me.TextBox19.TabIndex = 65
@@ -956,7 +956,7 @@ Partial Class Dashboard
         Me.TextBox20.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox20.Font = New System.Drawing.Font("Arial Rounded MT Bold", 12.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox20.ForeColor = System.Drawing.Color.White
-        Me.TextBox20.Location = New System.Drawing.Point(1147, 358)
+        Me.TextBox20.Location = New System.Drawing.Point(1233, 358)
         Me.TextBox20.Name = "TextBox20"
         Me.TextBox20.Size = New System.Drawing.Size(87, 19)
         Me.TextBox20.TabIndex = 66
@@ -970,7 +970,7 @@ Partial Class Dashboard
         Me.TextBox21.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox21.Font = New System.Drawing.Font("Arial Rounded MT Bold", 12.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox21.ForeColor = System.Drawing.Color.White
-        Me.TextBox21.Location = New System.Drawing.Point(1147, 436)
+        Me.TextBox21.Location = New System.Drawing.Point(1233, 436)
         Me.TextBox21.Name = "TextBox21"
         Me.TextBox21.Size = New System.Drawing.Size(87, 19)
         Me.TextBox21.TabIndex = 67
@@ -984,7 +984,7 @@ Partial Class Dashboard
         Me.TextBox22.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox22.Font = New System.Drawing.Font("Arial Rounded MT Bold", 12.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox22.ForeColor = System.Drawing.Color.White
-        Me.TextBox22.Location = New System.Drawing.Point(1147, 513)
+        Me.TextBox22.Location = New System.Drawing.Point(1233, 513)
         Me.TextBox22.Name = "TextBox22"
         Me.TextBox22.Size = New System.Drawing.Size(87, 19)
         Me.TextBox22.TabIndex = 68
@@ -998,7 +998,7 @@ Partial Class Dashboard
         Me.TextBox23.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox23.Font = New System.Drawing.Font("Arial Rounded MT Bold", 12.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox23.ForeColor = System.Drawing.Color.White
-        Me.TextBox23.Location = New System.Drawing.Point(1147, 592)
+        Me.TextBox23.Location = New System.Drawing.Point(1233, 592)
         Me.TextBox23.Name = "TextBox23"
         Me.TextBox23.Size = New System.Drawing.Size(87, 19)
         Me.TextBox23.TabIndex = 69
@@ -1012,7 +1012,7 @@ Partial Class Dashboard
         Me.TextBox24.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox24.Font = New System.Drawing.Font("Arial Rounded MT Bold", 12.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox24.ForeColor = System.Drawing.Color.White
-        Me.TextBox24.Location = New System.Drawing.Point(1147, 669)
+        Me.TextBox24.Location = New System.Drawing.Point(1233, 669)
         Me.TextBox24.Name = "TextBox24"
         Me.TextBox24.Size = New System.Drawing.Size(87, 19)
         Me.TextBox24.TabIndex = 70
@@ -1026,7 +1026,7 @@ Partial Class Dashboard
         Me.txtOSAT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtOSAT.Font = New System.Drawing.Font("Arial Rounded MT Bold", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtOSAT.ForeColor = System.Drawing.Color.White
-        Me.txtOSAT.Location = New System.Drawing.Point(1147, 220)
+        Me.txtOSAT.Location = New System.Drawing.Point(1233, 220)
         Me.txtOSAT.Name = "txtOSAT"
         Me.txtOSAT.Size = New System.Drawing.Size(87, 38)
         Me.txtOSAT.TabIndex = 71
@@ -1039,7 +1039,7 @@ Partial Class Dashboard
         Me.txtZOD.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtZOD.Font = New System.Drawing.Font("Arial Rounded MT Bold", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtZOD.ForeColor = System.Drawing.Color.White
-        Me.txtZOD.Location = New System.Drawing.Point(1147, 305)
+        Me.txtZOD.Location = New System.Drawing.Point(1233, 305)
         Me.txtZOD.Name = "txtZOD"
         Me.txtZOD.Size = New System.Drawing.Size(87, 38)
         Me.txtZOD.TabIndex = 72
@@ -1052,7 +1052,7 @@ Partial Class Dashboard
         Me.txtFriendly.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtFriendly.Font = New System.Drawing.Font("Arial Rounded MT Bold", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFriendly.ForeColor = System.Drawing.Color.Yellow
-        Me.txtFriendly.Location = New System.Drawing.Point(1147, 390)
+        Me.txtFriendly.Location = New System.Drawing.Point(1233, 390)
         Me.txtFriendly.Name = "txtFriendly"
         Me.txtFriendly.Size = New System.Drawing.Size(87, 31)
         Me.txtFriendly.TabIndex = 73
@@ -1065,7 +1065,7 @@ Partial Class Dashboard
         Me.txtClean.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtClean.Font = New System.Drawing.Font("Arial Rounded MT Bold", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtClean.ForeColor = System.Drawing.Color.Yellow
-        Me.txtClean.Location = New System.Drawing.Point(1147, 468)
+        Me.txtClean.Location = New System.Drawing.Point(1233, 468)
         Me.txtClean.Name = "txtClean"
         Me.txtClean.Size = New System.Drawing.Size(87, 31)
         Me.txtClean.TabIndex = 74
@@ -1078,7 +1078,7 @@ Partial Class Dashboard
         Me.txtFast.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtFast.Font = New System.Drawing.Font("Arial Rounded MT Bold", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFast.ForeColor = System.Drawing.Color.Yellow
-        Me.txtFast.Location = New System.Drawing.Point(1147, 545)
+        Me.txtFast.Location = New System.Drawing.Point(1233, 545)
         Me.txtFast.Name = "txtFast"
         Me.txtFast.Size = New System.Drawing.Size(87, 31)
         Me.txtFast.TabIndex = 75
@@ -1091,7 +1091,7 @@ Partial Class Dashboard
         Me.txtAccurate.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtAccurate.Font = New System.Drawing.Font("Arial Rounded MT Bold", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAccurate.ForeColor = System.Drawing.Color.Yellow
-        Me.txtAccurate.Location = New System.Drawing.Point(1147, 624)
+        Me.txtAccurate.Location = New System.Drawing.Point(1233, 624)
         Me.txtAccurate.Name = "txtAccurate"
         Me.txtAccurate.Size = New System.Drawing.Size(87, 31)
         Me.txtAccurate.TabIndex = 76
@@ -1104,7 +1104,7 @@ Partial Class Dashboard
         Me.txtTaste.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtTaste.Font = New System.Drawing.Font("Arial Rounded MT Bold", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTaste.ForeColor = System.Drawing.Color.Yellow
-        Me.txtTaste.Location = New System.Drawing.Point(1147, 701)
+        Me.txtTaste.Location = New System.Drawing.Point(1233, 701)
         Me.txtTaste.Name = "txtTaste"
         Me.txtTaste.Size = New System.Drawing.Size(87, 31)
         Me.txtTaste.TabIndex = 77
@@ -1117,7 +1117,7 @@ Partial Class Dashboard
         Me.TextBox25.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox25.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox25.ForeColor = System.Drawing.Color.White
-        Me.TextBox25.Location = New System.Drawing.Point(874, 660)
+        Me.TextBox25.Location = New System.Drawing.Point(960, 660)
         Me.TextBox25.Name = "TextBox25"
         Me.TextBox25.Size = New System.Drawing.Size(87, 19)
         Me.TextBox25.TabIndex = 78
@@ -1131,7 +1131,7 @@ Partial Class Dashboard
         Me.TextBox26.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox26.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox26.ForeColor = System.Drawing.Color.White
-        Me.TextBox26.Location = New System.Drawing.Point(874, 696)
+        Me.TextBox26.Location = New System.Drawing.Point(960, 696)
         Me.TextBox26.Name = "TextBox26"
         Me.TextBox26.Size = New System.Drawing.Size(87, 19)
         Me.TextBox26.TabIndex = 79
@@ -1145,7 +1145,7 @@ Partial Class Dashboard
         Me.TextBox27.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox27.Font = New System.Drawing.Font("Arial Rounded MT Bold", 14.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox27.ForeColor = System.Drawing.Color.White
-        Me.TextBox27.Location = New System.Drawing.Point(967, 624)
+        Me.TextBox27.Location = New System.Drawing.Point(1053, 624)
         Me.TextBox27.Name = "TextBox27"
         Me.TextBox27.Size = New System.Drawing.Size(60, 22)
         Me.TextBox27.TabIndex = 80
@@ -1159,7 +1159,7 @@ Partial Class Dashboard
         Me.TextBox28.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox28.Font = New System.Drawing.Font("Arial Rounded MT Bold", 14.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox28.ForeColor = System.Drawing.Color.White
-        Me.TextBox28.Location = New System.Drawing.Point(1038, 624)
+        Me.TextBox28.Location = New System.Drawing.Point(1124, 624)
         Me.TextBox28.Name = "TextBox28"
         Me.TextBox28.Size = New System.Drawing.Size(60, 22)
         Me.TextBox28.TabIndex = 81
@@ -1173,7 +1173,7 @@ Partial Class Dashboard
         Me.txtDayPartTTL.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtDayPartTTL.Font = New System.Drawing.Font("Arial Rounded MT Bold", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDayPartTTL.ForeColor = System.Drawing.Color.White
-        Me.txtDayPartTTL.Location = New System.Drawing.Point(967, 657)
+        Me.txtDayPartTTL.Location = New System.Drawing.Point(1053, 657)
         Me.txtDayPartTTL.Name = "txtDayPartTTL"
         Me.txtDayPartTTL.Size = New System.Drawing.Size(60, 22)
         Me.txtDayPartTTL.TabIndex = 82
@@ -1186,7 +1186,7 @@ Partial Class Dashboard
         Me.txtDayPartCC.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtDayPartCC.Font = New System.Drawing.Font("Arial Rounded MT Bold", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDayPartCC.ForeColor = System.Drawing.Color.Yellow
-        Me.txtDayPartCC.Location = New System.Drawing.Point(1038, 657)
+        Me.txtDayPartCC.Location = New System.Drawing.Point(1124, 657)
         Me.txtDayPartCC.Name = "txtDayPartCC"
         Me.txtDayPartCC.Size = New System.Drawing.Size(60, 22)
         Me.txtDayPartCC.TabIndex = 83
@@ -1199,7 +1199,7 @@ Partial Class Dashboard
         Me.txtFullDayTTL.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtFullDayTTL.Font = New System.Drawing.Font("Arial Rounded MT Bold", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFullDayTTL.ForeColor = System.Drawing.Color.White
-        Me.txtFullDayTTL.Location = New System.Drawing.Point(967, 692)
+        Me.txtFullDayTTL.Location = New System.Drawing.Point(1053, 692)
         Me.txtFullDayTTL.Name = "txtFullDayTTL"
         Me.txtFullDayTTL.Size = New System.Drawing.Size(60, 22)
         Me.txtFullDayTTL.TabIndex = 84
@@ -1211,7 +1211,7 @@ Partial Class Dashboard
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
-        Me.ClientSize = New System.Drawing.Size(1280, 768)
+        Me.ClientSize = New System.Drawing.Size(1366, 768)
         Me.Controls.Add(Me.TextBox15)
         Me.Controls.Add(Me.txtFullDayTTL)
         Me.Controls.Add(Me.txtDayPartCC)
