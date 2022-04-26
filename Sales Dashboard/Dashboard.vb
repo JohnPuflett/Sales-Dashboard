@@ -16,7 +16,17 @@ Public Class Dashboard
     End Sub
 
     Private Sub Dashboard_Activated(sender As Object, e As EventArgs) Handles Me.Activated
-        DoIt()
+        'ActivateChart
+        Dim strSeriesLabelArray() As String = {"7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "1:00", "1:30", "2:00", "2:30", "3:00", "3:30", "4:00", "4:30", "5:00", "5:30", "6:00", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00"}
+        For i = 0 To 30
+            chrtLabourChart.Series(1).Points.AddXY(i, 0)
+            chrtLabourChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)
+            chrtLabourChart.Series(0).Points.AddXY(i, 0)
+            chrtSalesChart.Series(1).Points.AddXY(i, 0)
+            chrtSalesChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)
+            chrtSalesChart.Series(0).Points.AddXY(i, 0)
+        Next
+        DoIt()  'Run Main Sub Right Away
     End Sub
 
     Public Sub DoIt()
@@ -51,22 +61,18 @@ Public Class Dashboard
             MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
             Dim currentRow As String()
             Dim intIndex As Integer = 1
-            Dim intRow As Integer = -1
-            While Not MyReader.EndOfData                                'Cycle Through Each Line of the LiveSales.txt file
-                intRow += 1                                             'Move to the next line
+            For i = 0 To intHour
                 currentRow = MyReader.ReadFields()                      'Read the fields in that line
                 Dim currentField As String
                 For Each currentField In currentRow                     'Cycle through each field on this line
                     If intIndex = 3 Then                                'Grab only the 3rd field (sales)
-                        decLiveSalesArray(intRow) = CDec(currentField)  'Put it into the array
-                    End If
-                    If intIndex = 5 Then                                'If end of line then go back to field 1
+                        decLiveSalesArray(i) = CDec(currentField)       'Put it into the array
+                    ElseIf intIndex = 5 Then
                         intIndex = 0
                     End If
                     intIndex += 1                                       'Move to the next field
                 Next
-                If intRow > intHour Then Exit While
-            End While
+            Next i
         End Using
 
 
@@ -470,6 +476,20 @@ Public Class Dashboard
         Me.txtDayPartTTL.Text = strDTArray(0)
         Me.txtDayPartCC.Text = strDTArray(1)
         Me.txtFullDayTTL.Text = strDTArray(2)
+
+        'Update Charts
+        Dim strLiveSalesArray(30) As String                                                     'Set up a string array for live sales values
+        For i = 0 To 30
+            chrtLabourChart.Series(0).Points.ElementAt(i).SetValueY(intAllowedLabourArray(i))
+            chrtLabourChart.Series(1).Points.ElementAt(i).SetValueY(intSchedLabourArray(i))
+            chrtSalesChart.Series(0).Points.ElementAt(i).SetValueY(decProjectedSalesArray(i))
+            If i > intHour Then                                                                 'See if we are in the future
+                strLiveSalesArray(i) = Nothing                                                  'If we are in the future then make value empty
+            Else
+                strLiveSalesArray(i) = CStr(decLiveSalesArray(i))                               'Convert all current Sales values to strings
+            End If
+            chrtSalesChart.Series(1).Points.ElementAt(i).SetValueY(strLiveSalesArray(i))        'Update point on graph
+        Next
     End Sub
 
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
