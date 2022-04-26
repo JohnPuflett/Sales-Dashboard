@@ -93,7 +93,7 @@ Public Class Dashboard
                     End If
                     intIndex += 1                                       'Move to the next field
                 Next
-                If intRow > intHour Then Exit While
+                'If intRow > intHour Then Exit While
             End While
         End Using
 
@@ -245,6 +245,7 @@ Public Class Dashboard
         Dim decFullDaySalesProjection As Decimal
         For i = 0 To 30
             decFullDaySalesProjection += decProjectedSalesArray(i)
+            'MsgBox(CStr(decProjectedSalesArray(i)))
         Next
 
 
