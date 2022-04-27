@@ -61,8 +61,6 @@ Public Class Dashboard
         For i = 0 To intTotalOpenPeriods - 1
             chrtLabourChart.Series(1).Points.AddXY(i, 0)                            'Create Sched Labour Chart points
             chrtLabourChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)  'Label the X-Axis
-            'chrtLabourChart.Series(0).Points.AddXY(i, 0)                            'Create Allowed Labour Chart points
-            'chrtSalesChart.Series(1).Points.AddXY(i, 0)                             'Create Live Sales Chart points
             chrtSalesChart.Series(0).Points.AddXY(i, 0)                             'Create Projected Sales Chart points
             chrtSalesChart.Series(0).Points(i).AxisLabel = strSeriesLabelArray(i)   'Label the X-Axis
         Next
@@ -174,7 +172,6 @@ Public Class Dashboard
                     End If
                     intIndex += 1                                           'Move to the next field
                 Next
-                'If intRow > intHour Then Exit While
             End While
         End Using
 
