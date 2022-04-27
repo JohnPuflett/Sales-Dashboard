@@ -16,9 +16,44 @@ Public Class Dashboard
     End Sub
 
     Private Sub Dashboard_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        'Read the config file
+        Dim intOpen, intClose As String
+        Dim strConfigArray(2) As String
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\SalesConfig.txt")
+            MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
+            MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
+            Dim currentRow As String()
+            Dim intIndex As Integer = 0
+            For i = 0 To 1
+                currentRow = MyReader.ReadFields()                      'Read the fields in that line
+                Dim currentField As String
+                For Each currentField In currentRow                     'Cycle through each field on this line
+                    If intIndex = 1 Then                                'Grab only the 3rd field (sales)
+                        strConfigArray(i) = currentField                'Put it into the array
+                        intIndex = 0
+                    ElseIf intIndex = 0 Then
+                        intIndex = 1
+                    End If
+                Next
+            Next i
+        End Using
+        intOpen = CInt(strConfigArray(0))
+        intClose = CInt(strConfigArray(1))
+        Dim intTotalOpenPeriods As Integer = (intClose - intOpen) * 2
+        Dim strSeriesLabelArray(48) As String
+        Dim intIndex2 As Integer = 0
+        For i = 0 To intTotalOpenPeriods - 1 Step 2
+            strSeriesLabelArray(i) = CStr(intOpen + intIndex2) & ":00"
+            strSeriesLabelArray(i + 1) = CStr(intOpen + intIndex2) & ":30"
+            intIndex2 += 1
+        Next
+        For i = 0 To 48
+            'MsgBox(strSeriesLabelArray(i))
+        Next
         'ActivateChart
-        Dim strSeriesLabelArray() As String = {"7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "1:00", "1:30", "2:00", "2:30", "3:00", "3:30", "4:00", "4:30", "5:00", "5:30", "6:00", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00"}
-        For i = 0 To 30
+        'Dim strSeriesLabelArray() As String = {"7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "1:00", "1:30", "2:00", "2:30", "3:00", "3:30", "4:00", "4:30", "5:00", "5:30", "6:00", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00"}
+        For i = 0 To intTotalOpenPeriods
+
             chrtLabourChart.Series(1).Points.AddXY(i, 0)
             chrtLabourChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)
             chrtLabourChart.Series(0).Points.AddXY(i, 0)
@@ -30,7 +65,34 @@ Public Class Dashboard
     End Sub
 
     Public Sub DoIt()
-        On Error Resume Next
+        'On Error Resume Next
+        'Read the config file
+        Dim intOpen, intClose As String
+        Dim strConfigArray(2) As String
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\SalesConfig.txt")
+            MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
+            MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
+            Dim currentRow As String()
+            Dim intIndex As Integer = 0
+            For i = 0 To 1
+                currentRow = MyReader.ReadFields()                      'Read the fields in that line
+                Dim currentField As String
+                For Each currentField In currentRow                     'Cycle through each field on this line
+                    If intIndex = 1 Then                                'Grab only the 3rd field (sales)
+                        strConfigArray(i) = currentField                'Put it into the array
+                        intIndex = 0
+                    ElseIf intIndex = 0 Then
+                        intIndex = 1
+                    End If
+                Next
+            Next i
+        End Using
+        intOpen = CInt(strConfigArray(0))
+        intClose = CInt(strConfigArray(1))
+
+
+        Dim intTotalOpenPeriods As Integer = (intClose - intOpen) * 2
+        'MsgBox(CStr(intTotalOpenPeriods))
         'Where are we on the list -
         Dim intHour As Integer = CInt(DateTime.Now.Hour)
         Dim intMinute As Integer = CInt(DateTime.Now.Minute)
@@ -55,7 +117,7 @@ Public Class Dashboard
         'MsgBox(CStr(intHour))
 
         'Let's Array Our Live Sales from our LiveSales.txt file and Calculate Our Current Daily Sales
-        Dim decLiveSalesArray(34) As Decimal
+        Dim decLiveSalesArray(48) As Decimal
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\LiveSales.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
             MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
@@ -208,7 +270,7 @@ Public Class Dashboard
         End Using
 
         'Let's Build our allowed labour Array
-        Dim intAllowedLabourArray(30)
+        Dim intAllowedLabourArray(48)
         For i = 0 To intHour
             If i < 8 Then
                 For j = 0 To 12
@@ -249,7 +311,7 @@ Public Class Dashboard
             intLabourSchedTotal += intSchedLabourArray(i)
         Next
         Dim decFullDaySalesProjection As Decimal
-        For i = 0 To 30
+        For i = 0 To intTotalOpenPeriods
             decFullDaySalesProjection += decProjectedSalesArray(i)
             'MsgBox(CStr(decProjectedSalesArray(i)))
         Next
@@ -478,8 +540,8 @@ Public Class Dashboard
         Me.txtFullDayTTL.Text = strDTArray(2)
 
         'Update Charts
-        Dim strLiveSalesArray(30) As String                                                     'Set up a string array for live sales values
-        For i = 0 To 30
+        Dim strLiveSalesArray(48) As String                                                     'Set up a string array for live sales values
+        For i = 0 To intTotalOpenPeriods
             chrtLabourChart.Series(0).Points.ElementAt(i).SetValueY(intAllowedLabourArray(i))
             chrtLabourChart.Series(1).Points.ElementAt(i).SetValueY(intSchedLabourArray(i))
             chrtSalesChart.Series(0).Points.ElementAt(i).SetValueY(decProjectedSalesArray(i))
@@ -490,6 +552,8 @@ Public Class Dashboard
             End If
             chrtSalesChart.Series(1).Points.ElementAt(i).SetValueY(strLiveSalesArray(i))        'Update point on graph
         Next
+        chrtLabourChart.Update()
+        chrtSalesChart.Update()
     End Sub
 
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
