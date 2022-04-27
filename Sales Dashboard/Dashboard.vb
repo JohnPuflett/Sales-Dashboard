@@ -19,25 +19,7 @@ Public Class Dashboard
         If time.ToString(Format) = strRestart Then                  'If they match then restart
             Application.Restart()
         End If
-        'UpdateStatusInfo
-        Dim strStatus As String
-        Dim intTime As Integer = (CInt(DateTime.Now.Hour) * 100) + CInt(DateTime.Now.Minute)
-        If intTime > (Module1.intOpen * 100) And intTime <= Module1.DP1 Then
-            strStatus = "6558 - DP1"
-        ElseIf intTime > Module1.DP1 And intTime <= Module1.DP2 Then
-            strStatus = "6558 - DP2"
-        ElseIf intTime > Module1.DP2 And intTime <= Module1.DP3 Then
-            strStatus = "6558 - DP3"
-        ElseIf intTime > Module1.DP3 And intTime <= Module1.DP4 Then
-            strStatus = "6558 - DP4"
-        ElseIf intTime > Module1.DP4 And intTime <= Module1.DP5 Then
-            strStatus = "6558 - DP5"
-        ElseIf intTime > Module1.DP5 And intTime <= Module1.DP6 Then
-            strStatus = "6558 - DP6"
-        Else
-            strStatus = "CLOSED"
-        End If
-        txtStatus.Text = strStatus
+
     End Sub
 
     Private Sub Dashboard_Activated(sender As Object, e As EventArgs) Handles Me.Activated
@@ -123,12 +105,12 @@ Public Class Dashboard
         Dim intLabourAllowedPrevious, intLabourSchedPrevious, intLabourVariancePrevious As Integer
         Dim intLabourAllowedTotal, intLabourSchedTotal, intLabourVarianceTotal As Integer
 
-        If intHour >= Module1.intClose Or intHour <= Module1.intOpen Then
-            txtStatus.Text = "CLOSED"
-        Else
-            txtStatus.Text = "6558"
-        End If
-        '''''Needs to be fixed for differing closing times
+        'If intHour >= Module1.intClose Or intHour <= Module1.intOpen Then
+        'txtStatus.Text = "CLOSED"
+        'Else
+        'txtStatus.Text = "6558"
+        'End If
+        '1''''Needs to be fixed for differing closing times
         If intHour > 21 Then                                            'If After 10pm then set to closing hour
             intHour = 30
         ElseIf intHour < 7 Then
@@ -448,14 +430,18 @@ Public Class Dashboard
         If decSalesProjectedTotal > 0 Then
             Dim SalesPercent As Single = CSng((decSalesLiveTotal - decSalesProjectedTotal) / decSalesProjectedTotal)
             Dim FormattedSalesPercent As String = FormatPercent(SalesPercent)
-            Me.txtSalesVariancePercentDaily.Text = FormattedSalesPercent
             If SalesPercent < 0 Then
                 Me.txtSalesVariancePercentDaily.ForeColor = Color.Red
             ElseIf SalesPercent > 0 Then
+                FormattedSalesPercent = "+" & FormattedSalesPercent
                 Me.txtSalesVariancePercentDaily.ForeColor = Color.LimeGreen
+
             Else
                 Me.txtSalesVariancePercentDaily.ForeColor = Color.Yellow
             End If
+            Me.txtSalesVariancePercentDaily.Text = FormattedSalesPercent
+        Else
+            Me.txtSalesVariancePercentDaily.Text = "--"
         End If
 
 
@@ -657,8 +643,26 @@ Public Class Dashboard
             chrtLabourChart.Series(0).Points.AddXY(i, intAllowedLabourArray(i))
             chrtSalesChart.Series(1).Points.AddXY(i, CInt(decLiveSalesArray(i)))
         Next
-        'chrtLabourChart.Update()
-        'chrtSalesChart.Update()
+
+        'UpdateStatusInfo
+        Dim strStatus As String
+        intTime = (CInt(DateTime.Now.Hour) * 100) + CInt(DateTime.Now.Minute)
+        If intTime > (Module1.intOpen * 100) And intTime <= Module1.DP1 Then
+            strStatus = "6558 - DP1"
+        ElseIf intTime > Module1.DP1 And intTime <= Module1.DP2 Then
+            strStatus = "6558 - DP2"
+        ElseIf intTime > Module1.DP2 And intTime <= Module1.DP3 Then
+            strStatus = "6558 - DP3"
+        ElseIf intTime > Module1.DP3 And intTime <= Module1.DP4 Then
+            strStatus = "6558 - DP4"
+        ElseIf intTime > Module1.DP4 And intTime <= Module1.DP5 Then
+            strStatus = "6558 - DP5"
+        ElseIf intTime > Module1.DP5 And intTime <= Module1.DP6 Then
+            strStatus = "6558 - DP6"
+        Else
+            strStatus = "CLOSED"
+        End If
+        txtStatus.Text = strStatus
     End Sub
 
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
