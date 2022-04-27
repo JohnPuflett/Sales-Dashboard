@@ -74,14 +74,15 @@ Public Class Dashboard
             intIndex2 += 1
         Next
         strSeriesLabelArray(intTotalOpenPeriods) = CStr(Module1.intClose) & ":00"
-        'ActivateChart
+
+        'Initialize Charts
         For i = 0 To intTotalOpenPeriods - 1
-            chrtLabourChart.Series(1).Points.AddXY(i, 0)                            'Create Labour Allowed Chart points
+            chrtLabourChart.Series(1).Points.AddXY(i, 0)                            'Create Sched Labour Chart points
             chrtLabourChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)  'Label the X-Axis
-            chrtLabourChart.Series(0).Points.AddXY(i, 0)                            'Create Sched Labour Chart points
-            chrtSalesChart.Series(1).Points.AddXY(i, 0)                             'Create Sales Projection Chart points
-            chrtSalesChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)   'Label the X-Axis
-            chrtSalesChart.Series(0).Points.AddXY(i, 0)                             'Create Live Sales Chart points
+            'chrtLabourChart.Series(0).Points.AddXY(i, 0)                            'Create Allowed Labour Chart points
+            'chrtSalesChart.Series(1).Points.AddXY(i, 0)                             'Create Live Sales Chart points
+            chrtSalesChart.Series(0).Points.AddXY(i, 0)                             'Create Projected Sales Chart points
+            chrtSalesChart.Series(0).Points(i).AxisLabel = strSeriesLabelArray(i)   'Label the X-Axis
         Next
         DoIt()                                                              'Run Main Sub Right Away
     End Sub
@@ -629,20 +630,35 @@ Public Class Dashboard
         Me.txtFullDayTTL.Text = strDTArray(2)
 
         'Update Charts
-        Dim strLiveSalesArray(48) As String                                                     'Set up a string array for live sales values
-        For i = 0 To intTotalOpenPeriods
-            chrtLabourChart.Series(0).Points.ElementAt(i).SetValueY(intAllowedLabourArray(i))
-            chrtLabourChart.Series(1).Points.ElementAt(i).SetValueY(intSchedLabourArray(i))
-            chrtSalesChart.Series(0).Points.ElementAt(i).SetValueY(decProjectedSalesArray(i))
-            If i > intHour Then                                                                 'See if we are in the future
-                strLiveSalesArray(i) = Nothing                                                  'If we are in the future then make value empty
-            Else
-                strLiveSalesArray(i) = CStr(decLiveSalesArray(i))                               'Convert all current Sales values to strings
-            End If
-            chrtSalesChart.Series(1).Points.ElementAt(i).SetValueY(strLiveSalesArray(i))        'Update point on graph
+        'Dim strLiveSalesArray(48) As String                                                     'Set up a string array for live sales values
+        'Set Open and Close Times
+        Module1.intOpen = CInt(strConfigArray(0))                                       'Open Time
+        Module1.intClose = CInt(strConfigArray(1))                                      'Close Time
+        'Dim intTotalOpenPeriods As Integer = (Module1.intClose - Module1.intOpen) * 2   'Calc number of open periods
+        Dim strSeriesLabelArray(48) As String                                           'Create Array for Chart labels
+        Dim intIndex2 As Integer = 0
+        For i = 0 To intTotalOpenPeriods - 1 Step 2                                     'Loop through the parts
+            strSeriesLabelArray(i) = CStr(Module1.intOpen + intIndex2) & ":00"          'Label the odd periods as on the hour
+            strSeriesLabelArray(i + 1) = CStr(Module1.intOpen + intIndex2) & ":30"      'Label the even periods as 30 after
+            intIndex2 += 1
         Next
-        chrtLabourChart.Update()
-        chrtSalesChart.Update()
+        strSeriesLabelArray(intTotalOpenPeriods) = CStr(Module1.intClose) & ":00"
+        chrtSalesChart.Series(0).Points.Clear()
+        chrtSalesChart.Series(1).Points.Clear()
+        chrtLabourChart.Series(0).Points.Clear()
+        chrtLabourChart.Series(1).Points.Clear()
+        For i = 0 To intTotalOpenPeriods - 1
+            chrtLabourChart.Series(1).Points.AddXY(i, intSchedLabourArray(i))
+            chrtSalesChart.Series(0).Points.AddXY(i, decProjectedSalesArray(i))
+            chrtLabourChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)  'Label the X-Axis
+            chrtSalesChart.Series(0).Points(i).AxisLabel = strSeriesLabelArray(i)   'Label the X-Axis
+        Next
+        For i = 0 To intHour
+            chrtLabourChart.Series(0).Points.AddXY(i, intAllowedLabourArray(i))
+            chrtSalesChart.Series(1).Points.AddXY(i, CInt(decLiveSalesArray(i)))
+        Next
+        'chrtLabourChart.Update()
+        'chrtSalesChart.Update()
     End Sub
 
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
