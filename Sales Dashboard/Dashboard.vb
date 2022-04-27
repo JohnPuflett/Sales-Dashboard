@@ -13,11 +13,35 @@ Public Class Dashboard
         Dim time As DateTime = DateTime.Now
         Dim Format As String = "ddd d-MM-yyyy  h:mm:ss tt"
         Me.txtClock.Text = time.ToString(Format)
+        'Check if restart time
+        Format = "Hmmss"                                            'Format Time
+        Dim strRestart As String = CStr(Module1.intOpen) & "0000"   'Calculate Opening time in same format
+        If time.ToString(Format) = strRestart Then                  'If they match then restart
+            Application.Restart()
+        End If
+        'UpdateStatusInfo
+        Dim strStatus As String
+        Dim intTime As Integer = (CInt(DateTime.Now.Hour) * 100) + CInt(DateTime.Now.Minute)
+        If intTime > (Module1.intOpen * 100) And intTime <= Module1.DP1 Then
+            strStatus = "6558 - DP1"
+        ElseIf intTime > Module1.DP1 And intTime <= Module1.DP2 Then
+            strStatus = "6558 - DP2"
+        ElseIf intTime > Module1.DP2 And intTime <= Module1.DP3 Then
+            strStatus = "6558 - DP3"
+        ElseIf intTime > Module1.DP3 And intTime <= Module1.DP4 Then
+            strStatus = "6558 - DP4"
+        ElseIf intTime > Module1.DP4 And intTime <= Module1.DP5 Then
+            strStatus = "6558 - DP5"
+        ElseIf intTime > Module1.DP5 And intTime <= Module1.DP6 Then
+            strStatus = "6558 - DP6"
+        Else
+            strStatus = "CLOSED"
+        End If
+        txtStatus.Text = strStatus
     End Sub
 
     Private Sub Dashboard_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         'Read the config file
-        Dim intOpen, intClose As String
         Dim strConfigArray(2) As String
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\SalesConfig.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
@@ -37,37 +61,34 @@ Public Class Dashboard
                 Next
             Next i
         End Using
-        intOpen = CInt(strConfigArray(0))
-        intClose = CInt(strConfigArray(1))
-        Dim intTotalOpenPeriods As Integer = (intClose - intOpen) * 2
-        Dim strSeriesLabelArray(48) As String
+
+        'Set Open and Close Times
+        Module1.intOpen = CInt(strConfigArray(0))                                       'Open Time
+        Module1.intClose = CInt(strConfigArray(1))                                      'Close Time
+        Dim intTotalOpenPeriods As Integer = (Module1.intClose - Module1.intOpen) * 2   'Calc number of open periods
+        Dim strSeriesLabelArray(48) As String                                           'Create Array for Chart labels
         Dim intIndex2 As Integer = 0
-        For i = 0 To intTotalOpenPeriods - 1 Step 2
-            strSeriesLabelArray(i) = CStr(intOpen + intIndex2) & ":00"
-            strSeriesLabelArray(i + 1) = CStr(intOpen + intIndex2) & ":30"
+        For i = 0 To intTotalOpenPeriods - 1 Step 2                                     'Loop through the parts
+            strSeriesLabelArray(i) = CStr(Module1.intOpen + intIndex2) & ":00"          'Label the odd periods as on the hour
+            strSeriesLabelArray(i + 1) = CStr(Module1.intOpen + intIndex2) & ":30"      'Label the even periods as 30 after
             intIndex2 += 1
         Next
-        For i = 0 To 48
-            'MsgBox(strSeriesLabelArray(i))
-        Next
+        strSeriesLabelArray(intTotalOpenPeriods) = CStr(Module1.intClose) & ":00"
         'ActivateChart
-        'Dim strSeriesLabelArray() As String = {"7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "1:00", "1:30", "2:00", "2:30", "3:00", "3:30", "4:00", "4:30", "5:00", "5:30", "6:00", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:30", "10:00"}
-        For i = 0 To intTotalOpenPeriods
-
-            chrtLabourChart.Series(1).Points.AddXY(i, 0)
-            chrtLabourChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)
-            chrtLabourChart.Series(0).Points.AddXY(i, 0)
-            chrtSalesChart.Series(1).Points.AddXY(i, 0)
-            chrtSalesChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)
-            chrtSalesChart.Series(0).Points.AddXY(i, 0)
+        For i = 0 To intTotalOpenPeriods - 1
+            chrtLabourChart.Series(1).Points.AddXY(i, 0)                            'Create Labour Allowed Chart points
+            chrtLabourChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)  'Label the X-Axis
+            chrtLabourChart.Series(0).Points.AddXY(i, 0)                            'Create Sched Labour Chart points
+            chrtSalesChart.Series(1).Points.AddXY(i, 0)                             'Create Sales Projection Chart points
+            chrtSalesChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)   'Label the X-Axis
+            chrtSalesChart.Series(0).Points.AddXY(i, 0)                             'Create Live Sales Chart points
         Next
-        DoIt()  'Run Main Sub Right Away
+        DoIt()                                                              'Run Main Sub Right Away
     End Sub
 
     Public Sub DoIt()
-        'On Error Resume Next
+        On Error Resume Next
         'Read the config file
-        Dim intOpen, intClose As String
         Dim strConfigArray(2) As String
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\SalesConfig.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
@@ -87,12 +108,10 @@ Public Class Dashboard
                 Next
             Next i
         End Using
-        intOpen = CInt(strConfigArray(0))
-        intClose = CInt(strConfigArray(1))
+        Module1.intOpen = CInt(strConfigArray(0))                                       'Load Open Time
+        Module1.intClose = CInt(strConfigArray(1))                                      'Load Close Time
+        Dim intTotalOpenPeriods As Integer = (Module1.intClose - Module1.intOpen) * 2   'Calculate number of open periods
 
-
-        Dim intTotalOpenPeriods As Integer = (intClose - intOpen) * 2
-        'MsgBox(CStr(intTotalOpenPeriods))
         'Where are we on the list -
         Dim intHour As Integer = CInt(DateTime.Now.Hour)
         Dim intMinute As Integer = CInt(DateTime.Now.Minute)
@@ -102,39 +121,50 @@ Public Class Dashboard
         Dim intLabourAllowedCurrent, intLabourSchedCurrent, intLabourVarianceCurrent As Integer
         Dim intLabourAllowedPrevious, intLabourSchedPrevious, intLabourVariancePrevious As Integer
         Dim intLabourAllowedTotal, intLabourSchedTotal, intLabourVarianceTotal As Integer
-        'MsgBox(CStr(intHour))
-        If intHour > 21 Then        'If After 10pm then set to closing hour
+
+        If intHour >= Module1.intClose Or intHour <= Module1.intOpen Then
+            txtStatus.Text = "CLOSED"
+        Else
+            txtStatus.Text = "6558"
+        End If
+        '''''Needs to be fixed for differing closing times
+        If intHour > 21 Then                                            'If After 10pm then set to closing hour
             intHour = 30
         ElseIf intHour < 7 Then
             intHour = 30
         Else
-            intHour = (intHour * 2) - 14    'Calculate the whole hour
-            If intMinute > 29 Then          'Add one for the half hours
+            intHour = (intHour * 2) - 14                                'Calculate the whole hour
+            If intMinute > 29 Then                                      'Add one for the half hours
                 intHour += 1
             End If
         End If
 
-        'MsgBox(CStr(intHour))
-
         'Let's Array Our Live Sales from our LiveSales.txt file and Calculate Our Current Daily Sales
         Dim decLiveSalesArray(48) As Decimal
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\LiveSales.txt")
-            MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
-            MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
+            MyReader.TextFieldType = FileIO.FieldType.Delimited             'Set file as delimited
+            MyReader.SetDelimiters(",")                                     'Set Delimiter as ,
             Dim currentRow As String()
             Dim intIndex As Integer = 1
-            For i = 0 To intHour
-                currentRow = MyReader.ReadFields()                      'Read the fields in that line
+            Dim intRow As Integer = -1
+            While Not MyReader.EndOfData
+                intRow += 1
+                currentRow = MyReader.ReadFields()                          'Read the fields in that line
                 Dim currentField As String
-                For Each currentField In currentRow                     'Cycle through each field on this line
-                    If intIndex = 3 Then                                'Grab only the 3rd field (sales)
-                        decLiveSalesArray(i) = CDec(currentField)       'Put it into the array
+                For Each currentField In currentRow                         'Cycle through each field on this line
+                    If intIndex = 3 Then                                    'Grab only the 3rd field (sales)
+                        If intHour <= intTotalOpenPeriods Then              'Make sure we are within our open hours
+                            decLiveSalesArray(intRow) = CDec(currentField)  'Put it into the array
+                        Else
+                            decLiveSalesArray(intRow) = 0                   'If we are after close then put a zero in
+                        End If
                     ElseIf intIndex = 5 Then
                         intIndex = 0
                     End If
-                    intIndex += 1                                       'Move to the next field
+                    intIndex += 1                                           'Move to the next field
                 Next
-            Next i
+                If intRow > intHour Then Exit While                         'If we are outside the open hours then jump out
+            End While
         End Using
 
 
@@ -142,51 +172,49 @@ Public Class Dashboard
         'Let's Array Our Projected Sales from our SalesProjections.txt file
         Dim decProjectedSalesArray(34) As Decimal
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\SalesProjections.txt")
-            MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
-            MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
+            MyReader.TextFieldType = FileIO.FieldType.Delimited             'Set file as delimited
+            MyReader.SetDelimiters(",")                                     'Set Delimiter as ,
             Dim currentRow As String()
             Dim intIndex As Integer = 1
             Dim intRow As Integer = -1
             decSalesProjectedTotal = 0
-            While Not MyReader.EndOfData                                'Cycle Through Each Line of the LiveSales.txt file
-                intRow += 1                                             'Move to the next line
-                currentRow = MyReader.ReadFields()                      'Read the fields in that line
+            While Not MyReader.EndOfData                                    'Cycle Through Each Line of the LiveSales.txt file
+                intRow += 1                                                 'Move to the next line
+                currentRow = MyReader.ReadFields()                          'Read the fields in that line
                 Dim currentField As String
-                For Each currentField In currentRow                     'Cycle through each field on this line
-                    If intIndex = 3 Then                                'Grab only the 3rd field (sales)
-                        decProjectedSalesArray(intRow) = CDec(currentField)  'Put it into the array
+                For Each currentField In currentRow                         'Cycle through each field on this line
+                    If intIndex = 3 Then                                    'Grab only the 3rd field (sales)
+                        decProjectedSalesArray(intRow) = CDec(currentField) 'Put it into the array
                     End If
-                    If intIndex = 3 Then                                'If end of line then go back to field 1
+                    If intIndex = 3 Then                                    'If end of line then go back to field 1
                         intIndex = 0
                     End If
-                    intIndex += 1                                       'Move to the next field
+                    intIndex += 1                                           'Move to the next field
                 Next
                 'If intRow > intHour Then Exit While
             End While
         End Using
 
-
-
         'Let's Array Our Scheduled Labour from our SchedLabour.txt
         Dim intSchedLabourArray(34) As Integer
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\SchedLabour.txt")
-            MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
-            MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
+            MyReader.TextFieldType = FileIO.FieldType.Delimited             'Set file as delimited
+            MyReader.SetDelimiters(",")                                     'Set Delimiter as ,
             Dim currentRow As String()
             Dim intIndex As Integer = 1
             Dim intRow As Integer = -1
-            While Not MyReader.EndOfData                                'Cycle Through Each Line of the LiveSales.txt file
-                intRow += 1                                             'Move to the next line
-                currentRow = MyReader.ReadFields()                      'Read the fields in that line
+            While Not MyReader.EndOfData                                    'Cycle Through Each Line of the LiveSales.txt file
+                intRow += 1                                                 'Move to the next line
+                currentRow = MyReader.ReadFields()                          'Read the fields in that line
                 Dim currentField As String
-                For Each currentField In currentRow                     'Cycle through each field on this line
-                    If intIndex = 3 Then                                'Grab only the 2nd field (sched hours)
-                        intSchedLabourArray(intRow) = CInt(currentField)  'Put it into the array
+                For Each currentField In currentRow                         'Cycle through each field on this line
+                    If intIndex = 3 Then                                    'Grab only the 2nd field (sched hours)
+                        intSchedLabourArray(intRow) = CInt(currentField)    'Put it into the array
                     End If
-                    If intIndex = 3 Then                                'If end of line then go back to field 1
+                    If intIndex = 3 Then                                    'If end of line then go back to field 1
                         intIndex = 0
                     End If
-                    intIndex += 1                                       'Move to the next field
+                    intIndex += 1                                           'Move to the next field
                 Next
             End While
         End Using
@@ -211,8 +239,8 @@ Public Class Dashboard
                 Next                                                    'Next Field
             Next                                                        'Next Row
         End Using
-        'Next with DP2,3
-        Dim decManningGuide23(13, 3) As Decimal
+        'Next with DP2
+        Dim decManningGuide2(13, 3) As Decimal
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\ManningGuide23.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
             MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
@@ -223,15 +251,34 @@ Public Class Dashboard
                 Dim currentField As String
                 For Each currentField In currentRow                     'Cycle through each field on this line
                     intIndex += 1                                       'Move to the next Field (starting at -1 so first field is 0)
-                    decManningGuide23(i, intIndex) = CDec(currentField) 'Populate our 3d Array Line i, Field intIndex
+                    decManningGuide2(i, intIndex) = CDec(currentField)  'Populate our 3d Array Line i, Field intIndex
                     If intIndex = 2 Then                                'If end of line then reset back to the beginning
                         intIndex = -1
                     End If
                 Next                                                    'Next Field
             Next                                                        'Next Row
         End Using
-        'Next with DP4,5
-        Dim decManningGuide45(13, 3) As Decimal
+        'Next with DP3
+        Dim decManningGuide3(13, 3) As Decimal
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\ManningGuide23.txt")
+            MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
+            MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
+            Dim currentRow As String()
+            Dim intIndex As Integer = -1
+            For i = 0 To 12                                             'Cycle through all 12 lines
+                currentRow = MyReader.ReadFields()                      'Read the fields in that line
+                Dim currentField As String
+                For Each currentField In currentRow                     'Cycle through each field on this line
+                    intIndex += 1                                       'Move to the next Field (starting at -1 so first field is 0)
+                    decManningGuide3(i, intIndex) = CDec(currentField)  'Populate our 3d Array Line i, Field intIndex
+                    If intIndex = 2 Then                                'If end of line then reset back to the beginning
+                        intIndex = -1
+                    End If
+                Next                                                    'Next Field
+            Next                                                        'Next Row
+        End Using
+        'Next with DP4
+        Dim decManningGuide4(13, 3) As Decimal
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\ManningGuide45.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
             MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
@@ -242,7 +289,26 @@ Public Class Dashboard
                 Dim currentField As String
                 For Each currentField In currentRow                     'Cycle through each field on this line
                     intIndex += 1                                       'Move to the next Field (starting at -1 so first field is 0)
-                    decManningGuide45(i, intIndex) = CDec(currentField) 'Populate our 3d Array Line i, Field intIndex
+                    decManningGuide4(i, intIndex) = CDec(currentField)  'Populate our 3d Array Line i, Field intIndex
+                    If intIndex = 2 Then                                'If end of line then reset back to the beginning
+                        intIndex = -1
+                    End If
+                Next                                                    'Next Field
+            Next                                                        'Next Row
+        End Using
+        'Next with DP5
+        Dim decManningGuide5(13, 3) As Decimal
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\ManningGuide45.txt")
+            MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
+            MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
+            Dim currentRow As String()
+            Dim intIndex As Integer = -1
+            For i = 0 To 12                                             'Cycle through all 12 lines
+                currentRow = MyReader.ReadFields()                      'Read the fields in that line
+                Dim currentField As String
+                For Each currentField In currentRow                     'Cycle through each field on this line
+                    intIndex += 1                                       'Move to the next Field (starting at -1 so first field is 0)
+                    decManningGuide5(i, intIndex) = CDec(currentField)  'Populate our 3d Array Line i, Field intIndex
                     If intIndex = 2 Then                                'If end of line then reset back to the beginning
                         intIndex = -1
                     End If
@@ -271,25 +337,45 @@ Public Class Dashboard
 
         'Let's Build our allowed labour Array
         Dim intAllowedLabourArray(48)
+        Dim intTime As Integer
         For i = 0 To intHour
-            If i < 8 Then
+            If i Mod 2 = 0 Then
+                intTime = (i + (Module1.intOpen * 2)) * 50              'Convert loop to real time based on opening time
+            Else
+                intTime = ((i + (Module1.intOpen * 2) - 1) * 50) + 30   'Adjust for half hours
+            End If
+            If intTime < Module1.DP1 Then
                 For j = 0 To 12
                     If decLiveSalesArray(i) > decManningGuide1(j, 0) And decLiveSalesArray(i) < decManningGuide1(j, 1) Then
                         intAllowedLabourArray(i) = CInt(decManningGuide1(j, 2))
                         Exit For
                     End If
                 Next j
-            ElseIf i > 7 And i < 19 Then
+            ElseIf intTime > Module1.DP1 - 1 And intTime < Module1.DP2 Then
                 For j = 0 To 12
-                    If decLiveSalesArray(i) > decManningGuide23(j, 0) And decLiveSalesArray(i) < decManningGuide23(j, 1) Then
-                        intAllowedLabourArray(i) = CInt(decManningGuide23(j, 2))
+                    If decLiveSalesArray(i) > decManningGuide2(j, 0) And decLiveSalesArray(i) < decManningGuide2(j, 1) Then
+                        intAllowedLabourArray(i) = CInt(decManningGuide2(j, 2))
                         Exit For
                     End If
                 Next j
-            ElseIf i > 18 And i < 31 Then
+            ElseIf intTime > Module1.DP2 - 1 And intTime < Module1.DP3 Then
                 For j = 0 To 12
-                    If decLiveSalesArray(i) > decManningGuide45(j, 0) And decLiveSalesArray(i) < decManningGuide45(j, 1) Then
-                        intAllowedLabourArray(i) = CInt(decManningGuide45(j, 2))
+                    If decLiveSalesArray(i) > decManningGuide3(j, 0) And decLiveSalesArray(i) < decManningGuide3(j, 1) Then
+                        intAllowedLabourArray(i) = CInt(decManningGuide3(j, 2))
+                        Exit For
+                    End If
+                Next j
+            ElseIf intTime > Module1.DP3 - 1 And intTime < Module1.DP4 Then
+                For j = 0 To 12
+                    If decLiveSalesArray(i) > decManningGuide4(j, 0) And decLiveSalesArray(i) < decManningGuide4(j, 1) Then
+                        intAllowedLabourArray(i) = CInt(decManningGuide4(j, 2))
+                        Exit For
+                    End If
+                Next j
+            ElseIf intTime > Module1.DP4 - 1 And intTime < Module1.DP5 Then
+                For j = 0 To 12
+                    If decLiveSalesArray(i) > decManningGuide5(j, 0) And decLiveSalesArray(i) < decManningGuide5(j, 1) Then
+                        intAllowedLabourArray(i) = CInt(decManningGuide5(j, 2))
                         Exit For
                     End If
                 Next j
@@ -302,19 +388,20 @@ Public Class Dashboard
                 Next j
             End If
         Next i
-
+        If intHour >= intTotalOpenPeriods Then                          'If we are beyond operating hours
+            intAllowedLabourArray(intHour) = 0                          'Make our allowed labour zero
+        End If
         'Lets Sum it All Up
         For i = 0 To intHour - 1
-            decSalesLiveTotal += decLiveSalesArray(i)
-            decSalesProjectedTotal += decProjectedSalesArray(i)
-            intLabourAllowedTotal += intAllowedLabourArray(i)
-            intLabourSchedTotal += intSchedLabourArray(i)
+            decSalesLiveTotal += decLiveSalesArray(i)                   'Sum up Live Sales for the day so far
+            decSalesProjectedTotal += decProjectedSalesArray(i)         'Sum up Projected Sales for the day so far
+            intLabourAllowedTotal += intAllowedLabourArray(i)           'Sum up Allowed Labour for the day so far
+            intLabourSchedTotal += intSchedLabourArray(i)               'Sum up Sched Labour for the day so far
         Next
-        Dim decFullDaySalesProjection As Decimal
-        For i = 0 To intTotalOpenPeriods
-            decFullDaySalesProjection += decProjectedSalesArray(i)
-            'MsgBox(CStr(decProjectedSalesArray(i)))
-        Next
+        Dim decFullDaySalesProjection As Decimal                        'Sum up Projected Sales for the entire day
+        For i = 0 To intTotalOpenPeriods                                '
+            decFullDaySalesProjection += decProjectedSalesArray(i)      '
+        Next                                                            '
 
 
         'Let's update the Sales Dashboard
@@ -328,32 +415,32 @@ Public Class Dashboard
 
         'Fill in Sales Data
         'Current Sales
-        Me.SalesActualCurrent.Text = CStr(CInt(decSalesActualCurrent))                        'Display Current Actual Sales
-        Me.SalesProjectedCurrent.Text = CStr(CInt(decSalesProjectedCurrent))                  'Display Current Projected Sales
-        If decSalesVarianceCurrent > 0 Then                                             'If Sales Variance is positive then make it green
+        Me.SalesActualCurrent.Text = CStr(CInt(decSalesActualCurrent))                   'Display Current Actual Sales
+        Me.SalesProjectedCurrent.Text = CStr(CInt(decSalesProjectedCurrent))             'Display Current Projected Sales
+        If decSalesVarianceCurrent > 0 Then                                              'If Sales Variance is positive then make it green
             Me.SalesVarianceCurrent.ForeColor = Color.LimeGreen
-            Me.SalesVarianceCurrent.Text = "+" & CStr(CInt(decSalesVarianceCurrent))          'Show a + sign if positive
-        Else                                                                            'If sales Variance is negative then make it red
+            Me.SalesVarianceCurrent.Text = "+" & CStr(CInt(decSalesVarianceCurrent))     'Show a + sign if positive
+        Else                                                                             'If sales Variance is negative then make it red
             Me.SalesVarianceCurrent.ForeColor = Color.Red
             Me.SalesVarianceCurrent.Text = CStr(CInt(decSalesVarianceCurrent))
         End If
         'Previous Sales
-        Me.SalesActualPrevious.Text = CStr(CInt(decSalesActualPrevious))                      'Display Previous Actual Sales
-        Me.SalesProjectedPrevious.Text = CStr(CInt(decSalesProjectedPrevious))                'Display Previous Projected Sales
-        If decSalesVariancePrevious > 0 Then                                            'If Sales Variance is positive then make it green
+        Me.SalesActualPrevious.Text = CStr(CInt(decSalesActualPrevious))                 'Display Previous Actual Sales
+        Me.SalesProjectedPrevious.Text = CStr(CInt(decSalesProjectedPrevious))           'Display Previous Projected Sales
+        If decSalesVariancePrevious > 0 Then                                             'If Sales Variance is positive then make it green
             Me.SalesVariancePrevious.ForeColor = Color.LimeGreen
-            Me.SalesVariancePrevious.Text = "+" & CStr(CInt(decSalesVariancePrevious))        'Show a + sign if positve
-        Else                                                                            'If sales Variance is negative then make it red
+            Me.SalesVariancePrevious.Text = "+" & CStr(CInt(decSalesVariancePrevious))   'Show a + sign if positve
+        Else                                                                             'If sales Variance is negative then make it red
             Me.SalesVariancePrevious.ForeColor = Color.Red
             Me.SalesVariancePrevious.Text = CStr(CInt(decSalesVariancePrevious))
         End If
         'Daily Sales
-        Me.SalesActualDaily.Text = CStr(CInt(decSalesLiveTotal))                              'Display Actual Daily Sales So Far
-        Me.SalesProjectedDaily.Text = CStr(CInt(decSalesProjectedTotal))                      'Display Projected Daily Sales So Far
-        If decSalesVarianceTotal > 0 Then                                               'If Daily Sales Variance is positve then make it green
+        Me.SalesActualDaily.Text = CStr(CInt(decSalesLiveTotal))                         'Display Actual Daily Sales So Far
+        Me.SalesProjectedDaily.Text = CStr(CInt(decSalesProjectedTotal))                 'Display Projected Daily Sales So Far
+        If decSalesVarianceTotal > 0 Then                                                'If Daily Sales Variance is positve then make it green
             Me.SalesVarianceDaily.ForeColor = Color.LimeGreen
-            Me.SalesVarianceDaily.Text = "+" & CStr(CInt(decSalesVarianceTotal))              'Show a + sign if positive
-        Else                                                                            'If sales Variance is negative than zero then make it red
+            Me.SalesVarianceDaily.Text = "+" & CStr(CInt(decSalesVarianceTotal))         'Show a + sign if positive
+        Else                                                                             'If sales Variance is negative than zero then make it red
             Me.SalesVarianceDaily.ForeColor = Color.Red
             Me.SalesVarianceDaily.Text = CStr(CInt(decSalesVarianceTotal))
         End If
@@ -454,9 +541,9 @@ Public Class Dashboard
             End While
         End Using
         'Set Up the Colours
-        If CDec(strVOCArray(8)) >= 75 Then
+        If CDec(strVOCArray(8)) >= Module1.VOCGreen Then
             txtOSAT.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(8)) < 65 Then
+        ElseIf CDec(strVOCArray(8)) < Module1.VOCRed Then
             txtOSAT.ForeColor = Color.Red
         Else txtOSAT.ForeColor = Color.Yellow
         End If
@@ -466,33 +553,33 @@ Public Class Dashboard
             txtZOD.ForeColor = Color.Red
         Else txtZOD.ForeColor = Color.Yellow
         End If
-        If CDec(strVOCArray(4)) >= 75 Then
+        If CDec(strVOCArray(4)) >= Module1.VOCGreen Then
             txtFriendly.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(4)) < 65 Then
+        ElseIf CDec(strVOCArray(4)) < Module1.VOCRed Then
             txtFriendly.ForeColor = Color.Red
         Else txtFriendly.ForeColor = Color.Yellow
         End If
-        If CDec(strVOCArray(3)) >= 75 Then
+        If CDec(strVOCArray(3)) >= Module1.VOCGreen Then
             txtClean.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(3)) < 65 Then
+        ElseIf CDec(strVOCArray(3)) < Module1.VOCRed Then
             txtClean.ForeColor = Color.Red
         Else txtClean.ForeColor = Color.Yellow
         End If
-        If CDec(strVOCArray(2)) >= 75 Then
+        If CDec(strVOCArray(2)) >= Module1.VOCGreen Then
             txtFast.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(2)) < 65 Then
+        ElseIf CDec(strVOCArray(2)) < Module1.VOCRed Then
             txtFast.ForeColor = Color.Red
         Else txtFast.ForeColor = Color.Yellow
         End If
-        If CDec(strVOCArray(1)) >= 75 Then
+        If CDec(strVOCArray(1)) >= Module1.VOCGreen Then
             txtAccurate.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(1)) < 65 Then
+        ElseIf CDec(strVOCArray(1)) < Module1.VOCRed Then
             txtAccurate.ForeColor = Color.Red
         Else txtAccurate.ForeColor = Color.Yellow
         End If
-        If CDec(strVOCArray(0)) >= 75 Then
+        If CDec(strVOCArray(0)) >= Module1.VOCGreen Then
             txtTaste.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(0)) < 65 Then
+        ElseIf CDec(strVOCArray(0)) < Module1.VOCRed Then
             txtTaste.ForeColor = Color.Red
         Else txtTaste.ForeColor = Color.Yellow
         End If
@@ -522,17 +609,19 @@ Public Class Dashboard
             End While
         End Using
         'Set Up the DT Colours
-        If CInt(strDTArray(0)) <= 135 Then
+        If CInt(strDTArray(0)) <= Module1.TTLGreen Then
             txtDayPartTTL.ForeColor = Color.LimeGreen
-        ElseIf CInt(strDTArray(0)) >= 165 Then
+        ElseIf CInt(strDTArray(0)) >= Module1.TTLRed Then
             txtDayPartTTL.ForeColor = Color.Red
-        Else txtDayPartTTL.ForeColor = Color.Yellow
+        Else
+            txtDayPartTTL.ForeColor = Color.Yellow
         End If
-        If CInt(strDTArray(2)) <= 145 Then
+        If CInt(strDTArray(2)) <= Module1.TTLGreen Then
             txtFullDayTTL.ForeColor = Color.LimeGreen
-        ElseIf CInt(strDTArray(2)) >= 155 Then
+        ElseIf CInt(strDTArray(2)) >= Module1.TTLRed Then
             txtFullDayTTL.ForeColor = Color.Red
-        Else txtFullDayTTL.ForeColor = Color.Yellow
+        Else
+            txtFullDayTTL.ForeColor = Color.Yellow
         End If
         'Display The DT Data
         Me.txtDayPartTTL.Text = strDTArray(0)
