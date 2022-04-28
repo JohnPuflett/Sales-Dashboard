@@ -590,25 +590,27 @@ Public Class Dashboard
                 Next                                                    'Next Field
             End While
         End Using
-        'Set Up the DT Colours
-        If CInt(strDTArray(0)) <= Module1.TTLGreen Then
-            txtDayPartTTL.ForeColor = Color.LimeGreen
-        ElseIf CInt(strDTArray(0)) >= Module1.TTLRed Then
-            txtDayPartTTL.ForeColor = Color.Red
-        Else
-            txtDayPartTTL.ForeColor = Color.Yellow
+        If strDTArray(0) <> "for" Then
+            'Set Up the DT Colours
+            If CInt(strDTArray(0)) <= Module1.TTLGreen Then
+                txtDayPartTTL.ForeColor = Color.LimeGreen
+            ElseIf CInt(strDTArray(0)) >= Module1.TTLRed Then
+                txtDayPartTTL.ForeColor = Color.Red
+            Else
+                txtDayPartTTL.ForeColor = Color.Yellow
+            End If
+            If CInt(strDTArray(2)) <= Module1.TTLGreen Then
+                txtFullDayTTL.ForeColor = Color.LimeGreen
+            ElseIf CInt(strDTArray(2)) >= Module1.TTLRed Then
+                txtFullDayTTL.ForeColor = Color.Red
+            Else
+                txtFullDayTTL.ForeColor = Color.Yellow
+            End If
+            'Display The DT Data
+            Me.txtDayPartTTL.Text = strDTArray(0)
+            Me.txtDayPartCC.Text = strDTArray(1)
+            Me.txtFullDayTTL.Text = strDTArray(2)
         End If
-        If CInt(strDTArray(2)) <= Module1.TTLGreen Then
-            txtFullDayTTL.ForeColor = Color.LimeGreen
-        ElseIf CInt(strDTArray(2)) >= Module1.TTLRed Then
-            txtFullDayTTL.ForeColor = Color.Red
-        Else
-            txtFullDayTTL.ForeColor = Color.Yellow
-        End If
-        'Display The DT Data
-        Me.txtDayPartTTL.Text = strDTArray(0)
-        Me.txtDayPartCC.Text = strDTArray(1)
-        Me.txtFullDayTTL.Text = strDTArray(2)
 
         'Update Charts
         'Dim strLiveSalesArray(48) As String                                                     'Set up a string array for live sales values
@@ -642,20 +644,24 @@ Public Class Dashboard
         'UpdateStatusInfo
         Dim strStatus As String
         intTime = (CInt(DateTime.Now.Hour) * 100) + CInt(DateTime.Now.Minute)
-        If intTime > (Module1.intOpen * 100) And intTime <= Module1.DP1 Then
-            strStatus = "6558 - DP1"
-        ElseIf intTime > Module1.DP1 And intTime <= Module1.DP2 Then
-            strStatus = "6558 - DP2"
-        ElseIf intTime > Module1.DP2 And intTime <= Module1.DP3 Then
-            strStatus = "6558 - DP3"
-        ElseIf intTime > Module1.DP3 And intTime <= Module1.DP4 Then
-            strStatus = "6558 - DP4"
-        ElseIf intTime > Module1.DP4 And intTime <= Module1.DP5 Then
-            strStatus = "6558 - DP5"
-        ElseIf intTime > Module1.DP5 And intTime <= Module1.DP6 Then
-            strStatus = "6558 - DP6"
+        If CInt(DateTime.Now.Hour) >= Module1.intClose Then
+            strStatus = "Closed"
         Else
-            strStatus = "CLOSED"
+            If intTime > (Module1.intOpen * 100) And intTime <= Module1.DP1 Then
+                strStatus = "6558 - DP1"
+            ElseIf intTime > Module1.DP1 And intTime <= Module1.DP2 Then
+                strStatus = "6558 - DP2"
+            ElseIf intTime > Module1.DP2 And intTime <= Module1.DP3 Then
+                strStatus = "6558 - DP3"
+            ElseIf intTime > Module1.DP3 And intTime <= Module1.DP4 Then
+                strStatus = "6558 - DP4"
+            ElseIf intTime > Module1.DP4 And intTime <= Module1.DP5 Then
+                strStatus = "6558 - DP5"
+            ElseIf intTime > Module1.DP5 And intTime < Module1.DP6 Then
+                strStatus = "6558 - DP6"
+            Else
+                strStatus = "CLOSED"
+            End If
         End If
         txtStatus.Text = strStatus
 
