@@ -11,4 +11,5 @@
     Public VOCRed As Integer = 65
     Public TTLGreen As Integer = 145
     Public TTLRed As Integer = 170
+    Public strData(18) As String
 End Module

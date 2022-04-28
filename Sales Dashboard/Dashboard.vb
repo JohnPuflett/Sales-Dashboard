@@ -658,6 +658,44 @@ Public Class Dashboard
             strStatus = "CLOSED"
         End If
         txtStatus.Text = strStatus
+
+        'Output Data.txt file for webpage to update
+        Dim strComputerName As String = Environment.MachineName.ToString()  'Get Machine Name
+        Dim strDataOutput As String = ""                                    'Clean Data Output Array
+        If strComputerName = "Desktop-NIH3L5I" Then                         'If we are The Front Line Display then
+            Dim strFileName As String = "C:\Users\johnp\Google Drive\Wendys\Sales Tracking\06558 - DC\WebPage\Data.txt" 'This is the file location and name
+            If System.IO.File.Exists(strFileName) = True Then               'See if file exists
+                System.IO.File.Delete(strFileName)                          'If it does exist then delete it
+            End If
+            'Build Output file
+            strData(0) = CStr(CInt(decSalesLiveTotal))          'Live Sales Total so far
+            strData(2) = CStr(CInt(decSalesProjectedTotal))     'Projected Sales Total so far
+            strData(1) = CStr(CInt(decSalesVarianceTotal))      'Sales Variance Total so far
+            strData(3) = CStr(intLabourAllowedTotal)            'Allowed Labour Total so far
+            strData(4) = CStr(intLabourSchedTotal)              'Scheduled Labour Total so far
+            strData(5) = CStr(intLabourVarianceTotal)           'Labour Variance Total so far
+            strData(6) = CStr(CInt(decSalesActualCurrent))      'Current Actual Sales
+            strData(7) = CStr(CInt(decSalesProjectedCurrent))   'Current Projected Sales
+            strData(8) = CStr(CInt(decSalesVarianceCurrent))    'Current Sales Variance
+            strData(9) = CStr(CInt(decSalesActualPrevious))     'Previous Actual Sales
+            strData(10) = CStr(CInt(decSalesProjectedPrevious)) 'Previous Projected Sales
+            strData(11) = CStr(CInt(decSalesVariancePrevious))  'Previous Sales Variance
+            strData(12) = CStr(intLabourAllowedCurrent)         'Current Allowed Labour
+            strData(15) = CStr(intLabourAllowedPrevious)        'Previous Allowed Labour
+            strData(13) = CStr(intLabourSchedCurrent)           'Current Scheduled Labour
+            strData(16) = CStr(intLabourSchedPrevious)          'Previous Scheduled Labour
+            strData(14) = CStr(intLabourVarianceCurrent)        'Current Labour Variance
+            strData(17) = CStr(intLabourVariancePrevious)       'Previous Labour Variance
+            strDataOutput = strData(0)                              'Start with first value
+            For i = 1 To 17                                         'Loop through all data
+                strDataOutput = strDataOutput & "," & strData(i)    'Add on susequent data values to make CSV file
+            Next
+            Dim file As System.IO.StreamWriter                                  'Open StreamWriter
+            file = My.Computer.FileSystem.OpenTextFileWriter(strFileName, True) 'Create File
+            file.WriteLine(strDataOutput)                                       'Put data values into file
+            file.Close()
+        End If
+
     End Sub
 
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
