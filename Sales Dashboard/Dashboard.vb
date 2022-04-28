@@ -106,11 +106,6 @@ Public Class Dashboard
         Dim intLabourAllowedPrevious, intLabourSchedPrevious, intLabourVariancePrevious As Integer
         Dim intLabourAllowedTotal, intLabourSchedTotal, intLabourVarianceTotal As Integer
 
-        'If intHour >= Module1.intClose Or intHour <= Module1.intOpen Then
-        'txtStatus.Text = "CLOSED"
-        'Else
-        'txtStatus.Text = "6558"
-        'End If
         '1''''Needs to be fixed for differing closing times
         If intHour > 21 Then                                            'If After 10pm then set to closing hour
             intHour = 30
