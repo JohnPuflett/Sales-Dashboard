@@ -64,6 +64,9 @@ Public Class Dashboard
             chrtSalesChart.Series(0).Points.AddXY(i, 0)                             'Create Projected Sales Chart points
             chrtSalesChart.Series(0).Points(i).AxisLabel = strSeriesLabelArray(i)   'Label the X-Axis
         Next
+        Me.Left = 0
+        Me.Top = 0
+
         DoIt()                                                              'Run Main Sub Right Away
     End Sub
 
