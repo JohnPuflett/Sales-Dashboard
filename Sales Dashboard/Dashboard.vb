@@ -6,6 +6,9 @@ Public Class Dashboard
     End Sub
 
     Private Sub FileSystemWatcher1_Changed(sender As Object, e As FileSystemEventArgs) Handles FileSystemWatcher1.Changed
+#If DEBUG Then
+        Debug.WriteLine("Started By FileSystemWatcher")
+#End If
         DoIt()
     End Sub
 
@@ -66,17 +69,19 @@ Public Class Dashboard
         Next
         Me.Left = 0
         Me.Top = 0
-
+#If DEBUG Then
+        Debug.WriteLine("Started By Startup Activation")
+#End If
         DoIt()                                                              'Run Main Sub Right Away
     End Sub
 
     Public Sub DoIt()
         On Error Resume Next
 #If DEBUG Then
-
         Dim Stopwatch As New Stopwatch
         Stopwatch.Start()
 #End If
+        Me.timerUpdate.Enabled = False
         'Read the config file
         Dim strConfigArray(2) As String
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\SalesConfig.txt")
@@ -111,7 +116,7 @@ Public Class Dashboard
         Dim intLabourAllowedPrevious, intLabourSchedPrevious, intLabourVariancePrevious As Integer
         Dim intLabourAllowedTotal, intLabourSchedTotal, intLabourVarianceTotal As Integer
 
-        '1''''Needs to be fixed for differing closing times
+        '''''Needs to be fixed for differing closing times
         If intHour > 21 Then                                            'If After 10pm then set to closing hour
             intHour = 30
         ElseIf intHour < 7 Then
@@ -618,11 +623,9 @@ Public Class Dashboard
         End If
 
         'Update Charts
-        'Dim strLiveSalesArray(48) As String                                                     'Set up a string array for live sales values
         'Set Open and Close Times
         Module1.intOpen = CInt(strConfigArray(0))                                       'Open Time
         Module1.intClose = CInt(strConfigArray(1))                                      'Close Time
-        'Dim intTotalOpenPeriods As Integer = (Module1.intClose - Module1.intOpen) * 2   'Calc number of open periods
         Dim strSeriesLabelArray(48) As String                                           'Create Array for Chart labels
         Dim intIndex2 As Integer = 0
         For i = 0 To intTotalOpenPeriods - 1 Step 2                                     'Loop through the parts
@@ -672,7 +675,7 @@ Public Class Dashboard
 
         'Output Data.txt file for webpage to update
         Dim strComputerName As String = Environment.MachineName.ToString()  'Get Machine Name
-        'MsgBox(strComputerName)
+
         Dim strDataOutput As String = ""                                    'Clean Data Output Array
         If strComputerName = "DESKTOP-NIH3L5I" Then                         'If we are The Front Line Display then
             Dim strFileName As String = "C:\Wendys\Data.txt"                'This is the file location and name
@@ -707,8 +710,14 @@ Public Class Dashboard
             file.WriteLine(strDataOutput)                                       'Put data values into file
             file.Close()
         End If
+        With Me.timerUpdate
+            .Interval = 60000
+            .Enabled = True
+        End With
 #If DEBUG Then
         Stopwatch.Stop()
+        Debug.WriteLine("CurrentTime: " & Me.txtClock.Text)
+        Debug.WriteLine("Machine Name: " & strComputerName)
         Debug.WriteLine("Time Taken: " & Stopwatch.Elapsed.ToString)
 #End If
     End Sub
@@ -717,7 +726,10 @@ Public Class Dashboard
 
     End Sub
 
-    Private Sub Update_Tick(sender As Object, e As EventArgs) Handles Update.Tick
+    Private Sub Update_Tick(sender As Object, e As EventArgs) Handles timerUpdate.Tick
+#If DEBUG Then
+        Debug.WriteLine("Started By timerUpdate")
+#End If
         DoIt()
     End Sub
 End Class
