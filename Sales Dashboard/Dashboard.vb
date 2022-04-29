@@ -72,6 +72,11 @@ Public Class Dashboard
 
     Public Sub DoIt()
         On Error Resume Next
+#If DEBUG Then
+
+        Dim Stopwatch As New Stopwatch
+        Stopwatch.Start()
+#End If
         'Read the config file
         Dim strConfigArray(2) As String
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\SalesConfig.txt")
@@ -702,10 +707,17 @@ Public Class Dashboard
             file.WriteLine(strDataOutput)                                       'Put data values into file
             file.Close()
         End If
-
+#If DEBUG Then
+        Stopwatch.Stop()
+        Debug.WriteLine("Time Taken: " & Stopwatch.Elapsed.ToString)
+#End If
     End Sub
 
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+    End Sub
+
+    Private Sub Update_Tick(sender As Object, e As EventArgs) Handles Update.Tick
+        DoIt()
     End Sub
 End Class
