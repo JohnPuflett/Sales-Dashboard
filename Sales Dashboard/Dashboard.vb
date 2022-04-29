@@ -322,35 +322,35 @@ Public Class Dashboard
             Else
                 intTime = ((i + (Module1.intOpen * 2) - 1) * 50) + 30   'Adjust for half hours
             End If
-            If intTime <= Module1.DP1 Then
+            If intTime < Module1.DP1 Then
                 For j = 0 To 12
                     If decLiveSalesArray(i) > decManningGuide1(j, 0) And decLiveSalesArray(i) < decManningGuide1(j, 1) Then
                         intAllowedLabourArray(i) = CInt(decManningGuide1(j, 2))
                         Exit For
                     End If
                 Next j
-            ElseIf intTime > Module1.DP1 - 1 And intTime <= Module1.DP2 Then
+            ElseIf intTime > Module1.DP1 - 1 And intTime < Module1.DP2 Then
                 For j = 0 To 12
                     If decLiveSalesArray(i) > decManningGuide2(j, 0) And decLiveSalesArray(i) < decManningGuide2(j, 1) Then
                         intAllowedLabourArray(i) = CInt(decManningGuide2(j, 2))
                         Exit For
                     End If
                 Next j
-            ElseIf intTime > Module1.DP2 - 1 And intTime <= Module1.DP3 Then
+            ElseIf intTime > Module1.DP2 - 1 And intTime < Module1.DP3 Then
                 For j = 0 To 12
                     If decLiveSalesArray(i) > decManningGuide3(j, 0) And decLiveSalesArray(i) < decManningGuide3(j, 1) Then
                         intAllowedLabourArray(i) = CInt(decManningGuide3(j, 2))
                         Exit For
                     End If
                 Next j
-            ElseIf intTime > Module1.DP3 - 1 And intTime <= Module1.DP4 Then
+            ElseIf intTime > Module1.DP3 - 1 And intTime < Module1.DP4 Then
                 For j = 0 To 12
                     If decLiveSalesArray(i) > decManningGuide4(j, 0) And decLiveSalesArray(i) < decManningGuide4(j, 1) Then
                         intAllowedLabourArray(i) = CInt(decManningGuide4(j, 2))
                         Exit For
                     End If
                 Next j
-            ElseIf intTime > Module1.DP4 - 1 And intTime <= Module1.DP5 Then
+            ElseIf intTime > Module1.DP4 - 1 And intTime < Module1.DP5 Then
                 For j = 0 To 12
                     If decLiveSalesArray(i) > decManningGuide5(j, 0) And decLiveSalesArray(i) < decManningGuide5(j, 1) Then
                         intAllowedLabourArray(i) = CInt(decManningGuide5(j, 2))
@@ -669,7 +669,7 @@ Public Class Dashboard
         Dim strComputerName As String = Environment.MachineName.ToString()  'Get Machine Name
         Dim strDataOutput As String = ""                                    'Clean Data Output Array
         If strComputerName = "Desktop-NIH3L5I" Then                         'If we are The Front Line Display then
-            Dim strFileName As String = "C:\Users\johnp\Google Drive\Wendys\Sales Tracking\06558 - DC\WebPage\Data.txt" 'This is the file location and name
+            Dim strFileName As String = "C:\Wendys\Data.txt" 'This is the file location and name
             If System.IO.File.Exists(strFileName) = True Then               'See if file exists
                 System.IO.File.Delete(strFileName)                          'If it does exist then delete it
             End If
