@@ -668,8 +668,8 @@ Public Class Dashboard
         'Output Data.txt file for webpage to update
         Dim strComputerName As String = Environment.MachineName.ToString()  'Get Machine Name
         Dim strDataOutput As String = ""                                    'Clean Data Output Array
-        If strComputerName = "Desktop-NIH3L5I" Then                         'If we are The Front Line Display then
-            Dim strFileName As String = "C:\Wendys\Data.txt" 'This is the file location and name
+        If strComputerName = "DESKTOP-NIH3L5I" Then                         'If we are The Front Line Display then
+            Dim strFileName As String = "C:\Wendys\Data.txt"                'This is the file location and name
             If System.IO.File.Exists(strFileName) = True Then               'See if file exists
                 System.IO.File.Delete(strFileName)                          'If it does exist then delete it
             End If
