@@ -667,6 +667,7 @@ Public Class Dashboard
 
         'Output Data.txt file for webpage to update
         Dim strComputerName As String = Environment.MachineName.ToString()  'Get Machine Name
+        'MsgBox(strComputerName)
         Dim strDataOutput As String = ""                                    'Clean Data Output Array
         If strComputerName = "DESKTOP-NIH3L5I" Then                         'If we are The Front Line Display then
             Dim strFileName As String = "C:\Wendys\Data.txt"                'This is the file location and name
