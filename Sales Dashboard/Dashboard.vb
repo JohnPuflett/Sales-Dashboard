@@ -229,7 +229,7 @@ Public Class Dashboard
         End Using
         'Next with DP2
         Dim decManningGuide2(13, 3) As Decimal
-        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\ManningGuide23.txt")
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\ManningGuide2.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
             MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
             Dim currentRow As String()
@@ -248,7 +248,7 @@ Public Class Dashboard
         End Using
         'Next with DP3
         Dim decManningGuide3(13, 3) As Decimal
-        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\ManningGuide23.txt")
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\ManningGuide3.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
             MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
             Dim currentRow As String()
@@ -267,7 +267,7 @@ Public Class Dashboard
         End Using
         'Next with DP4
         Dim decManningGuide4(13, 3) As Decimal
-        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\ManningGuide45.txt")
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\ManningGuide4.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
             MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
             Dim currentRow As String()
@@ -286,7 +286,7 @@ Public Class Dashboard
         End Using
         'Next with DP5
         Dim decManningGuide5(13, 3) As Decimal
-        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\ManningGuide45.txt")
+        Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\ManningGuide5.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
             MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
             Dim currentRow As String()
