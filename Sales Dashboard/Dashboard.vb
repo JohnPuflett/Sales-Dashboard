@@ -578,11 +578,11 @@ Public Class Dashboard
         'Display the VOC data to the dashboard
         Me.txtOSAT.Text = strVOCArray(8)                                'Display OSAT
         Me.txtZOD.Text = strVOCArray(7)                                 'Display ZOD
-        Me.txtFriendly.Text = strVOCArray(4)                            'Display Friendly
-        Me.txtClean.Text = strVOCArray(3)                               'Display Clean
-        Me.txtFast.Text = strVOCArray(2)                                'Display Fast
-        Me.txtAccurate.Text = strVOCArray(1)                            'Display Accurate
-        Me.txtTaste.Text = strVOCArray(0)                               'Display Taste
+        Me.txtFriendly.Text = strVOCArray(2)                            'Display Friendly
+        Me.txtClean.Text = strVOCArray(1)                               'Display Clean
+        Me.txtFast.Text = strVOCArray(3)                                'Display Fast
+        Me.txtAccurate.Text = strVOCArray(4)                            'Display Accurate
+        Me.txtTaste.Text = strVOCArray(5)                               'Display Taste
 
         'Let's Get The DT Data
         Dim strDTArray(3) As String

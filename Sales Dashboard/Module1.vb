@@ -3,8 +3,8 @@
     Public intClose As Integer
     Public DP1 As Integer = 1030
     Public DP2 As Integer = 1400
-    Public DP3 As Integer = 1600
-    Public DP4 As Integer = 1900
+    Public DP3 As Integer = 1700
+    Public DP4 As Integer = 2000
     Public DP5 As Integer = 2200
     Public DP6 As Integer = 2400
     Public VOCGreen As Integer = 75
