@@ -575,7 +575,7 @@ Public Class Dashboard
             txtTaste.ForeColor = Color.Red
         Else txtTaste.ForeColor = Color.Yellow
         End If
-        'Display the Weather to The Dashboard
+        'Display the VOC data to the dashboard
         Me.txtOSAT.Text = strVOCArray(8)                                'Display OSAT
         Me.txtZOD.Text = strVOCArray(7)                                 'Display ZOD
         Me.txtFriendly.Text = strVOCArray(4)                            'Display Friendly
@@ -634,25 +634,25 @@ Public Class Dashboard
             intIndex2 += 1
         Next
         strSeriesLabelArray(intTotalOpenPeriods) = CStr(Module1.intClose) & ":00"
-        chrtSalesChart.Series(0).Points.Clear()
-        chrtSalesChart.Series(1).Points.Clear()
-        chrtLabourChart.Series(0).Points.Clear()
-        chrtLabourChart.Series(1).Points.Clear()
+        chrtSalesChart.Series(0).Points.Clear()                                         'Clear all projected sales data points
+        chrtSalesChart.Series(1).Points.Clear()                                         'Clear all live sales data point
+        chrtLabourChart.Series(0).Points.Clear()                                        'Clear all allowed labour data point
+        chrtLabourChart.Series(1).Points.Clear()                                        'Clear all scheduled labour data points
         For i = 0 To intTotalOpenPeriods - 1
-            chrtLabourChart.Series(1).Points.AddXY(i, intSchedLabourArray(i))
-            chrtSalesChart.Series(0).Points.AddXY(i, decProjectedSalesArray(i))
-            chrtLabourChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)  'Label the X-Axis
-            chrtSalesChart.Series(0).Points(i).AxisLabel = strSeriesLabelArray(i)   'Label the X-Axis
+            chrtLabourChart.Series(1).Points.AddXY(i, intSchedLabourArray(i))           'Plot Scheduled labour data points
+            chrtSalesChart.Series(0).Points.AddXY(i, decProjectedSalesArray(i))         'Plot projected sales data points
+            chrtLabourChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)      'Label the X-Axis
+            chrtSalesChart.Series(0).Points(i).AxisLabel = strSeriesLabelArray(i)       'Label the X-Axis
         Next
         For i = 0 To intHour
-            chrtLabourChart.Series(0).Points.AddXY(i, intAllowedLabourArray(i))
-            chrtSalesChart.Series(1).Points.AddXY(i, CInt(decLiveSalesArray(i)))
+            chrtLabourChart.Series(0).Points.AddXY(i, intAllowedLabourArray(i))         'Plot Allowed labour data point
+            chrtSalesChart.Series(1).Points.AddXY(i, CInt(decLiveSalesArray(i)))        'Plot Live sales data points
         Next
 
         'UpdateStatusInfo
         Dim strStatus As String
-        intTime = (CInt(DateTime.Now.Hour) * 100) + CInt(DateTime.Now.Minute)
-        If CInt(DateTime.Now.Hour) >= Module1.intClose Then
+        intTime = (CInt(DateTime.Now.Hour) * 100) + CInt(DateTime.Now.Minute)           'Calculate current time as HHmm
+        If CInt(DateTime.Now.Hour) >= Module1.intClose Then                             'If current time is after close then
             strStatus = "Closed"
         Else
             If intTime > (Module1.intOpen * 100) And intTime <= Module1.DP1 Then
