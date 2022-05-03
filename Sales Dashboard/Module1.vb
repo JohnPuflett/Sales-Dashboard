@@ -12,4 +12,5 @@
     Public TTLGreen As Integer = 145
     Public TTLRed As Integer = 170
     Public strData(18) As String
+    Public frmActive As Form = Dashboard
 End Module

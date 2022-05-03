@@ -9,7 +9,7 @@ Public Class Dashboard
 #If DEBUG Then
         Debug.WriteLine("Started By FileSystemWatcher")
 #End If
-        DoIt()
+        Master.Doit()
     End Sub
 
     Private Sub Clock_Tick(sender As Object, e As EventArgs) Handles Clock.Tick
@@ -72,10 +72,10 @@ Public Class Dashboard
 #If DEBUG Then
         Debug.WriteLine("Started By Startup Activation")
 #End If
-        DoIt()                                                              'Run Main Sub Right Away
+        Master.Doit()                                                              'Run Main Sub Right Away
     End Sub
 
-    Public Sub DoIt()
+    Public Sub DontDoIt()
         On Error Resume Next
 #If DEBUG Then
         Dim Stopwatch As New Stopwatch
@@ -730,6 +730,12 @@ Public Class Dashboard
 #If DEBUG Then
         Debug.WriteLine("Started By timerUpdate")
 #End If
-        DoIt()
+        Master.Doit()
+    End Sub
+
+    Private Sub picMini_Click(sender As Object, e As EventArgs) Handles picMini.Click
+        frmMiniDashboard.Visible = True
+        Me.Visible = False
+        frmActive = Me
     End Sub
 End Class
