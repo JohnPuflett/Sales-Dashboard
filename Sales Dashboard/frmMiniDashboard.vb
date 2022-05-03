@@ -53,8 +53,8 @@ Public Class frmMiniDashboard
             chrtSalesChart.Series(0).Points.AddXY(i, 0)                             'Create Projected Sales Chart points
             chrtSalesChart.Series(0).Points(i).AxisLabel = strSeriesLabelArray(i)   'Label the X-Axis
         Next
-        Me.Left = 0
-        Me.Top = 0
+        Me.Left = -684
+        Me.Top = 413
 #If DEBUG Then
         Debug.WriteLine("Started By Startup Activation")
 #End If

@@ -23,12 +23,12 @@ Partial Class frmMiniDashboard
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim Series6 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea4 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series7 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim Series8 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMiniDashboard))
         Me.picMainDashboard = New System.Windows.Forms.PictureBox()
         Me.txtStatus = New System.Windows.Forms.TextBox()
@@ -163,68 +163,68 @@ Partial Class frmMiniDashboard
         '
         'chrtSalesChart
         '
-        ChartArea3.AxisX.Crossing = 0R
-        ChartArea3.AxisX.IsMarginVisible = False
-        ChartArea3.AxisX.MajorGrid.Interval = 0R
-        ChartArea3.AxisX.MajorGrid.IntervalOffset = 0R
-        ChartArea3.AxisX.MajorGrid.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.[Auto]
-        ChartArea3.AxisX.MajorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.[Auto]
-        ChartArea3.AxisX.MinorGrid.Enabled = True
-        ChartArea3.Name = "ChartArea1"
-        Me.chrtSalesChart.ChartAreas.Add(ChartArea3)
+        ChartArea1.AxisX.Crossing = 0R
+        ChartArea1.AxisX.IsMarginVisible = False
+        ChartArea1.AxisX.MajorGrid.Interval = 0R
+        ChartArea1.AxisX.MajorGrid.IntervalOffset = 0R
+        ChartArea1.AxisX.MajorGrid.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.[Auto]
+        ChartArea1.AxisX.MajorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.[Auto]
+        ChartArea1.AxisX.MinorGrid.Enabled = True
+        ChartArea1.Name = "ChartArea1"
+        Me.chrtSalesChart.ChartAreas.Add(ChartArea1)
         Me.chrtSalesChart.Location = New System.Drawing.Point(11, 211)
         Me.chrtSalesChart.Name = "chrtSalesChart"
-        Series5.BorderWidth = 2
-        Series5.ChartArea = "ChartArea1"
-        Series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
-        Series5.Color = System.Drawing.Color.Blue
-        Series5.Name = "Series1"
-        Series6.BorderWidth = 2
-        Series6.ChartArea = "ChartArea1"
-        Series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
-        Series6.Color = System.Drawing.Color.Green
-        Series6.Name = "Series2"
-        Me.chrtSalesChart.Series.Add(Series5)
-        Me.chrtSalesChart.Series.Add(Series6)
+        Series1.BorderWidth = 2
+        Series1.ChartArea = "ChartArea1"
+        Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
+        Series1.Color = System.Drawing.Color.Blue
+        Series1.Name = "Series1"
+        Series2.BorderWidth = 2
+        Series2.ChartArea = "ChartArea1"
+        Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
+        Series2.Color = System.Drawing.Color.Green
+        Series2.Name = "Series2"
+        Me.chrtSalesChart.Series.Add(Series1)
+        Me.chrtSalesChart.Series.Add(Series2)
         Me.chrtSalesChart.Size = New System.Drawing.Size(296, 154)
         Me.chrtSalesChart.TabIndex = 174
         '
         'chrtLabourChart
         '
-        ChartArea4.AlignmentOrientation = CType((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical Or System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal), System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)
-        ChartArea4.AxisX.Crossing = 0R
-        ChartArea4.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount
-        ChartArea4.AxisX.IsMarginVisible = False
-        ChartArea4.AxisX.IsMarksNextToAxis = False
-        ChartArea4.AxisX.IsStartedFromZero = False
-        ChartArea4.AxisX.MajorGrid.Interval = 0R
-        ChartArea4.AxisX.MajorGrid.IntervalOffset = 0R
-        ChartArea4.AxisX.MajorGrid.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.[Auto]
-        ChartArea4.AxisX.MajorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.[Auto]
-        ChartArea4.AxisX.MinorGrid.Enabled = True
-        ChartArea4.AxisX.ScaleBreakStyle.StartFromZero = System.Windows.Forms.DataVisualization.Charting.StartFromZero.Yes
-        ChartArea4.AxisY.Crossing = 0R
-        ChartArea4.CursorX.AutoScroll = False
-        ChartArea4.CursorX.LineColor = System.Drawing.Color.Black
-        ChartArea4.CursorX.Position = 0R
-        ChartArea4.CursorY.Position = 0R
-        ChartArea4.Name = "ChartArea1"
-        Me.chrtLabourChart.ChartAreas.Add(ChartArea4)
+        ChartArea2.AlignmentOrientation = CType((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical Or System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal), System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)
+        ChartArea2.AxisX.Crossing = 0R
+        ChartArea2.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount
+        ChartArea2.AxisX.IsMarginVisible = False
+        ChartArea2.AxisX.IsMarksNextToAxis = False
+        ChartArea2.AxisX.IsStartedFromZero = False
+        ChartArea2.AxisX.MajorGrid.Interval = 0R
+        ChartArea2.AxisX.MajorGrid.IntervalOffset = 0R
+        ChartArea2.AxisX.MajorGrid.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.[Auto]
+        ChartArea2.AxisX.MajorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.[Auto]
+        ChartArea2.AxisX.MinorGrid.Enabled = True
+        ChartArea2.AxisX.ScaleBreakStyle.StartFromZero = System.Windows.Forms.DataVisualization.Charting.StartFromZero.Yes
+        ChartArea2.AxisY.Crossing = 0R
+        ChartArea2.CursorX.AutoScroll = False
+        ChartArea2.CursorX.LineColor = System.Drawing.Color.Black
+        ChartArea2.CursorX.Position = 0R
+        ChartArea2.CursorY.Position = 0R
+        ChartArea2.Name = "ChartArea1"
+        Me.chrtLabourChart.ChartAreas.Add(ChartArea2)
         Me.chrtLabourChart.Location = New System.Drawing.Point(11, 89)
         Me.chrtLabourChart.Name = "chrtLabourChart"
-        Series7.BorderWidth = 2
-        Series7.ChartArea = "ChartArea1"
-        Series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
-        Series7.Color = System.Drawing.Color.Green
-        Series7.IsVisibleInLegend = False
-        Series7.Name = "Series1"
-        Series8.BorderWidth = 2
-        Series8.ChartArea = "ChartArea1"
-        Series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
-        Series8.Color = System.Drawing.Color.Blue
-        Series8.Name = "Series2"
-        Me.chrtLabourChart.Series.Add(Series7)
-        Me.chrtLabourChart.Series.Add(Series8)
+        Series3.BorderWidth = 2
+        Series3.ChartArea = "ChartArea1"
+        Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
+        Series3.Color = System.Drawing.Color.Green
+        Series3.IsVisibleInLegend = False
+        Series3.Name = "Series1"
+        Series4.BorderWidth = 2
+        Series4.ChartArea = "ChartArea1"
+        Series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
+        Series4.Color = System.Drawing.Color.Blue
+        Series4.Name = "Series2"
+        Me.chrtLabourChart.Series.Add(Series3)
+        Me.chrtLabourChart.Series.Add(Series4)
         Me.chrtLabourChart.Size = New System.Drawing.Size(296, 96)
         Me.chrtLabourChart.TabIndex = 173
         Me.chrtLabourChart.TabStop = False
@@ -1447,8 +1447,9 @@ Partial Class frmMiniDashboard
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.picMainDashboard)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Location = New System.Drawing.Point(-710, 413)
         Me.Name = "frmMiniDashboard"
-        Me.Text = "Form1"
+        Me.Text = "miniDashBoard"
         CType(Me.picMainDashboard, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chrtSalesChart, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chrtLabourChart, System.ComponentModel.ISupportInitialize).EndInit()
