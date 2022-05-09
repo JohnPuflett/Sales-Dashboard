@@ -1447,7 +1447,7 @@ Partial Class frmMiniDashboard
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.picMainDashboard)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Location = New System.Drawing.Point(-710, 413)
+        Me.Location = New System.Drawing.Point(-683, 413)
         Me.Name = "frmMiniDashboard"
         Me.Text = "miniDashBoard"
         CType(Me.picMainDashboard, System.ComponentModel.ISupportInitialize).EndInit()
