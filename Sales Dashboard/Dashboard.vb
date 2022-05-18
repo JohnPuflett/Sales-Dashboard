@@ -48,14 +48,29 @@ Public Class Dashboard
         End Using
 
         'Set Open and Close Times
-        Module1.intOpen = CInt(strConfigArray(0))                                       'Open Time
-        Module1.intClose = CInt(strConfigArray(1))                                      'Close Time
-        Dim intTotalOpenPeriods As Integer = (Module1.intClose - Module1.intOpen) * 2   'Calc number of open periods
+        Module1.intOpen = 630   'CInt(strConfigArray(0))                                       'Open Time
+        Module1.intClose = 2200   'CInt(strConfigArray(1))                                      'Close Time
+        'Dim intTotalOpenPeriods As Integer = (Module1.intClose - Module1.intOpen) * 2   'Calc number of open periods
+        Dim intTotalOpenPeriods As Integer = 1
+        Dim intCountdown As Integer = Module1.intOpen
+        Dim strCountdown As String
+        Do
+#If DEBUG Then
+            Debug.WriteLine("Total Periods: " & CStr(intTotalOpenPeriods) & " " & CStr(intCountdown))
+#End If
+            intTotalOpenPeriods += 1
+            strCountdown = CStr(intCountdown)
+            If strCountdown.Substring(strCountdown.Length - 2) = "00" Then
+                intCountdown += 30
+            Else
+                intCountdown += 70
+            End If
+        Loop Until intCountdown = Module1.intClose
         Dim strSeriesLabelArray(48) As String                                           'Create Array for Chart labels
         Dim intIndex2 As Integer = 0
         For i = 0 To intTotalOpenPeriods - 1 Step 2                                     'Loop through the parts
-            strSeriesLabelArray(i) = CStr(Module1.intOpen + intIndex2) & ":00"          'Label the odd periods as on the hour
-            strSeriesLabelArray(i + 1) = CStr(Module1.intOpen + intIndex2) & ":30"      'Label the even periods as 30 after
+            strSeriesLabelArray(i) = CStr(Module1.intOpen + intIndex2) & ":30"          'Label the odd periods as on the hour
+            strSeriesLabelArray(i + 1) = CStr(Module1.intOpen + intIndex2) & ":00"      'Label the even periods as 30 after
             intIndex2 += 1
         Next
         strSeriesLabelArray(intTotalOpenPeriods) = CStr(Module1.intClose) & ":00"

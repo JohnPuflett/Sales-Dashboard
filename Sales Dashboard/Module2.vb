@@ -27,9 +27,26 @@
                 Next
             Next i
         End Using
-        Module1.intOpen = CInt(strConfigArray(0))                                       'Load Open Time
-        Module1.intClose = CInt(strConfigArray(1))                                      'Load Close Time
-        Dim intTotalOpenPeriods As Integer = (Module1.intClose - Module1.intOpen) * 2   'Calculate number of open periods
+        Module1.intOpen = 630 'CInt(strConfigArray(0))                                       'Load Open Time
+        Module1.intClose = 2200 'CInt(strConfigArray(1))                                      'Load Close Time
+        Dim intTotalOpenPeriods As Integer = 1
+        Dim intCountdown As Integer = Module1.intOpen
+        Dim strCountdown As String
+        Do
+#If DEBUG Then
+            Debug.WriteLine("Total Periods: " & CStr(intTotalOpenPeriods) & " " & CStr(intCountdown))
+#End If
+            intTotalOpenPeriods += 1
+            strCountdown = CStr(intCountdown)
+
+            If strCountdown.Substring(strCountdown.Length - 2) = "00" Then
+                intCountdown += 30
+            Else
+                intCountdown += 70
+            End If
+        Loop Until intCountdown = Module1.intClose
+
+        'Dim intTotalOpenPeriods As Integer = (Module1.intClose - Module1.intOpen) * 2   'Calculate number of open periods
 
         'Where are we on the list -
         Dim intHour As Integer = CInt(DateTime.Now.Hour)
@@ -84,7 +101,8 @@
 
 
         'Let's Array Our Projected Sales from our SalesProjections.txt file
-        Dim decProjectedSalesArray(34) As Decimal
+        Dim decProjectedSalesArray(48) As Decimal
+        Dim strOpenHours(48) As String
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\SalesProjections.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited             'Set file as delimited
             MyReader.SetDelimiters(",")                                     'Set Delimiter as ,
@@ -97,6 +115,12 @@
                 currentRow = MyReader.ReadFields()                          'Read the fields in that line
                 Dim currentField As String
                 For Each currentField In currentRow                         'Cycle through each field on this line
+                    If intIndex = 2 Then                                    'Load up daypart labels
+                        strOpenHours(intRow) = CStr(currentField)
+#If DEBUG Then
+                        Debug.WriteLine("Graph Labels: " & strOpenHours(intRow))
+#End If
+                    End If
                     If intIndex = 3 Then                                    'Grab only the 3rd field (sales)
                         decProjectedSalesArray(intRow) = CDec(currentField) 'Put it into the array
                     End If
@@ -553,12 +577,13 @@
         Module1.intClose = CInt(strConfigArray(1))                                      'Close Time
         Dim strSeriesLabelArray(48) As String                                           'Create Array for Chart labels
         Dim intIndex2 As Integer = 0
-        For i = 0 To intTotalOpenPeriods - 1 Step 2                                     'Loop through the parts
-            strSeriesLabelArray(i) = CStr(Module1.intOpen + intIndex2) & ":00"          'Label the odd periods as on the hour
-            strSeriesLabelArray(i + 1) = CStr(Module1.intOpen + intIndex2) & ":30"      'Label the even periods as 30 after
-            intIndex2 += 1
+        For i = 0 To intTotalOpenPeriods ' - 1 Step 2                                     'Loop through the parts
+            'strSeriesLabelArray(i) = CStr(Module1.intOpen + intIndex2) & ":00"          'Label the odd periods as on the hour
+            'strSeriesLabelArray(i + 1) = CStr(Module1.intOpen + intIndex2) & ":30"      'Label the even periods as 30 after
+            'intIndex2 += 1
+            strSeriesLabelArray(i) = strOpenHours(i)
         Next
-        strSeriesLabelArray(intTotalOpenPeriods) = CStr(Module1.intClose) & ":00"
+        'strSeriesLabelArray(intTotalOpenPeriods) = CStr(Module1.intClose) & ":00"
         Dashboard.chrtSalesChart.Series(0).Points.Clear()                                         'Clear all projected sales data points
         Dashboard.chrtSalesChart.Series(1).Points.Clear()                                         'Clear all live sales data point
         Dashboard.chrtLabourChart.Series(0).Points.Clear()                                        'Clear all allowed labour data point
@@ -1197,13 +1222,14 @@
 
         'Update Charts
         'Set Open and Close Times
-        Module1.intOpen = CInt(strConfigArray(0))                                       'Open Time
-        Module1.intClose = CInt(strConfigArray(1))                                      'Close Time
+        Module1.intOpen = 630 'CInt(strConfigArray(0))                                       'Open Time
+        Module1.intClose = 2200 'CInt(strConfigArray(1))                                      'Close Time
         Dim strSeriesLabelArray(48) As String                                           'Create Array for Chart labels
         Dim intIndex2 As Integer = 0
         For i = 0 To intTotalOpenPeriods - 1 Step 2                                     'Loop through the parts
-            strSeriesLabelArray(i) = CStr(Module1.intOpen + intIndex2) & ":00"          'Label the odd periods as on the hour
-            strSeriesLabelArray(i + 1) = CStr(Module1.intOpen + intIndex2) & ":30"      'Label the even periods as 30 after
+
+            strSeriesLabelArray(i) = CStr(Module1.intOpen + intIndex2) & ":30"          'Label the odd periods as on the hour
+            strSeriesLabelArray(i + 1) = CStr(Module1.intOpen + intIndex2) & ":00"      'Label the even periods as 30 after
             intIndex2 += 1
         Next
         strSeriesLabelArray(intTotalOpenPeriods) = CStr(Module1.intClose) & ":00"
