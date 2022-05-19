@@ -61,12 +61,12 @@
         '''''Needs to be fixed for differing closing times
         If intHour > 21 Then                                            'If After 10pm then set to closing hour
             intHour = 30
-        ElseIf intHour < 7 Then
+        ElseIf intHour < 6 Then
             intHour = 30
         Else
-            intHour = (intHour * 2) - 14                                'Calculate the whole hour
-            If intMinute > 29 Then                                      'Add one for the half hours
-                intHour += 1
+            intHour = (intHour * 2) - 12                                'Calculate the whole hour
+            If intMinute < 30 Then                                      'Add one for the half hours
+                intHour -= 1
             End If
         End If
 
@@ -89,6 +89,9 @@
                         Else
                             decLiveSalesArray(intRow) = 0                   'If we are after close then put a zero in
                         End If
+#If DEBUG Then
+                        Debug.WriteLine("Live Period Sales: " & CStr(decLiveSalesArray(intRow)))
+#End If
                     ElseIf intIndex = 5 Then
                         intIndex = 0
                     End If

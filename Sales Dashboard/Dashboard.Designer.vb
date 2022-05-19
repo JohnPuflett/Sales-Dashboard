@@ -1306,7 +1306,7 @@ Partial Class Dashboard
         'timerUpdate
         '
         Me.timerUpdate.Enabled = True
-        Me.timerUpdate.Interval = 60000
+        Me.timerUpdate.Interval = 120000
         '
         'picMini
         '
