@@ -33,6 +33,11 @@ Public Class frmMiniDashboard
             Next i
         End Using
 
+        Dim strComputerName As String = Environment.MachineName.ToString()  'Get Machine Name
+        If strComputerName = "06588MGR" Then                         'If we are The Back Office then
+            'Me.Left = -1927
+            'Me.Top = 7
+        End If
         'Set Open and Close Times
         Module1.intOpen = CInt(strConfigArray(0))                                       'Open Time
         Module1.intClose = CInt(strConfigArray(1))                                      'Close Time
