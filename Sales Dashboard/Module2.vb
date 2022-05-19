@@ -278,13 +278,23 @@
         'Let's Build our allowed labour Array
         Dim intAllowedLabourArray(48)
         Dim intTime As Integer
+        Dim strSeriesLabelArray(48) As String                                           'Create Array for Chart labels
+        Dim intIndex2 As Integer = 0
+        For i = 0 To intTotalOpenPeriods ' - 1 Step 2                                     'Loop through the parts
+            'strSeriesLabelArray(i) = CStr(Module1.intOpen + intIndex2) & ":00"          'Label the odd periods as on the hour
+            'strSeriesLabelArray(i + 1) = CStr(Module1.intOpen + intIndex2) & ":30"      'Label the even periods as 30 after
+            'intIndex2 += 1
+            strSeriesLabelArray(i) = strOpenHours(i)
+        Next
         For i = 0 To intHour
-            If i Mod 2 = 0 Then
-                intTime = (i + (Module1.intOpen * 2)) * 50              'Convert loop to real time based on opening time
-            Else
-                intTime = ((i + (Module1.intOpen * 2) - 1) * 50) + 30   'Adjust for half hours
-            End If
-            If intTime <= Module1.DP1 Then
+            'If i Mod 2 = 0 Then
+            '     intTime = (i + (Module1.intOpen * 2)) * 50              'Convert loop to real time based on opening time
+            'Else
+            '   intTime = ((i + (Module1.intOpen * 2) - 1) * 50) + 30   'Adjust for half hours
+            'End If
+
+            intTime = CInt(strSeriesLabelArray(i))
+            If intTime < Module1.DP1 Then
                 For j = 0 To 12
                     If decLiveSalesArray(i) > decManningGuide1(j, 0) And decLiveSalesArray(i) < decManningGuide1(j, 1) Then
                         intAllowedLabourArray(i) = CInt(decManningGuide1(j, 2))
@@ -578,14 +588,7 @@
         'Set Open and Close Times
         Module1.intOpen = CInt(strConfigArray(0))                                       'Open Time
         Module1.intClose = CInt(strConfigArray(1))                                      'Close Time
-        Dim strSeriesLabelArray(48) As String                                           'Create Array for Chart labels
-        Dim intIndex2 As Integer = 0
-        For i = 0 To intTotalOpenPeriods ' - 1 Step 2                                     'Loop through the parts
-            'strSeriesLabelArray(i) = CStr(Module1.intOpen + intIndex2) & ":00"          'Label the odd periods as on the hour
-            'strSeriesLabelArray(i + 1) = CStr(Module1.intOpen + intIndex2) & ":30"      'Label the even periods as 30 after
-            'intIndex2 += 1
-            strSeriesLabelArray(i) = strOpenHours(i)
-        Next
+
         'strSeriesLabelArray(intTotalOpenPeriods) = CStr(Module1.intClose) & ":00"
         Dashboard.chrtSalesChart.Series(0).Points.Clear()                                         'Clear all projected sales data points
         Dashboard.chrtSalesChart.Series(1).Points.Clear()                                         'Clear all live sales data point
