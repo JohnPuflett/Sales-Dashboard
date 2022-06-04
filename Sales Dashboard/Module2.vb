@@ -517,13 +517,16 @@
             End While
         End Using
         'Display the Weather to The Dashboard
-        Dashboard.txtWeatherTemp.Text = strWeatherArray(0)                     'Display Temp
-        Dashboard.txtWeatherFeelsLike.Text = strWeatherArray(1)                'Display Feels Like
-        Dashboard.txtWeatherDescription.Text = strWeatherArray(2)              'Display Weather Description
-        frmMiniDashboard.txtWeatherTemp.Text = strWeatherArray(0)                     'Display Temp
-        frmMiniDashboard.txtWeatherFeelsLike.Text = strWeatherArray(1)                'Display Feels Like
-        frmMiniDashboard.txtWeatherDescription.Text = strWeatherArray(2)              'Display Weather Description
-
+        With Dashboard
+            .txtWeatherTemp.Text = strWeatherArray(0)                     'Display Temp
+            .txtWeatherFeelsLike.Text = strWeatherArray(1)                'Display Feels Like
+            .txtWeatherDescription.Text = strWeatherArray(2)              'Display Weather Description
+        End With
+        With frmMiniDashboard
+            .txtWeatherTemp.Text = strWeatherArray(0)                     'Display Temp
+            .txtWeatherFeelsLike.Text = strWeatherArray(1)                'Display Feels Like
+            .txtWeatherDescription.Text = strWeatherArray(2)              'Display Weather Description
+        End With
 
         'Let's Grab our VOC
         Dim strVOCArray(9) As String
@@ -541,109 +544,114 @@
                 Next                                                    'Next Field
             End While
         End Using
+
         'Set Up the Colours
-        If CDec(strVOCArray(8)) >= Module1.VOCGreen Then
-            Dashboard.txtOSAT.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(8)) <= Module1.VOCRed Then
-            Dashboard.txtOSAT.ForeColor = Color.Red
-        Else Dashboard.txtOSAT.ForeColor = Color.Yellow
-        End If
-        If CDec(strVOCArray(7)) = 0 Then
-            Dashboard.txtZOD.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(7)) > 10 Then
-            Dashboard.txtZOD.ForeColor = Color.Red
-        Else Dashboard.txtZOD.ForeColor = Color.Yellow
-        End If
-        If CDec(strVOCArray(2)) >= Module1.VOCGreen Then
-            Dashboard.txtFriendly.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(2)) <= Module1.VOCRed Then
-            Dashboard.txtFriendly.ForeColor = Color.Red
-        Else Dashboard.txtFriendly.ForeColor = Color.Yellow
-        End If
-        If CDec(strVOCArray(1)) >= Module1.VOCGreen Then
-            Dashboard.txtClean.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(1)) <= Module1.VOCRed Then
-            Dashboard.txtClean.ForeColor = Color.Red
-        Else Dashboard.txtClean.ForeColor = Color.Yellow
-        End If
-        If CDec(strVOCArray(3)) >= Module1.VOCGreen Then
-            Dashboard.txtFast.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(3)) <= Module1.VOCRed Then
-            Dashboard.txtFast.ForeColor = Color.Red
-        Else Dashboard.txtFast.ForeColor = Color.Yellow
-        End If
-        If CDec(strVOCArray(4)) >= Module1.VOCGreen Then
-            Dashboard.txtAccurate.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(4)) <= Module1.VOCRed Then
-            Dashboard.txtAccurate.ForeColor = Color.Red
-        Else Dashboard.txtAccurate.ForeColor = Color.Yellow
-        End If
-        If CDec(strVOCArray(5)) >= Module1.VOCGreen Then
-            Dashboard.txtTaste.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(5)) <= Module1.VOCRed Then
-            Dashboard.txtTaste.ForeColor = Color.Red
-        Else Dashboard.txtTaste.ForeColor = Color.Yellow
-        End If
-        'Display the VOC data to the dashboard
-        Dashboard.txtOSAT.Text = strVOCArray(8)                                'Display OSAT
-        Dashboard.txtZOD.Text = strVOCArray(7)                                 'Display ZOD
-        Dashboard.txtFriendly.Text = strVOCArray(2)                            'Display Friendly
-        Dashboard.txtClean.Text = strVOCArray(1)                               'Display Clean
-        Dashboard.txtFast.Text = strVOCArray(3)                                'Display Fast
-        Dashboard.txtAccurate.Text = strVOCArray(4)                            'Display Accurate
-        Dashboard.txtTaste.Text = strVOCArray(5)                               'Display Taste
+        With Dashboard
+            If CDec(strVOCArray(8)) >= Module1.VOCGreen Then
+                .txtOSAT.ForeColor = Color.LimeGreen
+            ElseIf CDec(strVOCArray(8)) <= Module1.VOCRed Then
+                .txtOSAT.ForeColor = Color.Red
+            Else .txtOSAT.ForeColor = Color.Yellow
+            End If
+            If CDec(strVOCArray(7)) = 0 Then
+                .txtZOD.ForeColor = Color.LimeGreen
+            ElseIf CDec(strVOCArray(7)) > 10 Then
+                .txtZOD.ForeColor = Color.Red
+            Else .txtZOD.ForeColor = Color.Yellow
+            End If
+            If CDec(strVOCArray(2)) >= Module1.VOCGreen Then
+                .txtFriendly.ForeColor = Color.LimeGreen
+            ElseIf CDec(strVOCArray(2)) <= Module1.VOCRed Then
+                .txtFriendly.ForeColor = Color.Red
+            Else .txtFriendly.ForeColor = Color.Yellow
+            End If
+            If CDec(strVOCArray(1)) >= Module1.VOCGreen Then
+                .txtClean.ForeColor = Color.LimeGreen
+            ElseIf CDec(strVOCArray(1)) <= Module1.VOCRed Then
+                .txtClean.ForeColor = Color.Red
+            Else .txtClean.ForeColor = Color.Yellow
+            End If
+            If CDec(strVOCArray(3)) >= Module1.VOCGreen Then
+                .txtFast.ForeColor = Color.LimeGreen
+            ElseIf CDec(strVOCArray(3)) <= Module1.VOCRed Then
+                .txtFast.ForeColor = Color.Red
+            Else .txtFast.ForeColor = Color.Yellow
+            End If
+            If CDec(strVOCArray(4)) >= Module1.VOCGreen Then
+                .txtAccurate.ForeColor = Color.LimeGreen
+            ElseIf CDec(strVOCArray(4)) <= Module1.VOCRed Then
+                .txtAccurate.ForeColor = Color.Red
+            Else .txtAccurate.ForeColor = Color.Yellow
+            End If
+            If CDec(strVOCArray(5)) >= Module1.VOCGreen Then
+                .txtTaste.ForeColor = Color.LimeGreen
+            ElseIf CDec(strVOCArray(5)) <= Module1.VOCRed Then
+                .txtTaste.ForeColor = Color.Red
+            Else .txtTaste.ForeColor = Color.Yellow
+            End If
+            'Display the VOC data to the dashboard
+            .txtOSAT.Text = strVOCArray(8)                                'Display OSAT
+            .txtZOD.Text = strVOCArray(7)                                 'Display ZOD
+            .txtFriendly.Text = strVOCArray(2)                            'Display Friendly
+            .txtClean.Text = strVOCArray(1)                               'Display Clean
+            .txtFast.Text = strVOCArray(3)                                'Display Fast
+            .txtAccurate.Text = strVOCArray(4)                            'Display Accurate
+            .txtTaste.Text = strVOCArray(5)                               'Display Taste
+        End With
 
         'Same but for the Mini Dashboard
-        If CDec(strVOCArray(8)) >= Module1.VOCGreen Then
-            frmMiniDashboard.txtOSAT.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(8)) <= Module1.VOCRed Then
-            frmMiniDashboard.txtOSAT.ForeColor = Color.Red
-        Else frmMiniDashboard.txtOSAT.ForeColor = Color.Yellow
-        End If
-        If CDec(strVOCArray(7)) = 0 Then
-            frmMiniDashboard.txtZOD.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(7)) > 10 Then
-            frmMiniDashboard.txtZOD.ForeColor = Color.Red
-        Else frmMiniDashboard.txtZOD.ForeColor = Color.Yellow
-        End If
-        If CDec(strVOCArray(2)) >= Module1.VOCGreen Then
-            frmMiniDashboard.txtFriendly.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(2)) <= Module1.VOCRed Then
-            frmMiniDashboard.txtFriendly.ForeColor = Color.Red
-        Else frmMiniDashboard.txtFriendly.ForeColor = Color.Yellow
-        End If
-        If CDec(strVOCArray(1)) >= Module1.VOCGreen Then
-            frmMiniDashboard.txtClean.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(1)) <= Module1.VOCRed Then
-            frmMiniDashboard.txtClean.ForeColor = Color.Red
-        Else frmMiniDashboard.txtClean.ForeColor = Color.Yellow
-        End If
-        If CDec(strVOCArray(3)) >= Module1.VOCGreen Then
-            frmMiniDashboard.txtFast.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(3)) <= Module1.VOCRed Then
-            frmMiniDashboard.txtFast.ForeColor = Color.Red
-        Else frmMiniDashboard.txtFast.ForeColor = Color.Yellow
-        End If
-        If CDec(strVOCArray(4)) >= Module1.VOCGreen Then
-            frmMiniDashboard.txtAccurate.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(4)) <= Module1.VOCRed Then
-            frmMiniDashboard.txtAccurate.ForeColor = Color.Red
-        Else frmMiniDashboard.txtAccurate.ForeColor = Color.Yellow
-        End If
-        If CDec(strVOCArray(5)) >= Module1.VOCGreen Then
-            frmMiniDashboard.txtTaste.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(5)) <= Module1.VOCRed Then
-            frmMiniDashboard.txtTaste.ForeColor = Color.Red
-        Else frmMiniDashboard.txtTaste.ForeColor = Color.Yellow
-        End If
-        'Display the VOC data to the dashboard
-        frmMiniDashboard.txtOSAT.Text = strVOCArray(8)                                'Display OSAT
-        frmMiniDashboard.txtZOD.Text = strVOCArray(7)                                 'Display ZOD
-        frmMiniDashboard.txtFriendly.Text = strVOCArray(2)                            'Display Friendly
-        frmMiniDashboard.txtClean.Text = strVOCArray(1)                               'Display Clean
-        frmMiniDashboard.txtFast.Text = strVOCArray(3)                                'Display Fast
-        frmMiniDashboard.txtAccurate.Text = strVOCArray(4)                            'Display Accurate
-        frmMiniDashboard.txtTaste.Text = strVOCArray(5)                               'Display Taste
+        With frmMiniDashboard
+            If CDec(strVOCArray(8)) >= Module1.VOCGreen Then
+                .txtOSAT.ForeColor = Color.LimeGreen
+            ElseIf CDec(strVOCArray(8)) <= Module1.VOCRed Then
+                .txtOSAT.ForeColor = Color.Red
+            Else .txtOSAT.ForeColor = Color.Yellow
+            End If
+            If CDec(strVOCArray(7)) = 0 Then
+                .txtZOD.ForeColor = Color.LimeGreen
+            ElseIf CDec(strVOCArray(7)) > 10 Then
+                .txtZOD.ForeColor = Color.Red
+            Else .txtZOD.ForeColor = Color.Yellow
+            End If
+            If CDec(strVOCArray(2)) >= Module1.VOCGreen Then
+                .txtFriendly.ForeColor = Color.LimeGreen
+            ElseIf CDec(strVOCArray(2)) <= Module1.VOCRed Then
+                .txtFriendly.ForeColor = Color.Red
+            Else .txtFriendly.ForeColor = Color.Yellow
+            End If
+            If CDec(strVOCArray(1)) >= Module1.VOCGreen Then
+                .txtClean.ForeColor = Color.LimeGreen
+            ElseIf CDec(strVOCArray(1)) <= Module1.VOCRed Then
+                .txtClean.ForeColor = Color.Red
+            Else .txtClean.ForeColor = Color.Yellow
+            End If
+            If CDec(strVOCArray(3)) >= Module1.VOCGreen Then
+                .txtFast.ForeColor = Color.LimeGreen
+            ElseIf CDec(strVOCArray(3)) <= Module1.VOCRed Then
+                .txtFast.ForeColor = Color.Red
+            Else .txtFast.ForeColor = Color.Yellow
+            End If
+            If CDec(strVOCArray(4)) >= Module1.VOCGreen Then
+                .txtAccurate.ForeColor = Color.LimeGreen
+            ElseIf CDec(strVOCArray(4)) <= Module1.VOCRed Then
+                .txtAccurate.ForeColor = Color.Red
+            Else .txtAccurate.ForeColor = Color.Yellow
+            End If
+            If CDec(strVOCArray(5)) >= Module1.VOCGreen Then
+                .txtTaste.ForeColor = Color.LimeGreen
+            ElseIf CDec(strVOCArray(5)) <= Module1.VOCRed Then
+                .txtTaste.ForeColor = Color.Red
+            Else .txtTaste.ForeColor = Color.Yellow
+            End If
+            'Display the VOC data to the dashboard
+            .txtOSAT.Text = strVOCArray(8)                                'Display OSAT
+            .txtZOD.Text = strVOCArray(7)                                 'Display ZOD
+            .txtFriendly.Text = strVOCArray(2)                            'Display Friendly
+            .txtClean.Text = strVOCArray(1)                               'Display Clean
+            .txtFast.Text = strVOCArray(3)                                'Display Fast
+            .txtAccurate.Text = strVOCArray(4)                            'Display Accurate
+            .txtTaste.Text = strVOCArray(5)                               'Display Taste
+        End With
 
         'Let's Get The DT Data
         Dim strDTArray(3) As String
@@ -661,48 +669,55 @@
                 Next                                                    'Next Field
             End While
         End Using
-        If strDTArray(0) <> "for" Then
-            'Set Up the DT Colours
-            If CInt(strDTArray(0)) <= Module1.TTLGreen Then
-                Dashboard.txtDayPartTTL.ForeColor = Color.LimeGreen
-            ElseIf CInt(strDTArray(0)) >= Module1.TTLRed Then
-                Dashboard.txtDayPartTTL.ForeColor = Color.Red
-            Else
-                Dashboard.txtDayPartTTL.ForeColor = Color.Yellow
+        With Dashboard
+            If strDTArray(0) <> "for" Then
+                'Set Up the DT Colours
+                If CInt(strDTArray(0)) <= Module1.TTLGreen Then
+                    .txtDayPartTTL.ForeColor = Color.LimeGreen
+                ElseIf CInt(strDTArray(0)) >= Module1.TTLRed Then
+                    .txtDayPartTTL.ForeColor = Color.Red
+                Else
+                    .txtDayPartTTL.ForeColor = Color.Yellow
+                End If
+                If CInt(strDTArray(2)) <= Module1.TTLGreen Then
+                    .txtFullDayTTL.ForeColor = Color.LimeGreen
+                ElseIf CInt(strDTArray(2)) >= Module1.TTLRed Then
+                    .txtFullDayTTL.ForeColor = Color.Red
+                Else
+                    .txtFullDayTTL.ForeColor = Color.Yellow
+                End If
+                'Display The DT Data
+                .txtDayPartTTL.Text = strDTArray(0)
+                .txtDayPartCC.Text = strDTArray(1)
+                .txtFullDayTTL.Text = strDTArray(2)
             End If
-            If CInt(strDTArray(2)) <= Module1.TTLGreen Then
-                Dashboard.txtFullDayTTL.ForeColor = Color.LimeGreen
-            ElseIf CInt(strDTArray(2)) >= Module1.TTLRed Then
-                Dashboard.txtFullDayTTL.ForeColor = Color.Red
-            Else
-                Dashboard.txtFullDayTTL.ForeColor = Color.Yellow
+        End With
+
+
+        With frmMiniDashboard
+            If strDTArray(0) <> "for" Then
+                'Set Up the DT Colours
+                If CInt(strDTArray(0)) <= Module1.TTLGreen Then
+                    .txtDayPartTTL.ForeColor = Color.LimeGreen
+                ElseIf CInt(strDTArray(0)) >= Module1.TTLRed Then
+                    .txtDayPartTTL.ForeColor = Color.Red
+                Else
+                    .txtDayPartTTL.ForeColor = Color.Yellow
+                End If
+                If CInt(strDTArray(2)) <= Module1.TTLGreen Then
+                    .txtFullDayTTL.ForeColor = Color.LimeGreen
+                ElseIf CInt(strDTArray(2)) >= Module1.TTLRed Then
+                    .txtFullDayTTL.ForeColor = Color.Red
+                Else
+                    .txtFullDayTTL.ForeColor = Color.Yellow
+                End If
+                'Display The DT Data
+                .txtDayPartTTL.Text = strDTArray(0)
+                .txtDayPartCC.Text = strDTArray(1)
+                .txtFullDayTTL.Text = strDTArray(2)
             End If
-            'Display The DT Data
-            Dashboard.txtDayPartTTL.Text = strDTArray(0)
-            Dashboard.txtDayPartCC.Text = strDTArray(1)
-            Dashboard.txtFullDayTTL.Text = strDTArray(2)
-        End If
-        If strDTArray(0) <> "for" Then
-            'Set Up the DT Colours
-            If CInt(strDTArray(0)) <= Module1.TTLGreen Then
-                frmMiniDashboard.txtDayPartTTL.ForeColor = Color.LimeGreen
-            ElseIf CInt(strDTArray(0)) >= Module1.TTLRed Then
-                frmMiniDashboard.txtDayPartTTL.ForeColor = Color.Red
-            Else
-                frmMiniDashboard.txtDayPartTTL.ForeColor = Color.Yellow
-            End If
-            If CInt(strDTArray(2)) <= Module1.TTLGreen Then
-                frmMiniDashboard.txtFullDayTTL.ForeColor = Color.LimeGreen
-            ElseIf CInt(strDTArray(2)) >= Module1.TTLRed Then
-                frmMiniDashboard.txtFullDayTTL.ForeColor = Color.Red
-            Else
-                frmMiniDashboard.txtFullDayTTL.ForeColor = Color.Yellow
-            End If
-            'Display The DT Data
-            frmMiniDashboard.txtDayPartTTL.Text = strDTArray(0)
-            frmMiniDashboard.txtDayPartCC.Text = strDTArray(1)
-            frmMiniDashboard.txtFullDayTTL.Text = strDTArray(2)
-        End If
+        End With
+
 
         'Update Charts
         'Set Open and Close Times
@@ -710,36 +725,39 @@
         Module1.intClose = CInt(strConfigArray(1))                                      'Close Time
 
         'strSeriesLabelArray(intTotalOpenPeriods) = CStr(Module1.intClose) & ":00"
-        Dashboard.chrtSalesChart.Series(0).Points.Clear()                                         'Clear all projected sales data points
-        Dashboard.chrtSalesChart.Series(1).Points.Clear()                                         'Clear all live sales data point
-        Dashboard.chrtLabourChart.Series(0).Points.Clear()                                        'Clear all allowed labour data point
-        Dashboard.chrtLabourChart.Series(1).Points.Clear()                                        'Clear all scheduled labour data points
-        For i = 0 To intTotalOpenPeriods - 1
-            Dashboard.chrtLabourChart.Series(1).Points.AddXY(i, intSchedLabourArray(i))           'Plot Scheduled labour data points
-            Dashboard.chrtSalesChart.Series(0).Points.AddXY(i, decProjectedSalesArray(i))         'Plot projected sales data points
-            Dashboard.chrtLabourChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)      'Label the X-Axis
-            Dashboard.chrtSalesChart.Series(0).Points(i).AxisLabel = strSeriesLabelArray(i)       'Label the X-Axis
-        Next
-        For i = 0 To intHour
-            Dashboard.chrtLabourChart.Series(0).Points.AddXY(i, intAllowedLabourArray(i))         'Plot Allowed labour data point
-            Dashboard.chrtSalesChart.Series(1).Points.AddXY(i, CInt(decLiveSalesArray(i)))        'Plot Live sales data points
-        Next
+        With Dashboard
+            .chrtSalesChart.Series(0).Points.Clear()                                         'Clear all projected sales data points
+            .chrtSalesChart.Series(1).Points.Clear()                                         'Clear all live sales data point
+            .chrtLabourChart.Series(0).Points.Clear()                                        'Clear all allowed labour data point
+            .chrtLabourChart.Series(1).Points.Clear()                                        'Clear all scheduled labour data points
+            For i = 0 To intTotalOpenPeriods - 1
+                .chrtLabourChart.Series(1).Points.AddXY(i, intSchedLabourArray(i))           'Plot Scheduled labour data points
+                .chrtSalesChart.Series(0).Points.AddXY(i, decProjectedSalesArray(i))         'Plot projected sales data points
+                .chrtLabourChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)      'Label the X-Axis
+                .chrtSalesChart.Series(0).Points(i).AxisLabel = strSeriesLabelArray(i)       'Label the X-Axis
+            Next
+            For i = 0 To intHour
+                .chrtLabourChart.Series(0).Points.AddXY(i, intAllowedLabourArray(i))         'Plot Allowed labour data point
+                .chrtSalesChart.Series(1).Points.AddXY(i, CInt(decLiveSalesArray(i)))        'Plot Live sales data points
+            Next
+        End With
         'strSeriesLabelArray(intTotalOpenPeriods) = CStr(Module1.intClose) & ":00"
-        frmMiniDashboard.chrtSalesChart.Series(0).Points.Clear()                                         'Clear all projected sales data points
-        frmMiniDashboard.chrtSalesChart.Series(1).Points.Clear()                                         'Clear all live sales data point
-        frmMiniDashboard.chrtLabourChart.Series(0).Points.Clear()                                        'Clear all allowed labour data point
-        frmMiniDashboard.chrtLabourChart.Series(1).Points.Clear()                                        'Clear all scheduled labour data points
-        For i = 0 To intTotalOpenPeriods - 1
-            frmMiniDashboard.chrtLabourChart.Series(1).Points.AddXY(i, intSchedLabourArray(i))           'Plot Scheduled labour data points
-            frmMiniDashboard.chrtSalesChart.Series(0).Points.AddXY(i, decProjectedSalesArray(i))         'Plot projected sales data points
-            frmMiniDashboard.chrtLabourChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)      'Label the X-Axis
-            frmMiniDashboard.chrtSalesChart.Series(0).Points(i).AxisLabel = strSeriesLabelArray(i)       'Label the X-Axis
-        Next
-        For i = 0 To intHour
-            frmMiniDashboard.chrtLabourChart.Series(0).Points.AddXY(i, intAllowedLabourArray(i))         'Plot Allowed labour data point
-            frmMiniDashboard.chrtSalesChart.Series(1).Points.AddXY(i, CInt(decLiveSalesArray(i)))        'Plot Live sales data points
-        Next
-
+        With frmMiniDashboard
+            .chrtSalesChart.Series(0).Points.Clear()                                         'Clear all projected sales data points
+            .chrtSalesChart.Series(1).Points.Clear()                                         'Clear all live sales data point
+            .chrtLabourChart.Series(0).Points.Clear()                                        'Clear all allowed labour data point
+            .chrtLabourChart.Series(1).Points.Clear()                                        'Clear all scheduled labour data points
+            For i = 0 To intTotalOpenPeriods - 1
+                .chrtLabourChart.Series(1).Points.AddXY(i, intSchedLabourArray(i))           'Plot Scheduled labour data points
+                .chrtSalesChart.Series(0).Points.AddXY(i, decProjectedSalesArray(i))         'Plot projected sales data points
+                .chrtLabourChart.Series(1).Points(i).AxisLabel = strSeriesLabelArray(i)      'Label the X-Axis
+                .chrtSalesChart.Series(0).Points(i).AxisLabel = strSeriesLabelArray(i)       'Label the X-Axis
+            Next
+            For i = 0 To intHour
+                .chrtLabourChart.Series(0).Points.AddXY(i, intAllowedLabourArray(i))         'Plot Allowed labour data point
+                .chrtSalesChart.Series(1).Points.AddXY(i, CInt(decLiveSalesArray(i)))        'Plot Live sales data points
+            Next
+        End With
         'UpdateStatusInfo
         Dim strStatus As String
         intTime = (CInt(DateTime.Now.Hour) * 100) + CInt(DateTime.Now.Minute)           'Calculate current time as HHmm
@@ -802,14 +820,16 @@
             file.WriteLine(strDataOutput)                                       'Put data values into file
             file.Close()
         End If
-        With Dashboard.timerUpdate
+        Dim aControl = Dashboard.timerUpdate
+        With aControl
+            'With Dashboard.timerUpdate
             .Interval = 60000
             .Enabled = True
         End With
-        With frmMiniDashboard.timerUpdate
-            .Interval = 60000
-            .Enabled = True
-        End With
+        'With frmMiniDashboard.timerUpdate
+        '.Interval = 60000
+        '.Enabled = True
+        'End With
 #If DEBUG Then
         Stopwatch.Stop()
         Debug.WriteLine("CurrentTime: " & Dashboard.txtClock.Text)
