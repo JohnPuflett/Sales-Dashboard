@@ -45,6 +45,10 @@ Public Class frmMiniDashboard
             Me.Left = 0
             Me.Top = 0
         End If
+        If strComputerName = "JohnMedia" Then
+            Me.Left = -683
+            Me.Top = 413
+        End If
 
         'Set Open and Close Times
         Module1.intOpen = CInt(strConfigArray(0))                                       'Open Time
