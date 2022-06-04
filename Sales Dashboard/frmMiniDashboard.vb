@@ -2,9 +2,12 @@
 
 Public Class frmMiniDashboard
     Private Sub picMainDashboard_Click(sender As Object, e As EventArgs) Handles picMainDashboard.Click
+#If DEBUG Then
+        Debug.WriteLine("Switch to mini size")
+#End If
         Me.Visible = False
         Dashboard.Visible = True
-        frmActive = Me
+        Master.Doit()
     End Sub
 
     Private Sub SalesActualPrevious_TextChanged(sender As Object, e As EventArgs) Handles SalesActualPrevious.TextChanged
@@ -35,9 +38,14 @@ Public Class frmMiniDashboard
 
         Dim strComputerName As String = Environment.MachineName.ToString()  'Get Machine Name
         If strComputerName = "06588MGR" Then                         'If we are The Back Office then
-            'Me.Left = -1927
-            'Me.Top = 7
+            Me.Left = -684
+            Me.Top = 413
         End If
+        If strComputerName = "JOHN-HOME" Then
+            Me.Left = 0
+            Me.Top = 0
+        End If
+
         'Set Open and Close Times
         Module1.intOpen = CInt(strConfigArray(0))                                       'Open Time
         Module1.intClose = CInt(strConfigArray(1))                                      'Close Time
@@ -58,8 +66,7 @@ Public Class frmMiniDashboard
             chrtSalesChart.Series(0).Points.AddXY(i, 0)                             'Create Projected Sales Chart points
             chrtSalesChart.Series(0).Points(i).AxisLabel = strSeriesLabelArray(i)   'Label the X-Axis
         Next
-        Me.Left = -684
-        Me.Top = 413
+
 #If DEBUG Then
         Debug.WriteLine("Started By mini.Startup Activation")
 #End If                                                             'Run Main Sub Right Away

@@ -5,8 +5,13 @@
         Dim Stopwatch As New Stopwatch
         Stopwatch.Start()
 #End If
-
-        Dashboard.timerUpdate.Enabled = False
+        Dim myForm As Form
+        If Dashboard.Visible = True Then
+            myForm = Dashboard
+        Else
+            myForm = frmMiniDashboard
+        End If
+        ''''myForm.Controls("timerUpdate").Enabled = False
         'Read the config file
         Dim strConfigArray(2) As String
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\SalesConfig.txt")
@@ -48,8 +53,6 @@
                 intCountdown += 70
             End If
         Loop Until intCountdown = Module1.intClose
-
-        'Dim intTotalOpenPeriods As Integer = (Module1.intClose - Module1.intOpen) * 2   'Calculate number of open periods
 
         'Where are we on the list -
         Dim intHour As Integer = CInt(DateTime.Now.Hour)
@@ -284,18 +287,9 @@
         Dim strSeriesLabelArray(48) As String                                           'Create Array for Chart labels
         Dim intIndex2 As Integer = 0
         For i = 0 To intTotalOpenPeriods ' - 1 Step 2                                     'Loop through the parts
-            'strSeriesLabelArray(i) = CStr(Module1.intOpen + intIndex2) & ":00"          'Label the odd periods as on the hour
-            'strSeriesLabelArray(i + 1) = CStr(Module1.intOpen + intIndex2) & ":30"      'Label the even periods as 30 after
-            'intIndex2 += 1
             strSeriesLabelArray(i) = strOpenHours(i)
         Next
         For i = 0 To intHour
-            'If i Mod 2 = 0 Then
-            '     intTime = (i + (Module1.intOpen * 2)) * 50              'Convert loop to real time based on opening time
-            'Else
-            '   intTime = ((i + (Module1.intOpen * 2) - 1) * 50) + 30   'Adjust for half hours
-            'End If
-
             intTime = CInt(strSeriesLabelArray(i))
             If intTime < Module1.DP1 Then
                 For j = 0 To 12
@@ -368,140 +362,96 @@
 
         'Fill in Sales Data
         'Current Sales
-        Dashboard.SalesActualCurrent.Text = CStr(CInt(decSalesActualCurrent))                   'Display Current Actual Sales
-        Dashboard.SalesProjectedCurrent.Text = CStr(CInt(decSalesProjectedCurrent))             'Display Current Projected Sales
-        frmMiniDashboard.SalesActualCurrent.Text = CStr(CInt(decSalesActualCurrent))                   'Display Current Actual Sales
-        frmMiniDashboard.SalesProjectedCurrent.Text = CStr(CInt(decSalesProjectedCurrent))             'Display Current Projected Sales
-        If decSalesVarianceCurrent > 0 Then                                              'If Sales Variance is positive then make it green
-            Dashboard.SalesVarianceCurrent.ForeColor = Color.LimeGreen
-            Dashboard.SalesVarianceCurrent.Text = "+" & CStr(CInt(decSalesVarianceCurrent))     'Show a + sign if positive
-            frmMiniDashboard.SalesVarianceCurrent.ForeColor = Color.LimeGreen
-            frmMiniDashboard.SalesVarianceCurrent.Text = "+" & CStr(CInt(decSalesVarianceCurrent))     'Show a + sign if positive
-        Else                                                                             'If sales Variance is negative then make it red
-            Dashboard.SalesVarianceCurrent.ForeColor = Color.Red
-            Dashboard.SalesVarianceCurrent.Text = CStr(CInt(decSalesVarianceCurrent))
-            frmMiniDashboard.SalesVarianceCurrent.ForeColor = Color.Red
-            frmMiniDashboard.SalesVarianceCurrent.Text = CStr(CInt(decSalesVarianceCurrent))
-        End If
-        'Previous Sales
-        Dashboard.SalesActualPrevious.Text = CStr(CInt(decSalesActualPrevious))                 'Display Previous Actual Sales
-        Dashboard.SalesProjectedPrevious.Text = CStr(CInt(decSalesProjectedPrevious))           'Display Previous Projected Sales
-        frmMiniDashboard.SalesActualPrevious.Text = CStr(CInt(decSalesActualPrevious))                 'Display Previous Actual Sales
-        frmMiniDashboard.SalesProjectedPrevious.Text = CStr(CInt(decSalesProjectedPrevious))           'Display Previous Projected Sales
-        If decSalesVariancePrevious > 0 Then                                             'If Sales Variance is positive then make it green
-            Dashboard.SalesVariancePrevious.ForeColor = Color.LimeGreen
-            Dashboard.SalesVariancePrevious.Text = "+" & CStr(CInt(decSalesVariancePrevious))   'Show a + sign if positve
-            frmMiniDashboard.SalesVariancePrevious.ForeColor = Color.LimeGreen
-            frmMiniDashboard.SalesVariancePrevious.Text = "+" & CStr(CInt(decSalesVariancePrevious))   'Show a + sign if positve
-        Else                                                                             'If sales Variance is negative then make it red
-            Dashboard.SalesVariancePrevious.ForeColor = Color.Red
-            Dashboard.SalesVariancePrevious.Text = CStr(CInt(decSalesVariancePrevious))
-            frmMiniDashboard.SalesVariancePrevious.ForeColor = Color.Red
-            frmMiniDashboard.SalesVariancePrevious.Text = CStr(CInt(decSalesVariancePrevious))
-        End If
-        'Daily Sales
-        Dashboard.SalesActualDaily.Text = CStr(CInt(decSalesLiveTotal))                         'Display Actual Daily Sales So Far
-        Dashboard.SalesProjectedDaily.Text = CStr(CInt(decSalesProjectedTotal))                 'Display Projected Daily Sales So Far
-        frmMiniDashboard.SalesActualDaily.Text = CStr(CInt(decSalesLiveTotal))                         'Display Actual Daily Sales So Far
-        frmMiniDashboard.SalesProjectedDaily.Text = CStr(CInt(decSalesProjectedTotal))                 'Display Projected Daily Sales So Far
-        If decSalesVarianceTotal > 0 Then                                                'If Daily Sales Variance is positve then make it green
-            Dashboard.SalesVarianceDaily.ForeColor = Color.LimeGreen
-            Dashboard.SalesVarianceDaily.Text = "+" & CStr(CInt(decSalesVarianceTotal))         'Show a + sign if positive
-            frmMiniDashboard.SalesVarianceDaily.ForeColor = Color.LimeGreen
-            frmMiniDashboard.SalesVarianceDaily.Text = "+" & CStr(CInt(decSalesVarianceTotal))         'Show a + sign if positive
-        Else                                                                             'If sales Variance is negative than zero then make it red
-            Dashboard.SalesVarianceDaily.ForeColor = Color.Red
-            Dashboard.SalesVarianceDaily.Text = CStr(CInt(decSalesVarianceTotal))
-            frmMiniDashboard.SalesVarianceDaily.ForeColor = Color.Red
-            frmMiniDashboard.SalesVarianceDaily.Text = CStr(CInt(decSalesVarianceTotal))
-        End If
-        If decSalesProjectedTotal > 0 Then
-            Dim SalesPercent As Single = CSng((decSalesLiveTotal - decSalesProjectedTotal) / decSalesProjectedTotal)
-            Dim FormattedSalesPercent As String = FormatPercent(SalesPercent)
-            If SalesPercent < 0 Then
-                Dashboard.txtSalesVariancePercentDaily.ForeColor = Color.Red
-                frmMiniDashboard.txtSalesVariancePercentDaily.ForeColor = Color.Red
-            ElseIf SalesPercent > 0 Then
-                FormattedSalesPercent = "+" & FormattedSalesPercent
-                Dashboard.txtSalesVariancePercentDaily.ForeColor = Color.LimeGreen
-                frmMiniDashboard.txtSalesVariancePercentDaily.ForeColor = Color.LimeGreen
-            Else
-                Dashboard.txtSalesVariancePercentDaily.ForeColor = Color.Yellow
-                frmMiniDashboard.txtSalesVariancePercentDaily.ForeColor = Color.Yellow
+        With myForm
+            .Controls("SalesActualCurrent").Text = CStr(CInt(decSalesActualCurrent))                   'Display Current Actual Sales
+            .Controls("SalesProjectedCurrent").Text = CStr(CInt(decSalesProjectedCurrent))                   'Display Current Actual Sales
+            If decSalesVarianceCurrent > 0 Then                                              'If Sales Variance is positive then make it green
+                .Controls("SalesVarianceCurrent").ForeColor = Color.LimeGreen
+                .Controls("Dashboard.SalesVarianceCurrent").Text = "+" & CStr(CInt(decSalesVarianceCurrent))     'Show a + sign if positive
+            Else                                                                             'If sales Variance is negative then make it red
+                .Controls("SalesVarianceCurrent").ForeColor = Color.Red
+                .Controls("SalesVarianceCurrent").Text = CStr(CInt(decSalesVarianceCurrent))
             End If
-            Dashboard.txtSalesVariancePercentDaily.Text = FormattedSalesPercent
-            frmMiniDashboard.txtSalesVariancePercentDaily.Text = FormattedSalesPercent
-        Else
-            Dashboard.txtSalesVariancePercentDaily.Text = "--"
-            frmMiniDashboard.txtSalesVariancePercentDaily.Text = "--"
-        End If
+            'Previous Sales
+            .Controls("SalesActualPrevious").Text = CStr(CInt(decSalesActualPrevious))                 'Display Previous Actual Sales
+            .Controls("SalesProjectedPrevious").Text = CStr(CInt(decSalesProjectedPrevious))           'Display Previous Projected Sales
+            If decSalesVariancePrevious > 0 Then                                             'If Sales Variance is positive then make it green
+                .Controls("SalesVariancePrevious").ForeColor = Color.LimeGreen
+                .Controls("SalesVariancePrevious").Text = "+" & CStr(CInt(decSalesVariancePrevious))   'Show a + sign if positve
+            Else                                                                             'If sales Variance is negative then make it red
+                .Controls("SalesVariancePrevious").ForeColor = Color.Red
+                .Controls("SalesVariancePrevious").Text = CStr(CInt(decSalesVariancePrevious))
+            End If
+            'Daily Sales
+            .Controls("SalesActualDaily").Text = CStr(CInt(decSalesLiveTotal))                         'Display Actual Daily Sales So Far
+            .Controls("SalesProjectedDaily").Text = CStr(CInt(decSalesProjectedTotal))                 'Display Projected Daily Sales So Far
+            If decSalesVarianceTotal > 0 Then                                                'If Daily Sales Variance is positve then make it green
+                .Controls("SalesVarianceDaily").ForeColor = Color.LimeGreen
+                .Controls("SalesVarianceDaily").Text = "+" & CStr(CInt(decSalesVarianceTotal))         'Show a + sign if positive
+            Else                                                                             'If sales Variance is negative than zero then make it red
+                .Controls("SalesVarianceDaily").ForeColor = Color.Red
+                .Controls("SalesVarianceDaily").Text = CStr(CInt(decSalesVarianceTotal))
+            End If
+            If decSalesProjectedTotal > 0 Then
+                Dim SalesPercent As Single = CSng((decSalesLiveTotal - decSalesProjectedTotal) / decSalesProjectedTotal)
+                Dim FormattedSalesPercent As String = FormatPercent(SalesPercent)
+                If SalesPercent < 0 Then
+                    .Controls("txtSalesVariancePercentDaily").ForeColor = Color.Red
+                ElseIf SalesPercent > 0 Then
+                    FormattedSalesPercent = "+" & FormattedSalesPercent
+                    .Controls("txtSalesVariancePercentDaily").ForeColor = Color.LimeGreen
+                Else
+                    .Controls("txtSalesVariancePercentDaily").ForeColor = Color.Yellow
+                End If
+                .Controls("txtSalesVariancePercentDaily").Text = FormattedSalesPercent
+            Else
+                .Controls("txtSalesVariancePercentDaily").Text = "--"
+            End If
+            .Controls("txtFullDaySalesProjection").Text = CStr(CInt(decFullDaySalesProjection))
 
 
-        Dashboard.txtFullDaySalesProjection.Text = CStr(CInt(decFullDaySalesProjection))
-        frmMiniDashboard.txtFullDaySalesProjection.Text = CStr(CInt(decFullDaySalesProjection))
+            'Let's Update the Labour Dashboard
+            intLabourAllowedCurrent = intAllowedLabourArray(intHour)                        'Populate Allowed Current Labour
+            intLabourAllowedPrevious = intAllowedLabourArray(intHour - 1)                   'Populate Allowed Previous Labour
+            intLabourSchedCurrent = intSchedLabourArray(intHour)                            'Populate Scheduled Current Labour
+            intLabourSchedPrevious = intSchedLabourArray(intHour - 1)                       'Populate Scheduled Previous Labour
+            intLabourVarianceCurrent = intLabourSchedCurrent - intLabourAllowedCurrent      'Calculate Current Labour Variance
+            intLabourVariancePrevious = intLabourSchedPrevious - intLabourAllowedPrevious   'Calculate Previous Labour Variance
+            intLabourVarianceTotal = intLabourSchedTotal - intLabourAllowedTotal            'Calculate Labour Variance for Day So Far
+            'Fill in Labour Data
+            'Current Labour
+            .Controls("LabourAllowedCurrent").Text = CStr(intLabourAllowedCurrent)                    'Display Current Allowed Labour
+            .Controls("LabourSchedCurrent").Text = CStr(intLabourSchedCurrent)                        'Display Current Scheduled Labour
+            If intLabourVarianceCurrent > 0 Then                                            'If Labour Variance is positive then make it red
+                .Controls("LabourVarianceCurrent").ForeColor = Color.Red
+                .Controls("LabourVarianceCurrent").Text = "+" & CStr(intLabourVarianceCurrent)        'Show a + sign if positive
+            Else                                                                            'If Labour Variance is zero or negative then make it green
+                .Controls("LabourVarianceCurrent").ForeColor = Color.LimeGreen
+                .Controls("LabourVarianceCurrent").Text = CStr(intLabourVarianceCurrent)
+            End If
+            'Previous Labour
+            .Controls("LabourAllowedPrevious").Text = CStr(intLabourAllowedPrevious)                  'Display Previous Allowed Labour
+            .Controls("LabourSchedPrevious").Text = CStr(intLabourSchedPrevious)                      'Display Previous Scheduled Labour
+            If intLabourVariancePrevious > 0 Then                                           'If Labour Variance is positive then make it red
+                .Controls("LabourVariancePrevious").ForeColor = Color.Red
+                .Controls("LabourVariancePrevious").Text = "+" & CStr(intLabourVariancePrevious)      'Show a + sign if positive
+            Else                                                                            'If Labour Variance is zero of negative then make it green
+                .Controls("LabourVariancePrevious").ForeColor = Color.LimeGreen
+                .Controls("LabourVariancePrevious").Text = CStr(intLabourVariancePrevious)
+            End If
+            'Daily Labour
+            .Controls("LabourAllowedDaily").Text = CStr(intLabourAllowedTotal)                        'Display Daily Allowed Labour so far
+            .Controls("LabourSchedDaily").Text = CStr(intLabourSchedTotal)                            'Display Daily Scheduled Labour so far
+            If intLabourVarianceTotal > 0 Then                                              'If Labour Variance is positive then make it red
+                .Controls("LabourVarianceDaily").ForeColor = Color.Red
+                .Controls("LabourVarianceDaily").Text = "+" & CStr(intLabourVarianceTotal)            'Show a + sign if positive
+            Else                                                                            'If sales Variance is zero or negative then make it green
+                .Controls("LabourVarianceDaily").ForeColor = Color.LimeGreen
+                .Controls("LabourVarianceDaily").Text = CStr(intLabourVarianceTotal)
+            End If
 
-
-        'Let's Update the Labour Dashboard
-        intLabourAllowedCurrent = intAllowedLabourArray(intHour)                        'Populate Allowed Current Labour
-        intLabourAllowedPrevious = intAllowedLabourArray(intHour - 1)                   'Populate Allowed Previous Labour
-        intLabourSchedCurrent = intSchedLabourArray(intHour)                            'Populate Scheduled Current Labour
-        intLabourSchedPrevious = intSchedLabourArray(intHour - 1)                       'Populate Scheduled Previous Labour
-        intLabourVarianceCurrent = intLabourSchedCurrent - intLabourAllowedCurrent      'Calculate Current Labour Variance
-        intLabourVariancePrevious = intLabourSchedPrevious - intLabourAllowedPrevious   'Calculate Previous Labour Variance
-        intLabourVarianceTotal = intLabourSchedTotal - intLabourAllowedTotal            'Calculate Labour Variance for Day So Far
-        'Fill in Labour Data
-        'Current Labour
-        Dashboard.LabourAllowedCurrent.Text = CStr(intLabourAllowedCurrent)                    'Display Current Allowed Labour
-        Dashboard.LabourSchedCurrent.Text = CStr(intLabourSchedCurrent)                        'Display Current Scheduled Labour
-        frmMiniDashboard.LabourAllowedCurrent.Text = CStr(intLabourAllowedCurrent)                    'Display Current Allowed Labour
-        frmMiniDashboard.LabourSchedCurrent.Text = CStr(intLabourSchedCurrent)                        'Display Current Scheduled Labour
-        If intLabourVarianceCurrent > 0 Then                                            'If Labour Variance is positive then make it red
-            Dashboard.LabourVarianceCurrent.ForeColor = Color.Red
-            Dashboard.LabourVarianceCurrent.Text = "+" & CStr(intLabourVarianceCurrent)        'Show a + sign if positive
-            frmMiniDashboard.LabourVarianceCurrent.ForeColor = Color.Red
-            frmMiniDashboard.LabourVarianceCurrent.Text = "+" & CStr(intLabourVarianceCurrent)        'Show a + sign if positive
-        Else                                                                            'If Labour Variance is zero or negative then make it green
-            Dashboard.LabourVarianceCurrent.ForeColor = Color.LimeGreen
-            Dashboard.LabourVarianceCurrent.Text = CStr(intLabourVarianceCurrent)
-            frmMiniDashboard.LabourVarianceCurrent.ForeColor = Color.LimeGreen
-            frmMiniDashboard.LabourVarianceCurrent.Text = CStr(intLabourVarianceCurrent)
-        End If
-        'Previous Labour
-        Dashboard.LabourAllowedPrevious.Text = CStr(intLabourAllowedPrevious)                  'Display Previous Allowed Labour
-        Dashboard.LabourSchedPrevious.Text = CStr(intLabourSchedPrevious)                      'Display Previous Scheduled Labour
-        frmMiniDashboard.LabourAllowedPrevious.Text = CStr(intLabourAllowedPrevious)                  'Display Previous Allowed Labour
-        frmMiniDashboard.LabourSchedPrevious.Text = CStr(intLabourSchedPrevious)                      'Display Previous Scheduled Labour
-        If intLabourVariancePrevious > 0 Then                                           'If Labour Variance is positive then make it red
-            Dashboard.LabourVariancePrevious.ForeColor = Color.Red
-            Dashboard.LabourVariancePrevious.Text = "+" & CStr(intLabourVariancePrevious)      'Show a + sign if positive
-            frmMiniDashboard.LabourVariancePrevious.ForeColor = Color.Red
-            frmMiniDashboard.LabourVariancePrevious.Text = "+" & CStr(intLabourVariancePrevious)      'Show a + sign if positive
-        Else                                                                            'If Labour Variance is zero of negative then make it green
-            Dashboard.LabourVariancePrevious.ForeColor = Color.LimeGreen
-            Dashboard.LabourVariancePrevious.Text = CStr(intLabourVariancePrevious)
-            frmMiniDashboard.LabourVariancePrevious.ForeColor = Color.LimeGreen
-            frmMiniDashboard.LabourVariancePrevious.Text = CStr(intLabourVariancePrevious)
-        End If
-        'Daily Labour
-        Dashboard.LabourAllowedDaily.Text = CStr(intLabourAllowedTotal)                        'Display Daily Allowed Labour so far
-        Dashboard.LabourSchedDaily.Text = CStr(intLabourSchedTotal)                            'Display Daily Scheduled Labour so far
-        frmMiniDashboard.LabourAllowedDaily.Text = CStr(intLabourAllowedTotal)                        'Display Daily Allowed Labour so far
-        frmMiniDashboard.LabourSchedDaily.Text = CStr(intLabourSchedTotal)                            'Display Daily Scheduled Labour so far
-        If intLabourVarianceTotal > 0 Then                                              'If Labour Variance is positive then make it red
-            Dashboard.LabourVarianceDaily.ForeColor = Color.Red
-            Dashboard.LabourVarianceDaily.Text = "+" & CStr(intLabourVarianceTotal)            'Show a + sign if positive
-            frmMiniDashboard.LabourVarianceDaily.ForeColor = Color.Red
-            frmMiniDashboard.LabourVarianceDaily.Text = "+" & CStr(intLabourVarianceTotal)            'Show a + sign if positive
-        Else                                                                            'If sales Variance is zero or negative then make it green
-            Dashboard.LabourVarianceDaily.ForeColor = Color.LimeGreen
-            Dashboard.LabourVarianceDaily.Text = CStr(intLabourVarianceTotal)
-            frmMiniDashboard.LabourVarianceDaily.ForeColor = Color.LimeGreen
-            frmMiniDashboard.LabourVarianceDaily.Text = CStr(intLabourVarianceTotal)
-        End If
-
-
-        'Let's Grab our Weather
-        Dim strWeatherArray(3) As String
+            'Let's Grab our Weather
+            Dim strWeatherArray(3) As String
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\weather.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
             MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
@@ -516,20 +466,13 @@
                 Next                                                    'Next Field
             End While
         End Using
-        'Display the Weather to The Dashboard
-        With Dashboard
-            .txtWeatherTemp.Text = strWeatherArray(0)                     'Display Temp
-            .txtWeatherFeelsLike.Text = strWeatherArray(1)                'Display Feels Like
-            .txtWeatherDescription.Text = strWeatherArray(2)              'Display Weather Description
-        End With
-        With frmMiniDashboard
-            .txtWeatherTemp.Text = strWeatherArray(0)                     'Display Temp
-            .txtWeatherFeelsLike.Text = strWeatherArray(1)                'Display Feels Like
-            .txtWeatherDescription.Text = strWeatherArray(2)              'Display Weather Description
-        End With
+            'Display the Weather to The Dashboard
+            .Controls("txtWeatherTemp").Text = strWeatherArray(0)                     'Display Temp
+            .Controls("txtWeatherFeelsLike").Text = strWeatherArray(1)                'Display Feels Like
+            .Controls("txtWeatherDescription").Text = strWeatherArray(2)              'Display Weather Description
 
-        'Let's Grab our VOC
-        Dim strVOCArray(9) As String
+            'Let's Grab our VOC
+            Dim strVOCArray(9) As String
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\smg.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
             MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
@@ -545,116 +488,62 @@
             End While
         End Using
 
-        'Set Up the Colours
-        With Dashboard
+            'Set Up the Colours
+
             If CDec(strVOCArray(8)) >= Module1.VOCGreen Then
-                .txtOSAT.ForeColor = Color.LimeGreen
+                .Controls("txtOSAT").ForeColor = Color.LimeGreen
             ElseIf CDec(strVOCArray(8)) <= Module1.VOCRed Then
-                .txtOSAT.ForeColor = Color.Red
-            Else .txtOSAT.ForeColor = Color.Yellow
+                .Controls("txtOSAT").ForeColor = Color.Red
+            Else .Controls("txtOSAT").ForeColor = Color.Yellow
             End If
             If CDec(strVOCArray(7)) = 0 Then
-                .txtZOD.ForeColor = Color.LimeGreen
+                .Controls("txtZOD").ForeColor = Color.LimeGreen
             ElseIf CDec(strVOCArray(7)) > 10 Then
-                .txtZOD.ForeColor = Color.Red
-            Else .txtZOD.ForeColor = Color.Yellow
+                .Controls("txtZOD").ForeColor = Color.Red
+            Else .Controls("txtZOD").ForeColor = Color.Yellow
             End If
             If CDec(strVOCArray(2)) >= Module1.VOCGreen Then
-                .txtFriendly.ForeColor = Color.LimeGreen
+                .Controls("txtFriendly").ForeColor = Color.LimeGreen
             ElseIf CDec(strVOCArray(2)) <= Module1.VOCRed Then
-                .txtFriendly.ForeColor = Color.Red
-            Else .txtFriendly.ForeColor = Color.Yellow
+                .Controls("txtFriendly").ForeColor = Color.Red
+            Else .Controls("txtFriendly").ForeColor = Color.Yellow
             End If
             If CDec(strVOCArray(1)) >= Module1.VOCGreen Then
-                .txtClean.ForeColor = Color.LimeGreen
+                .Controls("txtClean").ForeColor = Color.LimeGreen
             ElseIf CDec(strVOCArray(1)) <= Module1.VOCRed Then
-                .txtClean.ForeColor = Color.Red
-            Else .txtClean.ForeColor = Color.Yellow
+                .Controls("txtClean").ForeColor = Color.Red
+            Else .Controls("txtClean").ForeColor = Color.Yellow
             End If
             If CDec(strVOCArray(3)) >= Module1.VOCGreen Then
-                .txtFast.ForeColor = Color.LimeGreen
+                .Controls("txtFast").ForeColor = Color.LimeGreen
             ElseIf CDec(strVOCArray(3)) <= Module1.VOCRed Then
-                .txtFast.ForeColor = Color.Red
-            Else .txtFast.ForeColor = Color.Yellow
+                .Controls("txtFast").ForeColor = Color.Red
+            Else .Controls("txtFast").ForeColor = Color.Yellow
             End If
             If CDec(strVOCArray(4)) >= Module1.VOCGreen Then
-                .txtAccurate.ForeColor = Color.LimeGreen
+                .Controls("txtAccurate").ForeColor = Color.LimeGreen
             ElseIf CDec(strVOCArray(4)) <= Module1.VOCRed Then
-                .txtAccurate.ForeColor = Color.Red
-            Else .txtAccurate.ForeColor = Color.Yellow
+                .Controls("txtAccurate").ForeColor = Color.Red
+            Else .Controls("txtAccurate").ForeColor = Color.Yellow
             End If
             If CDec(strVOCArray(5)) >= Module1.VOCGreen Then
-                .txtTaste.ForeColor = Color.LimeGreen
+                .Controls("txtTaste").ForeColor = Color.LimeGreen
             ElseIf CDec(strVOCArray(5)) <= Module1.VOCRed Then
-                .txtTaste.ForeColor = Color.Red
-            Else .txtTaste.ForeColor = Color.Yellow
+                .Controls("txtTaste").ForeColor = Color.Red
+            Else .Controls("txtTaste").ForeColor = Color.Yellow
             End If
             'Display the VOC data to the dashboard
-            .txtOSAT.Text = strVOCArray(8)                                'Display OSAT
-            .txtZOD.Text = strVOCArray(7)                                 'Display ZOD
-            .txtFriendly.Text = strVOCArray(2)                            'Display Friendly
-            .txtClean.Text = strVOCArray(1)                               'Display Clean
-            .txtFast.Text = strVOCArray(3)                                'Display Fast
-            .txtAccurate.Text = strVOCArray(4)                            'Display Accurate
-            .txtTaste.Text = strVOCArray(5)                               'Display Taste
-        End With
+            .Controls("txtOSAT").Text = strVOCArray(8)                                'Display OSAT
+            .Controls("txtZOD").Text = strVOCArray(7)                                 'Display ZOD
+            .Controls("txtFriendly").Text = strVOCArray(2)                            'Display Friendly
+            .Controls("txtClean").Text = strVOCArray(1)                               'Display Clean
+            .Controls("txtFast").Text = strVOCArray(3)                                'Display Fast
+            .Controls("txtAccurate").Text = strVOCArray(4)                            'Display Accurate
+            .Controls("txtTaste").Text = strVOCArray(5)                               'Display Taste
 
-        'Same but for the Mini Dashboard
-        With frmMiniDashboard
-            If CDec(strVOCArray(8)) >= Module1.VOCGreen Then
-                .txtOSAT.ForeColor = Color.LimeGreen
-            ElseIf CDec(strVOCArray(8)) <= Module1.VOCRed Then
-                .txtOSAT.ForeColor = Color.Red
-            Else .txtOSAT.ForeColor = Color.Yellow
-            End If
-            If CDec(strVOCArray(7)) = 0 Then
-                .txtZOD.ForeColor = Color.LimeGreen
-            ElseIf CDec(strVOCArray(7)) > 10 Then
-                .txtZOD.ForeColor = Color.Red
-            Else .txtZOD.ForeColor = Color.Yellow
-            End If
-            If CDec(strVOCArray(2)) >= Module1.VOCGreen Then
-                .txtFriendly.ForeColor = Color.LimeGreen
-            ElseIf CDec(strVOCArray(2)) <= Module1.VOCRed Then
-                .txtFriendly.ForeColor = Color.Red
-            Else .txtFriendly.ForeColor = Color.Yellow
-            End If
-            If CDec(strVOCArray(1)) >= Module1.VOCGreen Then
-                .txtClean.ForeColor = Color.LimeGreen
-            ElseIf CDec(strVOCArray(1)) <= Module1.VOCRed Then
-                .txtClean.ForeColor = Color.Red
-            Else .txtClean.ForeColor = Color.Yellow
-            End If
-            If CDec(strVOCArray(3)) >= Module1.VOCGreen Then
-                .txtFast.ForeColor = Color.LimeGreen
-            ElseIf CDec(strVOCArray(3)) <= Module1.VOCRed Then
-                .txtFast.ForeColor = Color.Red
-            Else .txtFast.ForeColor = Color.Yellow
-            End If
-            If CDec(strVOCArray(4)) >= Module1.VOCGreen Then
-                .txtAccurate.ForeColor = Color.LimeGreen
-            ElseIf CDec(strVOCArray(4)) <= Module1.VOCRed Then
-                .txtAccurate.ForeColor = Color.Red
-            Else .txtAccurate.ForeColor = Color.Yellow
-            End If
-            If CDec(strVOCArray(5)) >= Module1.VOCGreen Then
-                .txtTaste.ForeColor = Color.LimeGreen
-            ElseIf CDec(strVOCArray(5)) <= Module1.VOCRed Then
-                .txtTaste.ForeColor = Color.Red
-            Else .txtTaste.ForeColor = Color.Yellow
-            End If
-            'Display the VOC data to the dashboard
-            .txtOSAT.Text = strVOCArray(8)                                'Display OSAT
-            .txtZOD.Text = strVOCArray(7)                                 'Display ZOD
-            .txtFriendly.Text = strVOCArray(2)                            'Display Friendly
-            .txtClean.Text = strVOCArray(1)                               'Display Clean
-            .txtFast.Text = strVOCArray(3)                                'Display Fast
-            .txtAccurate.Text = strVOCArray(4)                            'Display Accurate
-            .txtTaste.Text = strVOCArray(5)                               'Display Taste
-        End With
 
-        'Let's Get The DT Data
-        Dim strDTArray(3) As String
+            'Let's Get The DT Data
+            Dim strDTArray(3) As String
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\LiveDTTimes.txt")
             MyReader.TextFieldType = FileIO.FieldType.Delimited         'Set file as delimited
             MyReader.SetDelimiters(",")                                 'Set Delimiter as ,
@@ -669,62 +558,35 @@
                 Next                                                    'Next Field
             End While
         End Using
-        With Dashboard
+
             If strDTArray(0) <> "for" Then
                 'Set Up the DT Colours
                 If CInt(strDTArray(0)) <= Module1.TTLGreen Then
-                    .txtDayPartTTL.ForeColor = Color.LimeGreen
+                    .Controls("txtDayPartTTL").ForeColor = Color.LimeGreen
                 ElseIf CInt(strDTArray(0)) >= Module1.TTLRed Then
-                    .txtDayPartTTL.ForeColor = Color.Red
+                    .Controls("txtDayPartTTL").ForeColor = Color.Red
                 Else
-                    .txtDayPartTTL.ForeColor = Color.Yellow
+                    .Controls("txtDayPartTTL").ForeColor = Color.Yellow
                 End If
                 If CInt(strDTArray(2)) <= Module1.TTLGreen Then
-                    .txtFullDayTTL.ForeColor = Color.LimeGreen
+                    .Controls("txtFullDayTTL").ForeColor = Color.LimeGreen
                 ElseIf CInt(strDTArray(2)) >= Module1.TTLRed Then
-                    .txtFullDayTTL.ForeColor = Color.Red
+                    .Controls("txtFullDayTTL").ForeColor = Color.Red
                 Else
-                    .txtFullDayTTL.ForeColor = Color.Yellow
+                    .Controls("txtFullDayTTL").ForeColor = Color.Yellow
                 End If
                 'Display The DT Data
-                .txtDayPartTTL.Text = strDTArray(0)
-                .txtDayPartCC.Text = strDTArray(1)
-                .txtFullDayTTL.Text = strDTArray(2)
+                .Controls("txtDayPartTTL").Text = strDTArray(0)
+                .Controls("txtDayPartCC").Text = strDTArray(1)
+                .Controls("txtFullDayTTL").Text = strDTArray(2)
             End If
         End With
-
-
-        With frmMiniDashboard
-            If strDTArray(0) <> "for" Then
-                'Set Up the DT Colours
-                If CInt(strDTArray(0)) <= Module1.TTLGreen Then
-                    .txtDayPartTTL.ForeColor = Color.LimeGreen
-                ElseIf CInt(strDTArray(0)) >= Module1.TTLRed Then
-                    .txtDayPartTTL.ForeColor = Color.Red
-                Else
-                    .txtDayPartTTL.ForeColor = Color.Yellow
-                End If
-                If CInt(strDTArray(2)) <= Module1.TTLGreen Then
-                    .txtFullDayTTL.ForeColor = Color.LimeGreen
-                ElseIf CInt(strDTArray(2)) >= Module1.TTLRed Then
-                    .txtFullDayTTL.ForeColor = Color.Red
-                Else
-                    .txtFullDayTTL.ForeColor = Color.Yellow
-                End If
-                'Display The DT Data
-                .txtDayPartTTL.Text = strDTArray(0)
-                .txtDayPartCC.Text = strDTArray(1)
-                .txtFullDayTTL.Text = strDTArray(2)
-            End If
-        End With
-
 
         'Update Charts
         'Set Open and Close Times
         Module1.intOpen = CInt(strConfigArray(0))                                       'Open Time
         Module1.intClose = CInt(strConfigArray(1))                                      'Close Time
 
-        'strSeriesLabelArray(intTotalOpenPeriods) = CStr(Module1.intClose) & ":00"
         With Dashboard
             .chrtSalesChart.Series(0).Points.Clear()                                         'Clear all projected sales data points
             .chrtSalesChart.Series(1).Points.Clear()                                         'Clear all live sales data point
@@ -741,7 +603,6 @@
                 .chrtSalesChart.Series(1).Points.AddXY(i, CInt(decLiveSalesArray(i)))        'Plot Live sales data points
             Next
         End With
-        'strSeriesLabelArray(intTotalOpenPeriods) = CStr(Module1.intClose) & ":00"
         With frmMiniDashboard
             .chrtSalesChart.Series(0).Points.Clear()                                         'Clear all projected sales data points
             .chrtSalesChart.Series(1).Points.Clear()                                         'Clear all live sales data point
@@ -820,16 +681,13 @@
             file.WriteLine(strDataOutput)                                       'Put data values into file
             file.Close()
         End If
-        Dim aControl = Dashboard.timerUpdate
-        With aControl
-            'With Dashboard.timerUpdate
+
+
+        With Dashboard.timerUpdate
             .Interval = 60000
             .Enabled = True
         End With
-        'With frmMiniDashboard.timerUpdate
-        '.Interval = 60000
-        '.Enabled = True
-        'End With
+
 #If DEBUG Then
         Stopwatch.Stop()
         Debug.WriteLine("CurrentTime: " & Dashboard.txtClock.Text)

@@ -104,14 +104,12 @@ Public Class Dashboard
     End Sub
 
     Private Sub picMini_Click(sender As Object, e As EventArgs) Handles picMini.Click
-        Dim strComputerName As String = Environment.MachineName.ToString()  'Get Machine Name
-        If strComputerName = "06588MGR" Then                         'If we are The Back Office then
-            'frmMiniDashboard.Left = -1927
-            'frmMiniDashboard.Top = 7
-        End If
+#If DEBUG Then
+        Debug.WriteLine("Switch to full size")
+#End If
         frmMiniDashboard.Visible = True
         Me.Visible = False
-        frmActive = Me
+        Master.Doit()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
