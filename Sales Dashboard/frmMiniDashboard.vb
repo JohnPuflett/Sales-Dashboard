@@ -61,9 +61,8 @@ Public Class frmMiniDashboard
         Me.Left = -684
         Me.Top = 413
 #If DEBUG Then
-        Debug.WriteLine("Started By Startup Activation")
-#End If
-        'Master.MiniDoIt()                                                              'Run Main Sub Right Away
+        Debug.WriteLine("Started By mini.Startup Activation")
+#End If                                                             'Run Main Sub Right Away
         Master.Doit()
     End Sub
 
@@ -81,12 +80,15 @@ Public Class frmMiniDashboard
 
     Private Sub FileSystemWatcher1_Changed(sender As Object, e As FileSystemEventArgs) Handles FileSystemWatcher1.Changed
 #If DEBUG Then
-        Debug.WriteLine("Started By FileSystemWatcher")
+        Debug.WriteLine("Started By mini.FileSystemWatcher")
 #End If
         Master.Doit()
     End Sub
 
     Private Sub timerUpdate_Tick(sender As Object, e As EventArgs) Handles timerUpdate.Tick
+#If DEBUG Then
+        Debug.WriteLine("Started By mini.Timer")
+#End If
         Master.Doit()
     End Sub
 End Class
