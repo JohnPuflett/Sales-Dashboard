@@ -37,6 +37,9 @@
             Debug.WriteLine("Total Periods: " & CStr(intTotalOpenPeriods) & " " & CStr(intCountdown))
 #End If
             intTotalOpenPeriods += 1
+            If intTotalOpenPeriods > 48 Then
+                Exit Sub
+            End If
             strCountdown = CStr(intCountdown)
 
             If strCountdown.Substring(strCountdown.Length - 2) = "00" Then
@@ -541,7 +544,7 @@
         'Set Up the Colours
         If CDec(strVOCArray(8)) >= Module1.VOCGreen Then
             Dashboard.txtOSAT.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(8)) < Module1.VOCRed Then
+        ElseIf CDec(strVOCArray(8)) <= Module1.VOCRed Then
             Dashboard.txtOSAT.ForeColor = Color.Red
         Else Dashboard.txtOSAT.ForeColor = Color.Yellow
         End If
@@ -551,33 +554,33 @@
             Dashboard.txtZOD.ForeColor = Color.Red
         Else Dashboard.txtZOD.ForeColor = Color.Yellow
         End If
-        If CDec(strVOCArray(4)) >= Module1.VOCGreen Then
+        If CDec(strVOCArray(2)) >= Module1.VOCGreen Then
             Dashboard.txtFriendly.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(4)) < Module1.VOCRed Then
+        ElseIf CDec(strVOCArray(2)) <= Module1.VOCRed Then
             Dashboard.txtFriendly.ForeColor = Color.Red
         Else Dashboard.txtFriendly.ForeColor = Color.Yellow
         End If
-        If CDec(strVOCArray(3)) >= Module1.VOCGreen Then
+        If CDec(strVOCArray(1)) >= Module1.VOCGreen Then
             Dashboard.txtClean.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(3)) < Module1.VOCRed Then
+        ElseIf CDec(strVOCArray(1)) <= Module1.VOCRed Then
             Dashboard.txtClean.ForeColor = Color.Red
         Else Dashboard.txtClean.ForeColor = Color.Yellow
         End If
-        If CDec(strVOCArray(2)) >= Module1.VOCGreen Then
+        If CDec(strVOCArray(3)) >= Module1.VOCGreen Then
             Dashboard.txtFast.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(2)) < Module1.VOCRed Then
+        ElseIf CDec(strVOCArray(3)) <= Module1.VOCRed Then
             Dashboard.txtFast.ForeColor = Color.Red
         Else Dashboard.txtFast.ForeColor = Color.Yellow
         End If
-        If CDec(strVOCArray(1)) >= Module1.VOCGreen Then
+        If CDec(strVOCArray(4)) >= Module1.VOCGreen Then
             Dashboard.txtAccurate.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(1)) < Module1.VOCRed Then
+        ElseIf CDec(strVOCArray(4)) <= Module1.VOCRed Then
             Dashboard.txtAccurate.ForeColor = Color.Red
         Else Dashboard.txtAccurate.ForeColor = Color.Yellow
         End If
-        If CDec(strVOCArray(0)) >= Module1.VOCGreen Then
+        If CDec(strVOCArray(5)) >= Module1.VOCGreen Then
             Dashboard.txtTaste.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(0)) < Module1.VOCRed Then
+        ElseIf CDec(strVOCArray(5)) <= Module1.VOCRed Then
             Dashboard.txtTaste.ForeColor = Color.Red
         Else Dashboard.txtTaste.ForeColor = Color.Yellow
         End If
@@ -593,7 +596,7 @@
         'Same but for the Mini Dashboard
         If CDec(strVOCArray(8)) >= Module1.VOCGreen Then
             frmMiniDashboard.txtOSAT.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(8)) < Module1.VOCRed Then
+        ElseIf CDec(strVOCArray(8)) <= Module1.VOCRed Then
             frmMiniDashboard.txtOSAT.ForeColor = Color.Red
         Else frmMiniDashboard.txtOSAT.ForeColor = Color.Yellow
         End If
@@ -605,31 +608,31 @@
         End If
         If CDec(strVOCArray(4)) >= Module1.VOCGreen Then
             frmMiniDashboard.txtFriendly.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(4)) < Module1.VOCRed Then
+        ElseIf CDec(strVOCArray(4)) <= CDec(Module1.VOCRed) Then
             frmMiniDashboard.txtFriendly.ForeColor = Color.Red
         Else frmMiniDashboard.txtFriendly.ForeColor = Color.Yellow
         End If
         If CDec(strVOCArray(3)) >= Module1.VOCGreen Then
             frmMiniDashboard.txtClean.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(3)) < Module1.VOCRed Then
+        ElseIf CDec(strVOCArray(3)) <= Module1.VOCRed Then
             frmMiniDashboard.txtClean.ForeColor = Color.Red
         Else frmMiniDashboard.txtClean.ForeColor = Color.Yellow
         End If
         If CDec(strVOCArray(2)) >= Module1.VOCGreen Then
             frmMiniDashboard.txtFast.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(2)) < Module1.VOCRed Then
+        ElseIf CDec(strVOCArray(2)) <= CDec(Module1.VOCRed) Then
             frmMiniDashboard.txtFast.ForeColor = Color.Red
         Else frmMiniDashboard.txtFast.ForeColor = Color.Yellow
         End If
         If CDec(strVOCArray(1)) >= Module1.VOCGreen Then
             frmMiniDashboard.txtAccurate.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(1)) < Module1.VOCRed Then
+        ElseIf CDec(strVOCArray(1)) <= Module1.VOCRed Then
             frmMiniDashboard.txtAccurate.ForeColor = Color.Red
         Else frmMiniDashboard.txtAccurate.ForeColor = Color.Yellow
         End If
         If CDec(strVOCArray(0)) >= Module1.VOCGreen Then
             frmMiniDashboard.txtTaste.ForeColor = Color.LimeGreen
-        ElseIf CDec(strVOCArray(0)) < Module1.VOCRed Then
+        ElseIf CDec(strVOCArray(0)) <= Module1.VOCRed Then
             frmMiniDashboard.txtTaste.ForeColor = Color.Red
         Else frmMiniDashboard.txtTaste.ForeColor = Color.Yellow
         End If

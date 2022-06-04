@@ -83,7 +83,6 @@ Public Class frmMiniDashboard
 #If DEBUG Then
         Debug.WriteLine("Started By FileSystemWatcher")
 #End If
-        'Master.MiniDoIt()
         Master.Doit()
     End Sub
 
