@@ -367,7 +367,7 @@
             .Controls("SalesProjectedCurrent").Text = CStr(CInt(decSalesProjectedCurrent))                   'Display Current Actual Sales
             If decSalesVarianceCurrent > 0 Then                                              'If Sales Variance is positive then make it green
                 .Controls("SalesVarianceCurrent").ForeColor = Color.LimeGreen
-                .Controls("Dashboard.SalesVarianceCurrent").Text = "+" & CStr(CInt(decSalesVarianceCurrent))     'Show a + sign if positive
+                .Controls("SalesVarianceCurrent").Text = "+" & CStr(CInt(decSalesVarianceCurrent))     'Show a + sign if positive
             Else                                                                             'If sales Variance is negative then make it red
                 .Controls("SalesVarianceCurrent").ForeColor = Color.Red
                 .Controls("SalesVarianceCurrent").Text = CStr(CInt(decSalesVarianceCurrent))
