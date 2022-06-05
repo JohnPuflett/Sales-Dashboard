@@ -5,11 +5,26 @@
         Dim Stopwatch As New Stopwatch
         Stopwatch.Start()
 #End If
+        Dim strComputerName As String = Environment.MachineName.ToString()  'Get Machine Name
         Dim myForm As Form
         If Dashboard.Visible = True Then
             myForm = Dashboard
         Else
             myForm = frmMiniDashboard
+            With frmMiniDashboard
+                If strComputerName = "06588MGR" Then                         'If we are The Back Office then
+                    .Left = -1920
+                    .Top = 0
+                End If
+                If strComputerName = "JOHN-HOME" Then
+                    .Left = 0
+                    .Top = 0
+                End If
+                If strComputerName = "JohnMedia" Then
+                    .Left = -683
+                    .Top = 413
+                End If
+            End With
         End If
         ''''myForm.Controls("timerUpdate").Enabled = False
         'Read the config file
@@ -645,8 +660,6 @@
         frmMiniDashboard.txtStatus.Text = strStatus
 
         'Output Data.txt file for webpage to update
-        Dim strComputerName As String = Environment.MachineName.ToString()  'Get Machine Name
-
         Dim strDataOutput As String = ""                                    'Clean Data Output Array
         If strComputerName = "DESKTOP-NIH3L5I" Then                         'If we are The Front Line Display then
             Dim strFileName As String = "C:\Wendys\Data.txt"                'This is the file location and name

@@ -38,8 +38,8 @@ Public Class frmMiniDashboard
 
         Dim strComputerName As String = Environment.MachineName.ToString()  'Get Machine Name
         If strComputerName = "06588MGR" Then                         'If we are The Back Office then
-            Me.Left = -684
-            Me.Top = 413
+            Me.Left = -1920
+            Me.Top = 0
         End If
         If strComputerName = "JOHN-HOME" Then
             Me.Left = 0
