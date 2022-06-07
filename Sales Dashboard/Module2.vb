@@ -1,6 +1,6 @@
 ﻿Module Master
     Public Sub Doit()
-        On Error Resume Next
+        On Error GoTo Error_Handler
         Dashboard.timerUpdate.Enabled = False
 #If DEBUG Then
         Dim Stopwatch As New Stopwatch
@@ -706,6 +706,11 @@
         Debug.WriteLine("Machine Name: " & strComputerName)
         Debug.WriteLine("Time Taken: " & Stopwatch.Elapsed.ToString)
 #End If
+        Exit Sub
+
+Error_Handler:
+        Exit Sub
+
     End Sub
 
 End Module
