@@ -1,6 +1,7 @@
 ﻿Module Master
     Public Sub Doit()
         On Error Resume Next
+        Dashboard.timerUpdate.Enabled = False
 #If DEBUG Then
         Dim Stopwatch As New Stopwatch
         Stopwatch.Start()
@@ -26,7 +27,6 @@
                 End If
             End With
         End If
-        ''''myForm.Controls("timerUpdate").Enabled = False
         'Read the config file
         Dim strConfigArray(2) As String
         Using MyReader As New Microsoft.VisualBasic.FileIO.TextFieldParser("C:\wendys\SalesConfig.txt")
@@ -141,9 +141,9 @@
                 For Each currentField In currentRow                         'Cycle through each field on this line
                     If intIndex = 2 Then                                    'Load up daypart labels
                         strOpenHours(intRow) = CStr(currentField)
-#If DEBUG Then
-                        Debug.WriteLine("Graph Labels: " & strOpenHours(intRow))
-#End If
+                        '#If DEBUG Then
+                        '                        Debug.WriteLine("Graph Labels: " & strOpenHours(intRow))
+                        '#End If
                     End If
                     If intIndex = 3 Then                                    'Grab only the 3rd field (sales)
                         decProjectedSalesArray(intRow) = CDec(currentField) 'Put it into the array
@@ -504,7 +504,6 @@
         End Using
 
             'Set Up the Colours
-
             If CDec(strVOCArray(8)) >= Module1.VOCGreen Then
                 .Controls("txtOSAT").ForeColor = Color.LimeGreen
             ElseIf CDec(strVOCArray(8)) <= Module1.VOCRed Then
