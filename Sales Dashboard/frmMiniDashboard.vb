@@ -90,9 +90,9 @@ Public Class frmMiniDashboard
     End Sub
 
     Private Sub FileSystemWatcher1_Changed(sender As Object, e As FileSystemEventArgs) Handles FileSystemWatcher1.Changed
-#If DEBUG Then
-        Debug.WriteLine("Started By mini.FileSystemWatcher")
-#End If
+        '#If DEBUG Then
+        '        Debug.WriteLine("Started By mini.FileSystemWatcher")
+        '#End If
         Master.Doit()
     End Sub
 

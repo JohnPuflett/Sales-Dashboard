@@ -6,9 +6,9 @@ Public Class Dashboard
     End Sub
 
     Private Sub FileSystemWatcher1_Changed(sender As Object, e As FileSystemEventArgs) Handles FileSystemWatcher1.Changed
-#If DEBUG Then
-        Debug.WriteLine("Started By FileSystemWatcher")
-#End If
+        '#If DEBUG Then
+        '        Debug.WriteLine("Started By FileSystemWatcher")
+        '#End If
         FileSystemWatcher1.EnableRaisingEvents = False
         Master.Doit()
         FileSystemWatcher1.EnableRaisingEvents = True
