@@ -381,6 +381,7 @@
         Dim intTime As Integer
         Dim strSeriesLabelArray(48) As String                                           'Create Array for Chart labels
         Dim intIndex2 As Integer = 0
+        Dim decFullDaySalesProjection As Decimal                        'Sum up Projected Sales for the entire day
         Try
             For i = 0 To intTotalOpenPeriods ' - 1 Step 2                                     'Loop through the parts
                 strSeriesLabelArray(i) = strOpenHours(i)
@@ -441,7 +442,7 @@
                 intLabourAllowedTotal += intAllowedLabourArray(i)           'Sum up Allowed Labour for the day so far
                 intLabourSchedTotal += intSchedLabourArray(i)               'Sum up Sched Labour for the day so far
             Next
-            Dim decFullDaySalesProjection As Decimal                        'Sum up Projected Sales for the entire day
+
             For i = 0 To intTotalOpenPeriods                                '
                 decFullDaySalesProjection += decProjectedSalesArray(i)      '
             Next                                                            '
